@@ -55,7 +55,7 @@ const CapabilitiesSection = () => {
             id="capabilities-heading"
             className={`text-3xl md:text-4xl font-bold mb-4 reveal ${isVisible ? 'visible' : ''}`}
           >
-            <span className="text-gradient">Capabilities</span>
+            <span className="text-gradient">Δυνατότητες</span>
           </h2>
           <p className={`text-muted-foreground max-w-2xl mx-auto reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
             Ολοκληρωμένη διαχείριση περιστατικών — από το alert μέχρι την τελική αναφορά.
