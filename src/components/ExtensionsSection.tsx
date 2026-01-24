@@ -4,32 +4,32 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const extensions = [
   {
     icon: Timer,
-    title: 'SLA & Severity',
+    title: 'SLA & επίπεδα σοβαρότητας',
     description: 'Επίπεδα προτεραιότητας και χρονικά όρια απόκρισης.',
   },
   {
     icon: Users,
-    title: 'Multi-site / Shifts / Roles',
+    title: 'Πολλαπλές τοποθεσίες / Βάρδιες / Ρόλοι',
     description: 'Διαχείριση πολλαπλών τοποθεσιών, βαρδιών και ρόλων.',
   },
   {
     icon: Link,
-    title: 'Integrations',
+    title: 'Διασυνδέσεις',
     description: 'CRM, ERP, ticketing, Teams, Slack, webhooks.',
   },
   {
     icon: BarChart3,
-    title: 'Reports & Analytics',
+    title: 'Αναφορές & αναλύσεις',
     description: 'KPIs, response times, patterns — data-driven αποφάσεις.',
   },
   {
     icon: Camera,
-    title: 'Evidence Capture',
+    title: 'Καταγραφή τεκμηρίων',
     description: 'Φωτογραφίες, checklists, σημειώσεις — τεκμηρίωση.',
   },
   {
     icon: Palette,
-    title: 'White-label',
+    title: 'White-label λύση',
     description: 'Branding, domain/subdomain — δική σας ταυτότητα.',
   },
 ];

@@ -5,9 +5,9 @@ import aegisAlertFlow from '@/assets/aegis-alert-flow.jpg';
 const HeroSection = () => {
   const chips = [
     'Vonage SMS/Voice',
-    'AI-guided reporting',
-    'Audit trail',
-    'Live dashboard',
+    'Αναφορές με καθοδήγηση AI',
+    'Ιχνηλασιμότητα ενεργειών',
+    'Ζωντανό dashboard',
   ];
 
   return (
@@ -101,7 +101,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             </div>
             <p className="text-center text-sm text-muted-foreground py-3">
-              Live Dashboard — Real-time operations view
+              Ζωντανό dashboard — Πραγματικός χρόνος λειτουργίας
             </p>
           </div>
 
@@ -116,7 +116,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             </div>
             <p className="text-center text-sm text-muted-foreground py-3">
-              Alert → Questions flow — Structured reporting
+              Alert → Ροή ερωτήσεων — Δομημένη αναφορά περιστατικού
             </p>
           </div>
         </div>
