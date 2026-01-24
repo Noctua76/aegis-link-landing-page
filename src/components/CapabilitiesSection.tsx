@@ -4,37 +4,37 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const capabilities = [
   {
     icon: Zap,
-    title: 'Instant Alert',
+    title: 'Άμεση ειδοποίηση',
     description: 'Άμεση ειδοποίηση μέσω web, mobile-first σχεδιασμός για γρήγορη πρόσβαση.',
     color: 'neon-purple',
   },
   {
     icon: Phone,
-    title: 'Escalation',
+    title: 'Κλιμάκωση',
     description: 'SMS & Voice μέσω Vonage — αυτόματη κλιμάκωση αν δεν υπάρξει απάντηση.',
     color: 'neon-cyan',
   },
   {
     icon: MessageSquare,
-    title: 'AI-guided Reporting',
+    title: 'Αναφορές με καθοδήγηση AI',
     description: 'Δομημένες ερωτήσεις που οδηγούν σε πλήρη αναφορά περιστατικού.',
     color: 'neon-green',
   },
   {
     icon: Clock,
-    title: 'Audit Trail',
+    title: 'Ιχνηλασιμότητα ενεργειών',
     description: 'Timeline όλων των ενεργειών — ποιος είδε, απάντησε, πότε, τι.',
     color: 'neon-purple',
   },
   {
     icon: LayoutDashboard,
-    title: 'Live Dashboard',
+    title: 'Ζωντανό dashboard',
     description: 'Real-time παρακολούθηση λειτουργιών και ανοιχτών περιστατικών.',
     color: 'neon-cyan',
   },
   {
     icon: Settings,
-    title: 'Custom Logic',
+    title: 'Προσαρμοσμένη λογική',
     description: 'Ρόλοι, SLA, κανόνες, multi-site — πλήρης προσαρμογή στη δομή σας.',
     color: 'neon-green',
   },
