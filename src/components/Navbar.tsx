@@ -14,10 +14,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: '#capabilities', label: 'Capabilities' },
-    { href: '#visuals', label: 'Visuals' },
-    { href: '#extensions', label: 'Extensions' },
-    { href: '#faq', label: 'FAQ' },
+    { href: '#capabilities', label: 'Δυνατότητες' },
+    { href: '#visuals', label: 'Εικόνες' },
+    { href: '#extensions', label: 'Επεκτάσεις' },
+    { href: '#faq', label: 'Συχνές ερωτήσεις' },
   ];
 
   return (
