@@ -8,20 +8,20 @@ import {
 
 const faqs = [
   {
-    question: 'Είναι 100% συμβατό με κινητά;',
-    answer: 'Ναι. Mobile-first σχεδιασμός — λειτουργεί άψογα σε οποιοδήποτε smartphone ή tablet, χωρίς εγκατάσταση app. Απλά ένα link.',
+    question: 'Θα φαίνεται σωστά σε κινητά;',
+    answer: 'Ναι. Mobile-first layout, μεγάλα tap targets, responsive εικόνες και performance-friendly animations.',
   },
   {
     question: 'Είναι chatbot;',
-    answer: 'Όχι. Το Aegis Link είναι σύστημα διαχείρισης περιστατικών με δομημένες ερωτήσεις, όχι ανοιχτό chatbot. Η ροή είναι ελεγχόμενη και προσαρμοσμένη στις ανάγκες σας.',
+    answer: 'Όχι. Η AI χρησιμοποιείται για δομημένη καταγραφή συμβάντων και βελτιστοποίηση της διαδικασίας απόκρισης — όχι για «συζήτηση».',
   },
   {
-    question: 'Μπορεί να δείχνει real status (sent/delivered/answered/no-answer);',
-    answer: 'Απολύτως. Live tracking κάθε μηνύματος — βλέπεις πότε στάλθηκε, παραδόθηκε, διαβάστηκε και απαντήθηκε. Πλήρης διαφάνεια.',
+    question: 'Μπορεί να δείχνει αληθινό status κλήσεων/SMS;',
+    answer: 'Ναι. Μέσω callbacks του provider (π.χ. Vonage) εμφανίζεται στο dashboard: sent / delivered / answered / no-answer.',
   },
   {
     question: 'White-label;',
-    answer: 'Ναι. Πλήρες branding με το δικό σας logo, χρώματα, domain ή subdomain. Οι χρήστες σας βλέπουν μόνο τη δική σας ταυτότητα.',
+    answer: 'Ναι. Branding, domain/subdomain, UI, ρόλοι, flows και modules προσαρμόζονται ανά εταιρεία.',
   },
 ];
 
