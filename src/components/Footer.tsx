@@ -1,3 +1,5 @@
+import logoMark from "@/assets/aegis-link-logo-mark.png";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -7,10 +9,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo and branding */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center">
-              <span className="text-white font-bold text-sm">NC</span>
-            </div>
-            <div>
+            <img
+  src={logoMark}
+  alt="Noctua Core"
+  className="h-7 w-auto opacity-80"
+/>
               <span className="font-semibold text-foreground">Noctua Core</span>
               <p className="text-sm text-muted-foreground">Aegis Link</p>
             </div>
