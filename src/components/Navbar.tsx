@@ -1,4 +1,4 @@
-import logoMark from "@/assets/aegis-link-logo-mark.png";
+import logoMark from "../assets/aegis-link-logo-mark.png";
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
