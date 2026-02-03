@@ -1,3 +1,4 @@
+import logoMark from "@/assets/aegis-link-logo-mark.png";
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -33,9 +34,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center">
-            <span className="text-white font-bold text-sm">NC</span>
-          </div>
+          <img
+  src={logoMark}
+  alt="Noctua Core"
+  className="h-8 w-8 object-contain opacity-90"
+/>
           <span className="text-lg font-bold text-foreground group-hover:text-gradient transition-all duration-300">
             Noctua Core
           </span>
