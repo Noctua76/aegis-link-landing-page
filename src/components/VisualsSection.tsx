@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import aegisMontage from '@/assets/aegis-montage.jpg';
+import aegisMontage from '@/assets/aegis-hero-ai-operations.png.png';
 
 const VisualsSection = () => {
   const { ref, isVisible } = useScrollReveal();
