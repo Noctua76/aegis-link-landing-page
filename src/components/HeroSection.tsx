@@ -1,6 +1,6 @@
 import { ArrowRight, Play } from 'lucide-react';
 import aegisDashboard from "@/assets/aegis-dashboard-test.png.png";
-import aegisAlertFlow from '@/assets/aegis-alert-flow.jpg';
+import aegisAlertFlow from '@/assets/aegis-alert-flow-real.png.png';
 
 const HeroSection = () => {
   const chips = [
