@@ -1,5 +1,5 @@
 import { ArrowRight, Play } from 'lucide-react';
-import aegisDashboard from "@/assets/aegis-dashboard-test.png.png";
+import aegisDashboard from "@/assets/aegis-link-dashboard-real.png";
 import aegisAlertFlow from '@/assets/aegis-alert-flow-real.png.png';
 
 const HeroSection = () => {
