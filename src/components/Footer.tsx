@@ -12,7 +12,7 @@ const Footer = () => {
   <img
     src={logoMark}
     alt="Noctua Core"
-    className="h-10 w-auto opacity-95"
+    className="h-16 w-auto opacity-100"
   />
   <div className="leading-tight">
     <span className="font-semibold text-foreground">Noctua Core</span>
