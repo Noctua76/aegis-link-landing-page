@@ -8,16 +8,17 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo and branding */}
-          <div className="flex items-center gap-3">
-            <img
-  src={logoMark}
-  alt="Noctua Core"
-  className="h-7 w-auto opacity-80"
-/>
-              <span className="font-semibold text-foreground">Noctua Core</span>
-              <p className="text-sm text-muted-foreground">Aegis Link</p>
-            </div>
-          </div>
+<div className="flex items-center gap-3">
+  <img
+    src={logoMark}
+    alt="Noctua Core"
+    className="h-7 w-auto opacity-80"
+  />
+  <div className="leading-tight">
+    <span className="font-semibold text-foreground">Noctua Core</span>
+    <p className="text-sm text-muted-foreground">Aegis Link</p>
+  </div>
+</div>
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm">
