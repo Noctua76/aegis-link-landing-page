@@ -37,7 +37,7 @@ const Navbar = () => {
           <img
   src={logoMark}
   alt="Noctua Core"
-  className="h-8 w-8 object-contain opacity-90"
+  className="h-12 w-auto object-contain opacity-100"
 />
           <span className="text-lg font-bold text-foreground group-hover:text-gradient transition-all duration-300">
             Noctua Core
