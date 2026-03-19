@@ -16,7 +16,7 @@ const App = () => (
       <HashRouter>
   <Routes>
     <Route path="/" element={<Index />} />
-    <Route path="*" element={<NotFound />} />
+    <Route path="*" element={<Index />} />
   </Routes>
 </HashRouter>
     </TooltipProvider>
