@@ -56,19 +56,19 @@ const ParticleBackground = () => {
           x: Math.random() * width,
           y: Math.random() * height,
           depth,
-          size: 0.35 + depth * 1.45,
-          opacity: 0.18 + depth * 0.58,
+          size: 0.45 + depth * 1.6,
+          opacity: 0.3 + depth * 0.6,
           hue: Math.random() > 0.76 ? 187 : Math.random() > 0.58 ? 255 : 215,
-          twinkleSpeed: 0.35 + Math.random() * 0.9,
+          twinkleSpeed: 0.65 + Math.random() * 1.2,
           phase: Math.random() * Math.PI * 2,
-          speed: 0.65 + depth * 2.1,
+          speed: 4.5 + depth * 10.5,
         };
       });
 
       nebulae = [
-        { x: 0.18, y: 0.22, radius: 0.52, hue: 255, opacity: 0.075, driftSpeed: 0.08, phase: 0.4 },
-        { x: 0.8, y: 0.34, radius: 0.46, hue: 210, opacity: 0.06, driftSpeed: 0.065, phase: 2.1 },
-        { x: 0.62, y: 0.84, radius: 0.42, hue: 187, opacity: 0.045, driftSpeed: 0.09, phase: 4.2 },
+        { x: 0.18, y: 0.22, radius: 0.52, hue: 255, opacity: 0.11, driftSpeed: 0.16, phase: 0.4 },
+        { x: 0.8, y: 0.34, radius: 0.46, hue: 210, opacity: 0.085, driftSpeed: 0.13, phase: 2.1 },
+        { x: 0.62, y: 0.84, radius: 0.42, hue: 187, opacity: 0.065, driftSpeed: 0.18, phase: 4.2 },
       ];
     };
 
@@ -91,17 +91,18 @@ const ParticleBackground = () => {
       ctx.globalCompositeOperation = 'screen';
 
       nebulae.forEach((nebula, index) => {
-        const horizontalDrift = Math.sin(time * nebula.driftSpeed + nebula.phase) * width * 0.045;
-        const verticalDrift = Math.cos(time * nebula.driftSpeed * 0.72 + nebula.phase) * height * 0.035;
-        const parallaxStrength = 10 + index * 5;
+        const horizontalDrift = Math.sin(time * nebula.driftSpeed + nebula.phase) * width * 0.07;
+        const verticalDrift = Math.cos(time * nebula.driftSpeed * 0.72 + nebula.phase) * height * 0.05;
+        const parallaxStrength = 18 + index * 7;
+        const pulse = 0.88 + Math.sin(time * 0.28 + nebula.phase) * 0.12;
         const centerX = nebula.x * width + horizontalDrift - pointerCurrent.x * parallaxStrength;
         const centerY = nebula.y * height + verticalDrift - pointerCurrent.y * parallaxStrength;
         const radius = Math.max(width, height) * nebula.radius;
         const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
 
-        gradient.addColorStop(0, `hsla(${nebula.hue}, 92%, 62%, ${nebula.opacity})`);
-        gradient.addColorStop(0.34, `hsla(${nebula.hue}, 88%, 52%, ${nebula.opacity * 0.46})`);
-        gradient.addColorStop(0.72, `hsla(${nebula.hue}, 82%, 42%, ${nebula.opacity * 0.12})`);
+        gradient.addColorStop(0, `hsla(${nebula.hue}, 92%, 62%, ${nebula.opacity * pulse})`);
+        gradient.addColorStop(0.34, `hsla(${nebula.hue}, 88%, 52%, ${nebula.opacity * 0.52 * pulse})`);
+        gradient.addColorStop(0.72, `hsla(${nebula.hue}, 82%, 42%, ${nebula.opacity * 0.16 * pulse})`);
         gradient.addColorStop(1, 'transparent');
 
         ctx.fillStyle = gradient;
@@ -121,7 +122,7 @@ const ParticleBackground = () => {
           if (star.y > height + 8) star.y = -8;
         }
 
-        const parallaxStrength = 4 + star.depth * 20;
+        const parallaxStrength = 8 + star.depth * 34;
         const x = star.x - pointerCurrent.x * parallaxStrength;
         const y = star.y - pointerCurrent.y * parallaxStrength;
         const twinkle = 0.68 + Math.sin(time * star.twinkleSpeed + star.phase) * 0.32;
@@ -165,8 +166,8 @@ const ParticleBackground = () => {
       const deltaTime = previousTime ? Math.min((timestamp - previousTime) / 1000, 0.04) : 0;
       previousTime = timestamp;
 
-      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.025;
-      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.025;
+      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.045;
+      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.045;
 
       ctx.clearRect(0, 0, width, height);
       drawNebulae(time);
@@ -228,7 +229,7 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.82 }}
+      style={{ opacity: 0.95 }}
       aria-hidden="true"
     />
   );
