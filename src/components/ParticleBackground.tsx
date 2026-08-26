@@ -10,6 +10,11 @@ interface Star {
   twinkleSpeed: number;
   phase: number;
   speed: number;
+  isSignal: boolean;
+  signalCycle: number;
+  signalActiveDuration: number;
+  signalOffset: number;
+  lastSignalCycle: number;
 }
 
 interface Nebula {
@@ -51,6 +56,9 @@ const ParticleBackground = () => {
 
       stars = Array.from({ length: starCount }, () => {
         const depth = Math.random();
+        const isSignal = Math.random() < (width < 640 ? 0.07 : 0.12);
+        const signalCycle = 25 + Math.random() * 20;
+        const signalOffset = Math.random() * signalCycle;
 
         return {
           x: Math.random() * width,
@@ -62,6 +70,11 @@ const ParticleBackground = () => {
           twinkleSpeed: 0.65 + Math.random() * 1.2,
           phase: Math.random() * Math.PI * 2,
           speed: 4.5 + depth * 10.5,
+          isSignal,
+          signalCycle,
+          signalActiveDuration: 7 + Math.random() * 5,
+          signalOffset,
+          lastSignalCycle: Math.floor(signalOffset / signalCycle),
         };
       });
 
@@ -122,16 +135,42 @@ const ParticleBackground = () => {
           if (star.y > height + 8) star.y = -8;
         }
 
+        if (star.isSignal) {
+          const signalCycleIndex = Math.floor((time + star.signalOffset) / star.signalCycle);
+
+          if (signalCycleIndex !== star.lastSignalCycle) {
+            star.x = Math.random() * width;
+            star.y = Math.random() * height;
+            star.phase = Math.random() * Math.PI * 2;
+            star.lastSignalCycle = signalCycleIndex;
+          }
+        }
+
         const x = star.x;
         const y = star.y;
         const twinkle = 0.68 + Math.sin(time * star.twinkleSpeed + star.phase) * 0.32;
-        const opacity = star.opacity * twinkle;
+        const signalTime = (time + star.signalOffset) % star.signalCycle;
+        const signalProgress = signalTime / star.signalActiveDuration;
+        const signalStrength = star.isSignal && signalProgress <= 1
+          ? Math.pow(Math.sin(Math.PI * signalProgress), 1.4)
+          : 0;
+        const opacity = star.isSignal
+          ? star.opacity * signalStrength * 1.15
+          : star.opacity * twinkle;
+        const renderedSize = star.isSignal
+          ? star.size * (1 + signalStrength * 0.75)
+          : star.size;
+
+        if (star.isSignal && signalStrength <= 0.002) return;
 
         ctx.beginPath();
-        ctx.arc(x, y, star.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${star.hue}, 100%, 82%, ${opacity})`;
+        ctx.arc(x, y, renderedSize, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${star.hue}, 100%, ${82 + signalStrength * 12}%, ${opacity})`;
 
-        if (star.depth > 0.76) {
+        if (star.isSignal) {
+          ctx.shadowBlur = 9 + signalStrength * 24;
+          ctx.shadowColor = `hsla(${star.hue}, 100%, 78%, ${signalStrength * 0.9})`;
+        } else if (star.depth > 0.76) {
           ctx.shadowBlur = 7 + star.depth * 5;
           ctx.shadowColor = `hsla(${star.hue}, 100%, 72%, ${opacity * 0.7})`;
         }
