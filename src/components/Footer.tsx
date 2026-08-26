@@ -4,7 +4,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 border-t border-border/30" role="contentinfo">
+    <footer
+      className="relative z-10 py-12 border-t border-border/50 bg-background/80 backdrop-blur-md"
+      role="contentinfo"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo and branding */}
