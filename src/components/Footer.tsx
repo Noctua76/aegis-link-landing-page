@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="relative z-10 py-12 border-t border-border/50 bg-background/80 backdrop-blur-md"
+      className="relative z-10 py-12"
       role="contentinfo"
     >
       <div className="container mx-auto px-4">
