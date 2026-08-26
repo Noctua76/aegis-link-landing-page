@@ -159,9 +159,9 @@ const ParticleBackground = () => {
 
         if (star.isSignal) {
           const starOpacity = Math.min(1, signalStrength * (0.92 + star.depth * 0.2));
-          const verticalRadius = 3.2 + star.depth * 1.8 + signalStrength * 8.5;
-          const horizontalRadius = 2.7 + star.depth * 1.2 + signalStrength * 6;
-          const innerRadius = 0.6 + signalStrength * 1.05;
+          const rayCount = 12;
+          const starRadius = 3.8 + star.depth * 1.4 + signalStrength * 7.4;
+          const innerRadius = starRadius * (0.3 + (1 - signalStrength) * 0.05);
           const glowRadius = 7 + signalStrength * 16;
           const glow = ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
 
@@ -177,32 +177,27 @@ const ParticleBackground = () => {
           ctx.fill();
 
           ctx.translate(x, y);
-          ctx.rotate((star.phase % (Math.PI / 2)) * 0.18 - 0.07);
+          ctx.rotate(star.phase % (Math.PI / 6));
           ctx.beginPath();
-          ctx.moveTo(0, -verticalRadius);
-          ctx.lineTo(innerRadius, -innerRadius);
-          ctx.lineTo(horizontalRadius, 0);
-          ctx.lineTo(innerRadius, innerRadius);
-          ctx.lineTo(0, verticalRadius);
-          ctx.lineTo(-innerRadius, innerRadius);
-          ctx.lineTo(-horizontalRadius, 0);
-          ctx.lineTo(-innerRadius, -innerRadius);
+
+          for (let point = 0; point < rayCount * 2; point += 1) {
+            const isRayTip = point % 2 === 0;
+            const rayIndex = Math.floor(point / 2);
+            const rayLength = [1, 0.82, 0.9][rayIndex % 3];
+            const radius = isRayTip ? starRadius * rayLength : innerRadius;
+            const angle = -Math.PI / 2 + (point * Math.PI) / rayCount;
+            const pointX = Math.cos(angle) * radius;
+            const pointY = Math.sin(angle) * radius;
+
+            if (point === 0) ctx.moveTo(pointX, pointY);
+            else ctx.lineTo(pointX, pointY);
+          }
+
           ctx.closePath();
           ctx.fillStyle = `hsla(${star.hue}, 100%, ${92 + signalStrength * 6}%, ${starOpacity})`;
           ctx.shadowBlur = 7 + signalStrength * 18;
           ctx.shadowColor = `hsla(${star.hue}, 100%, 82%, ${starOpacity})`;
           ctx.fill();
-
-          const rayOpacity = Math.pow(signalStrength, 1.7) * 0.72;
-          ctx.shadowBlur = 5 + signalStrength * 10;
-          ctx.strokeStyle = `hsla(${star.hue}, 100%, 94%, ${rayOpacity})`;
-          ctx.lineWidth = 0.55;
-          ctx.beginPath();
-          ctx.moveTo(0, -verticalRadius * 1.28);
-          ctx.lineTo(0, verticalRadius * 1.28);
-          ctx.moveTo(-horizontalRadius * 1.28, 0);
-          ctx.lineTo(horizontalRadius * 1.28, 0);
-          ctx.stroke();
           ctx.restore();
           return;
         }
