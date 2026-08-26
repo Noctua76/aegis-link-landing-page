@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import deepSpaceBackground from '@/assets/aegis-link-deep-space-bg.webp';
 
 interface Star {
   x: number;
@@ -45,12 +46,14 @@ const ParticleBackground = () => {
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const pointerTarget = { x: 0, y: 0 };
     const pointerCurrent = { x: 0, y: 0 };
+    const universeImage = new Image();
 
     let width = window.innerWidth;
     let height = window.innerHeight;
     let stars: Star[] = [];
     let nebulae: Nebula[] = [];
     let noisePattern: CanvasPattern | null = null;
+    let universeReady = false;
     let previousTime = 0;
 
     const wrapUnit = (value: number) => ((value % 1) + 1) % 1;
@@ -86,8 +89,8 @@ const ParticleBackground = () => {
 
     const createScene = () => {
       const starCount = Math.min(
-        320,
-        Math.max(130, Math.round((width * height) / 7000)),
+        210,
+        Math.max(100, Math.round((width * height) / 9500)),
       );
 
       const clusterCenters = [
@@ -169,6 +172,41 @@ const ParticleBackground = () => {
 
       createNoisePattern();
       createScene();
+    };
+
+    const drawUniverse = (time: number) => {
+      if (!universeReady) return;
+
+      const coverScale = Math.max(
+        width / universeImage.naturalWidth,
+        height / universeImage.naturalHeight,
+      ) * 1.08;
+      const imageWidth = universeImage.naturalWidth * coverScale;
+      const imageHeight = universeImage.naturalHeight * coverScale;
+      const driftX = Math.sin(time * 0.035) * width * 0.006 - pointerCurrent.x * 7;
+      const driftY = Math.cos(time * 0.029) * height * 0.005 - pointerCurrent.y * 5;
+      const imageX = (width - imageWidth) / 2 + driftX;
+      const imageY = (height - imageHeight) / 2 + driftY;
+
+      ctx.save();
+      ctx.globalAlpha = 0.94;
+      ctx.drawImage(universeImage, imageX, imageY, imageWidth, imageHeight);
+      ctx.restore();
+
+      const contentVeil = ctx.createRadialGradient(
+        width * 0.54,
+        height * 0.42,
+        0,
+        width * 0.54,
+        height * 0.42,
+        Math.max(width, height) * 0.62,
+      );
+      contentVeil.addColorStop(0, 'hsla(222, 55%, 4%, 0.2)');
+      contentVeil.addColorStop(0.48, 'hsla(222, 55%, 4%, 0.1)');
+      contentVeil.addColorStop(1, 'hsla(222, 55%, 4%, 0)');
+
+      ctx.fillStyle = contentVeil;
+      ctx.fillRect(0, 0, width, height);
     };
 
     const drawNebulae = (time: number) => {
@@ -338,7 +376,7 @@ const ParticleBackground = () => {
 
       ctx.save();
       ctx.globalCompositeOperation = 'soft-light';
-      ctx.globalAlpha = 0.05;
+      ctx.globalAlpha = 0.025;
       ctx.fillStyle = noisePattern;
       ctx.fillRect(0, 0, width, height);
       ctx.restore();
@@ -357,7 +395,7 @@ const ParticleBackground = () => {
 
       vignette.addColorStop(0, 'hsla(222, 47%, 4%, 0)');
       vignette.addColorStop(0.72, 'hsla(222, 47%, 4%, 0.08)');
-      vignette.addColorStop(1, 'hsla(222, 47%, 3%, 0.48)');
+      vignette.addColorStop(1, 'hsla(222, 47%, 3%, 0.36)');
 
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, width, height);
@@ -372,7 +410,8 @@ const ParticleBackground = () => {
       pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.025;
 
       ctx.clearRect(0, 0, width, height);
-      drawNebulae(time);
+      if (universeReady) drawUniverse(time);
+      else drawNebulae(time);
       drawStars(time, deltaTime, shouldMove);
       drawGrain();
       drawVignette();
@@ -410,6 +449,12 @@ const ParticleBackground = () => {
       if (motionPreference.matches) renderScene(0, false);
     };
 
+    universeImage.onload = () => {
+      universeReady = true;
+      if (motionPreference.matches) renderScene(0, false);
+    };
+    universeImage.src = deepSpaceBackground;
+
     resizeCanvas();
     startScene();
 
@@ -423,6 +468,7 @@ const ParticleBackground = () => {
       window.removeEventListener('pointermove', handlePointerMove);
       document.documentElement.removeEventListener('mouseleave', resetPointer);
       motionPreference.removeEventListener('change', startScene);
+      universeImage.onload = null;
 
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
