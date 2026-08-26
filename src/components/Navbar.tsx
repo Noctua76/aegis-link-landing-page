@@ -35,12 +35,12 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
           <img
-  src={logoMark}
-  alt="Noctua Core"
-  className="h-16 w-auto object-contain opacity-100"
-/>
+            src={logoMark}
+            alt="Aegis Link"
+            className="h-16 w-auto object-contain opacity-100"
+          />
           <span className="text-lg font-bold text-foreground group-hover:text-gradient transition-all duration-300">
-            Noctua Core
+            Aegis Link
           </span>
         </a>
 
