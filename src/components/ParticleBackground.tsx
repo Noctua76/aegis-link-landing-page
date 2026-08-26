@@ -56,8 +56,8 @@ const ParticleBackground = () => {
 
       stars = Array.from({ length: starCount }, () => {
         const depth = Math.random();
-        const isSignal = Math.random() < (width < 640 ? 0.07 : 0.12);
-        const signalCycle = 25 + Math.random() * 20;
+        const isSignal = Math.random() < (width < 640 ? 0.1 : 0.14);
+        const signalCycle = 18 + Math.random() * 10;
         const signalOffset = Math.random() * signalCycle;
 
         return {
@@ -72,7 +72,7 @@ const ParticleBackground = () => {
           speed: 4.5 + depth * 10.5,
           isSignal,
           signalCycle,
-          signalActiveDuration: 7 + Math.random() * 5,
+          signalActiveDuration: 6 + Math.random() * 4,
           signalOffset,
           lastSignalCycle: Math.floor(signalOffset / signalCycle),
         };
@@ -152,25 +152,67 @@ const ParticleBackground = () => {
         const signalTime = (time + star.signalOffset) % star.signalCycle;
         const signalProgress = signalTime / star.signalActiveDuration;
         const signalStrength = star.isSignal && signalProgress <= 1
-          ? Math.pow(Math.sin(Math.PI * signalProgress), 1.4)
+          ? Math.pow(Math.sin(Math.PI * signalProgress), 1.05)
           : 0;
-        const opacity = star.isSignal
-          ? star.opacity * signalStrength * 1.15
-          : star.opacity * twinkle;
-        const renderedSize = star.isSignal
-          ? star.size * (1 + signalStrength * 0.75)
-          : star.size;
 
         if (star.isSignal && signalStrength <= 0.002) return;
 
-        ctx.beginPath();
-        ctx.arc(x, y, renderedSize, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${star.hue}, 100%, ${82 + signalStrength * 12}%, ${opacity})`;
-
         if (star.isSignal) {
-          ctx.shadowBlur = 9 + signalStrength * 24;
-          ctx.shadowColor = `hsla(${star.hue}, 100%, 78%, ${signalStrength * 0.9})`;
-        } else if (star.depth > 0.76) {
+          const starOpacity = Math.min(1, signalStrength * (0.92 + star.depth * 0.2));
+          const verticalRadius = 3.2 + star.depth * 1.8 + signalStrength * 8.5;
+          const horizontalRadius = 2.7 + star.depth * 1.2 + signalStrength * 6;
+          const innerRadius = 0.6 + signalStrength * 1.05;
+          const glowRadius = 7 + signalStrength * 16;
+          const glow = ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
+
+          glow.addColorStop(0, `hsla(${star.hue}, 100%, 94%, ${starOpacity * 0.48})`);
+          glow.addColorStop(0.22, `hsla(${star.hue}, 100%, 78%, ${starOpacity * 0.24})`);
+          glow.addColorStop(1, `hsla(${star.hue}, 100%, 68%, 0)`);
+
+          ctx.save();
+          ctx.globalCompositeOperation = 'screen';
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(x, y, glowRadius, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.translate(x, y);
+          ctx.rotate((star.phase % (Math.PI / 2)) * 0.18 - 0.07);
+          ctx.beginPath();
+          ctx.moveTo(0, -verticalRadius);
+          ctx.lineTo(innerRadius, -innerRadius);
+          ctx.lineTo(horizontalRadius, 0);
+          ctx.lineTo(innerRadius, innerRadius);
+          ctx.lineTo(0, verticalRadius);
+          ctx.lineTo(-innerRadius, innerRadius);
+          ctx.lineTo(-horizontalRadius, 0);
+          ctx.lineTo(-innerRadius, -innerRadius);
+          ctx.closePath();
+          ctx.fillStyle = `hsla(${star.hue}, 100%, ${92 + signalStrength * 6}%, ${starOpacity})`;
+          ctx.shadowBlur = 7 + signalStrength * 18;
+          ctx.shadowColor = `hsla(${star.hue}, 100%, 82%, ${starOpacity})`;
+          ctx.fill();
+
+          const rayOpacity = Math.pow(signalStrength, 1.7) * 0.72;
+          ctx.shadowBlur = 5 + signalStrength * 10;
+          ctx.strokeStyle = `hsla(${star.hue}, 100%, 94%, ${rayOpacity})`;
+          ctx.lineWidth = 0.55;
+          ctx.beginPath();
+          ctx.moveTo(0, -verticalRadius * 1.28);
+          ctx.lineTo(0, verticalRadius * 1.28);
+          ctx.moveTo(-horizontalRadius * 1.28, 0);
+          ctx.lineTo(horizontalRadius * 1.28, 0);
+          ctx.stroke();
+          ctx.restore();
+          return;
+        }
+
+        const opacity = star.opacity * twinkle;
+        ctx.beginPath();
+        ctx.arc(x, y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${star.hue}, 100%, 82%, ${opacity})`;
+
+        if (star.depth > 0.76) {
           ctx.shadowBlur = 7 + star.depth * 5;
           ctx.shadowColor = `hsla(${star.hue}, 100%, 72%, ${opacity * 0.7})`;
         }
