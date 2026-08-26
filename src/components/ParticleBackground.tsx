@@ -93,7 +93,7 @@ const ParticleBackground = () => {
       nebulae.forEach((nebula, index) => {
         const horizontalDrift = Math.sin(time * nebula.driftSpeed + nebula.phase) * width * 0.07;
         const verticalDrift = Math.cos(time * nebula.driftSpeed * 0.72 + nebula.phase) * height * 0.05;
-        const parallaxStrength = 18 + index * 7;
+        const parallaxStrength = 7 + index * 3;
         const pulse = 0.88 + Math.sin(time * 0.28 + nebula.phase) * 0.12;
         const centerX = nebula.x * width + horizontalDrift - pointerCurrent.x * parallaxStrength;
         const centerY = nebula.y * height + verticalDrift - pointerCurrent.y * parallaxStrength;
@@ -122,9 +122,8 @@ const ParticleBackground = () => {
           if (star.y > height + 8) star.y = -8;
         }
 
-        const parallaxStrength = 8 + star.depth * 34;
-        const x = star.x - pointerCurrent.x * parallaxStrength;
-        const y = star.y - pointerCurrent.y * parallaxStrength;
+        const x = star.x;
+        const y = star.y;
         const twinkle = 0.68 + Math.sin(time * star.twinkleSpeed + star.phase) * 0.32;
         const opacity = star.opacity * twinkle;
 
@@ -166,8 +165,8 @@ const ParticleBackground = () => {
       const deltaTime = previousTime ? Math.min((timestamp - previousTime) / 1000, 0.04) : 0;
       previousTime = timestamp;
 
-      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.045;
-      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.045;
+      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.025;
+      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.025;
 
       ctx.clearRect(0, 0, width, height);
       drawNebulae(time);
