@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const stops = [
   { id: 'editorial-opening', label: 'Opening' },
-  { id: 'operations-view', label: 'Operations' },
+  { id: 'operations-view', label: 'The incident' },
   { id: 'capabilities', label: 'Control' },
   { id: 'visuals', label: 'Evidence' },
   { id: 'extensions', label: 'Scale' },

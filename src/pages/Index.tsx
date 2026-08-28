@@ -11,6 +11,7 @@ import FAQSection from '@/components/FAQSection';
 import FinalCTASection from '@/components/FinalCTASection';
 import MobileBottomCTA from '@/components/MobileBottomCTA';
 import SectionProgressRail from '@/components/SectionProgressRail';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
@@ -72,6 +73,8 @@ const Index = () => {
       
       {/* Mobile bottom CTA bar */}
       <MobileBottomCTA />
+
+      <Footer />
       
       {/* Extra padding for mobile bottom bar */}
       <div className="h-20 md:hidden" aria-hidden="true" />
