@@ -1,68 +1,120 @@
-import { ArrowRight } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import aegisMontage from '@/assets/aegis-hero-ai-operations.png.png';
+import type { CSSProperties } from 'react';
+import { Activity, FileClock, MapPin, RadioTower, ShieldAlert, UserRoundCheck } from 'lucide-react';
+
+const operationSignals = [
+  { label: 'GUARD', value: 'ON SCENE', icon: UserRoundCheck },
+  { label: 'LOCATION', value: 'LIVE GPS', icon: MapPin },
+  { label: 'RESPONSE', value: 'ESCALATING', icon: RadioTower },
+  { label: 'RECORD', value: 'AUDIT ACTIVE', icon: FileClock },
+];
+
+const eventTrace = [
+  'Panic alert received',
+  'Call and message flow activated',
+  'Operations view updated',
+];
 
 const VisualsSection = () => {
-  const { ref, isVisible } = useScrollReveal();
-
   return (
-    <section 
-      id="visuals" 
-      className="py-24 relative overflow-hidden"
-      aria-labelledby="visuals-heading"
-    >
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-neon-purple/10 rounded-full blur-[150px] pointer-events-none" />
+    <section id="visuals" className="operations-story" aria-labelledby="operations-story-heading">
+      <div className="operations-story-veil" aria-hidden="true" />
 
-      <div className="container mx-auto px-4 relative z-10" ref={ref}>
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 
-            id="visuals-heading"
-            className={`text-3xl md:text-4xl font-bold mb-4 reveal ${isVisible ? 'visible' : ''}`}
-          >
-            <span className="text-gradient">Εικόνες</span>
+      <div className="operations-story-shell">
+        <div className="operations-story-copy">
+          <div className="operations-scene-marker" aria-hidden="true">
+            <span>04</span>
+            <i />
+            <strong>SHARED VISIBILITY</strong>
+          </div>
+
+          <div className="operations-time">
+            <time dateTime="04:00">04:00</time>
+            <span><i aria-hidden="true" /> LIVE</span>
+          </div>
+
+          <h2 id="operations-story-heading">
+            The incident is no longer
+            <strong>trapped inside one phone.</strong>
           </h2>
-          <p className={`text-muted-foreground max-w-2xl mx-auto reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
-            Πραγματικές εικόνες από το προϊόν — καμία υπόσχεση, μόνο αποδείξεις.
+
+          <p className="operations-story-lead">
+            Operations sees the same event as it unfolds: the guard, the site,
+            the location, the response status and every action that follows.
+          </p>
+
+          <p className="operations-story-statement">
+            One incident. One shared operational picture.
           </p>
         </div>
 
-        {/* Large image montage */}
-        <div className={`max-w-5xl mx-auto mb-12 reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
-          <div className="glass-card glow-border p-2 holographic">
-            <div className="relative overflow-hidden rounded-lg aspect-[16/9]">
-              <img
-                src={aegisMontage}
-                alt="Aegis Link Product Montage - Dashboard, alerts, and reporting views"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+        <div className="operations-view" aria-label="Live Aegis Link operations incident view">
+          <div className="operations-view-header">
+            <div>
+              <Activity size={16} strokeWidth={1.5} aria-hidden="true" />
+              <span>OPERATIONS VIEW</span>
             </div>
+            <div className="operations-live-status">
+              <i aria-hidden="true" />
+              LIVE INCIDENT
+            </div>
+          </div>
+
+          <div className="operations-incident-heading">
+            <div className="operations-alert-mark" aria-hidden="true">
+              <ShieldAlert size={25} strokeWidth={1.35} />
+            </div>
+            <div>
+              <span>INCIDENT / #0400</span>
+              <strong>PANIC ALERT</strong>
+            </div>
+            <div className="operations-incident-state">OPEN</div>
+          </div>
+
+          <div className="operations-signal-grid">
+            {operationSignals.map(({ label, value, icon: Icon }, index) => (
+              <div key={label} style={{ '--signal-index': index } as CSSProperties}>
+                <Icon size={17} strokeWidth={1.35} aria-hidden="true" />
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </div>
+
+          <div className="operations-trace">
+            <div className="operations-trace-heading">
+              <span>EVENT TRACE</span>
+              <span>AUDIT RECORDING</span>
+            </div>
+            <ol>
+              {eventTrace.map((event, index) => (
+                <li key={event} style={{ '--trace-index': index } as CSSProperties}>
+                  <span>0{index + 1}</span>
+                  <i aria-hidden="true" />
+                  <strong>{event}</strong>
+                  <small>{index === eventTrace.length - 1 ? 'CURRENT' : 'COMPLETE'}</small>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="operations-view-footer">
+            <span>SINGLE SOURCE OF TRUTH</span>
+            <span>CONTROL · VISIBILITY · RESPONSE</span>
           </div>
         </div>
 
-        {/* Copy block with CTA */}
-        <div className={`max-w-3xl mx-auto text-center reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
-          <div className="glass-card p-8 md:p-12">
-            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
-              Θες να το δουν πάνω στη δική τους ροή;
-            </h3>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Δείξε στην ομάδα σου πώς φαίνεται το Aegis Link στη δική σας δομή — 
-              ρόλοι, sites, escalation rules, όλα προσαρμοσμένα.
-            </p>
-            <a
-              href="https://YOUR-SCHEDULING-LINK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2"
-            >
-              Κλείσε προσωπική επίδειξη
-              <ArrowRight size={18} />
-            </a>
-          </div>
+        <div className="operations-handoff" aria-hidden="true">
+          <span>GUARD</span>
+          <i />
+          <span>AEGIS LINK</span>
+          <i />
+          <span>OPERATIONS</span>
         </div>
+
+        <a className="operations-next" href="#extensions">
+          <span>What happens next must be accountable</span>
+          <i aria-hidden="true">↓</i>
+        </a>
       </div>
     </section>
   );

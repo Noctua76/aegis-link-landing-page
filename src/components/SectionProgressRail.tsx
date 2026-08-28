@@ -4,7 +4,7 @@ const stops = [
   { id: 'editorial-opening', label: 'Opening' },
   { id: 'operations-view', label: 'The incident' },
   { id: 'capabilities', label: 'One action' },
-  { id: 'visuals', label: 'Evidence' },
+  { id: 'visuals', label: 'Operations view' },
   { id: 'extensions', label: 'Scale' },
   { id: 'preview-access', label: 'Access' },
 ];
