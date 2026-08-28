@@ -43,6 +43,7 @@ const SevenSegmentDigit = ({ value }: { value: string }) => {
 
 const EditorialHeroSection = () => {
   const [seconds, setSeconds] = useState(47);
+  const [activeTimelineStop, setActiveTimelineStop] = useState(2);
 
   useEffect(() => {
     const startedAt = Date.now();
@@ -56,6 +57,31 @@ const EditorialHeroSection = () => {
     updateClock();
     const interval = window.setInterval(updateClock, 250);
     return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const updateTimeline = () => {
+      const focusLine = window.scrollY + window.innerHeight * 0.42;
+      const operations = document.getElementById('operations-view');
+      const evidence = document.getElementById('visuals');
+
+      if (evidence && evidence.offsetTop <= focusLine) {
+        setActiveTimelineStop(4);
+      } else if (operations && operations.offsetTop <= focusLine) {
+        setActiveTimelineStop(3);
+      } else {
+        setActiveTimelineStop(2);
+      }
+    };
+
+    updateTimeline();
+    window.addEventListener('scroll', updateTimeline, { passive: true });
+    window.addEventListener('resize', updateTimeline);
+
+    return () => {
+      window.removeEventListener('scroll', updateTimeline);
+      window.removeEventListener('resize', updateTimeline);
+    };
   }, []);
 
   const time = useMemo(
@@ -126,7 +152,7 @@ const EditorialHeroSection = () => {
           {['23:00', '01:30', '03:59', '04:00', '07:00'].map((label, index) => (
             <div
               key={label}
-              className={`editorial-timeline-stop ${index === 2 ? 'is-active' : ''} ${index === 3 ? 'is-alert' : ''}`}
+              className={`editorial-timeline-stop ${index === activeTimelineStop ? 'is-active' : ''} ${index < activeTimelineStop ? 'is-past' : ''} ${index === 3 ? 'is-alert' : ''}`}
             >
               <span aria-hidden="true" />
               <time>{label}</time>
