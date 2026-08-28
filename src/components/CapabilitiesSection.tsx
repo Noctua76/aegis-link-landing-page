@@ -1,106 +1,114 @@
-import { Zap, Phone, MessageSquare, Clock, LayoutDashboard, Settings } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import type { CSSProperties } from 'react';
+import { MessageSquareText, PhoneCall, Radio, ShieldCheck } from 'lucide-react';
 
-const capabilities = [
-  {
-    icon: Zap,
-    title: 'Άμεση ειδοποίηση',
-    description: 'Άμεση ειδοποίηση μέσω web, mobile-first σχεδιασμός για γρήγορη πρόσβαση.',
-    color: 'neon-purple',
-  },
-  {
-    icon: Phone,
-    title: 'Κλιμάκωση',
-    description: 'SMS & Voice μέσω Vonage — αυτόματη κλιμάκωση αν δεν υπάρξει απάντηση.',
-    color: 'neon-cyan',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Αναφορές με καθοδήγηση AI',
-    description: 'Δομημένες ερωτήσεις που οδηγούν σε πλήρη αναφορά περιστατικού.',
-    color: 'neon-green',
-  },
-  {
-    icon: Clock,
-    title: 'Ιχνηλασιμότητα ενεργειών',
-    description: 'Timeline όλων των ενεργειών — ποιος είδε, απάντησε, πότε, τι.',
-    color: 'neon-purple',
-  },
-  {
-    icon: LayoutDashboard,
-    title: 'Ζωντανό dashboard',
-    description: 'Real-time παρακολούθηση λειτουργιών και ανοιχτών περιστατικών.',
-    color: 'neon-cyan',
-  },
-  {
-    icon: Settings,
-    title: 'Προσαρμοσμένη λογική',
-    description: 'Ρόλοι, SLA, κανόνες, multi-site — πλήρης προσαρμογή στη δομή σας.',
-    color: 'neon-green',
-  },
-];
+const recipients = ['RESPONSIBLE 01', 'RESPONSIBLE 02', 'RESPONSIBLE 03', 'RESPONSIBLE 04'];
 
 const CapabilitiesSection = () => {
-  const { ref, isVisible } = useScrollReveal();
-
   return (
-    <section 
-      id="capabilities" 
-      className="py-24 relative"
-      aria-labelledby="capabilities-heading"
-    >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16" ref={ref}>
-          <h2 
-            id="capabilities-heading"
-            className={`text-3xl md:text-4xl font-bold mb-4 reveal ${isVisible ? 'visible' : ''}`}
-          >
-            <span className="text-gradient">Δυνατότητες</span>
-          </h2>
-          <p className={`text-muted-foreground max-w-2xl mx-auto reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
-            Ολοκληρωμένη διαχείριση περιστατικών — από το alert μέχρι την τελική αναφορά.
-          </p>
+    <section id="capabilities" className="response-story" aria-labelledby="response-story-heading">
+      <div className="response-story-veil" aria-hidden="true" />
+
+      <div className="response-story-shell">
+        <div className="response-system" aria-label="Aegis Link automated panic alert sequence">
+          <div className="response-system-heading">
+            <span>AEGIS LINK / AUTOMATED RESPONSE</span>
+            <span>ALERT CHAIN READY</span>
+          </div>
+
+          <div className="response-network">
+            <div className="response-panic-wrap">
+              <div className="response-panic-rings" aria-hidden="true" />
+              <div className="response-panic-control">
+                <Radio size={21} strokeWidth={1.45} aria-hidden="true" />
+                <strong>PANIC</strong>
+                <span>ONE ACTION</span>
+              </div>
+            </div>
+
+            <ol className="response-recipient-list">
+              {recipients.map((recipient, index) => (
+                <li key={recipient} style={{ '--recipient-index': index } as CSSProperties}>
+                  <i className="response-connector" aria-hidden="true" />
+                  <div className="response-recipient-number">0{index + 1}</div>
+                  <div className="response-recipient-copy">
+                    <strong>{recipient}</strong>
+                    <span>
+                      <PhoneCall size={13} strokeWidth={1.5} aria-hidden="true" />
+                      <MessageSquareText size={13} strokeWidth={1.5} aria-hidden="true" />
+                      CALL + MESSAGE
+                    </span>
+                  </div>
+                  <div className="response-recipient-status">
+                    <i aria-hidden="true" />
+                    DISPATCHED
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="response-system-outcome">
+            <ShieldCheck size={18} strokeWidth={1.4} aria-hidden="true" />
+            <span>THE RESPONSE CHAIN IS ALREADY MOVING</span>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {capabilities.map((cap, index) => (
-            <CapabilityCard key={cap.title} {...cap} index={index} />
-          ))}
+        <div className="response-story-copy">
+          <div className="response-scene-marker" aria-hidden="true">
+            <span>03</span>
+            <i />
+            <strong>ONE ACTION</strong>
+          </div>
+
+          <p className="response-time">04:00</p>
+
+          <h2 id="response-story-heading">
+            One action.
+            <strong>Everyone who matters, reached.</strong>
+          </h2>
+
+          <p className="response-story-lead">
+            With the panic button, the guard does not need to search, dial, wait
+            and repeat. Aegis Link activates the predefined call and message flow.
+          </p>
+
+          <div className="response-outcomes">
+            <div>
+              <span>SYSTEM</span>
+              <p>Calls and messages move through the response chain.</p>
+            </div>
+            <div>
+              <span>GUARD</span>
+              <p>Stays focused on the threat and can contact the authorities.</p>
+            </div>
+          </div>
         </div>
+
+        <div className="response-timeline" aria-label="Incident response timeline">
+          <div className="response-timeline-track" aria-hidden="true" />
+          <div className="response-timeline-event is-past">
+            <span aria-hidden="true" />
+            <time>03:59</time>
+            <small>WATCH</small>
+          </div>
+          <div className="response-timeline-event is-incident">
+            <span aria-hidden="true" />
+            <time>04:00</time>
+            <small>INCIDENT</small>
+          </div>
+          <div className="response-timeline-event is-active">
+            <span aria-hidden="true" />
+            <time>NOW</time>
+            <small>RESPONSE</small>
+          </div>
+        </div>
+
+        <a className="response-next" href="#visuals">
+          <span>The alert is only the beginning</span>
+          <i aria-hidden="true">↓</i>
+        </a>
       </div>
     </section>
-  );
-};
-
-interface CapabilityCardProps {
-  icon: typeof Zap;
-  title: string;
-  description: string;
-  color: string;
-  index: number;
-}
-
-const CapabilityCard = ({ icon: Icon, title, description, color, index }: CapabilityCardProps) => {
-  const { ref, isVisible } = useScrollReveal(0.1);
-
-  const colorClasses = {
-    'neon-purple': 'text-neon-purple bg-neon-purple/10 border-neon-purple/30 hover:border-neon-purple/60 hover:shadow-[0_0_30px_hsl(255_100%_68%/0.3)]',
-    'neon-cyan': 'text-neon-cyan bg-neon-cyan/10 border-neon-cyan/30 hover:border-neon-cyan/60 hover:shadow-[0_0_30px_hsl(187_100%_58%/0.3)]',
-    'neon-green': 'text-neon-green bg-neon-green/10 border-neon-green/30 hover:border-neon-green/60 hover:shadow-[0_0_30px_hsl(153_81%_54%/0.3)]',
-  };
-
-  return (
-    <div
-      ref={ref}
-      className={`glass-card p-6 transition-all duration-500 group reveal ${isVisible ? 'visible' : ''}`}
-      style={{ transitionDelay: `${index * 0.1}s` }}
-    >
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 border ${colorClasses[color as keyof typeof colorClasses]}`}>
-        <Icon size={24} className="transition-transform duration-300 group-hover:scale-110" />
-      </div>
-      <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
-      <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-    </div>
   );
 };
 
