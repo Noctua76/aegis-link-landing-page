@@ -6,6 +6,7 @@ const FinalCTASection = () => {
 
   return (
     <section 
+      id="preview-access"
       className="py-24 relative overflow-hidden"
       aria-labelledby="final-cta-heading"
     >

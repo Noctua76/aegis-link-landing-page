@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
+import EditorialHeroSection from '@/components/EditorialHeroSection';
 import HeroSection from '@/components/HeroSection';
 import CapabilitiesSection from '@/components/CapabilitiesSection';
 import VisualsSection from '@/components/VisualsSection';
@@ -56,7 +57,10 @@ const Index = () => {
       
       {/* Main content */}
       <main>
-        <HeroSection />
+        <EditorialHeroSection />
+        <div id="operations-view">
+          <HeroSection />
+        </div>
         <CapabilitiesSection />
         <VisualsSection />
         <UniquenessSection />
