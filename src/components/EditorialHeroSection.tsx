@@ -65,12 +65,25 @@ const EditorialHeroSection = () => {
 
   return (
     <section
-      className="editorial-hero"
+      id="editorial-opening"
+      className="editorial-hero editorial-hero-v2"
       aria-labelledby="editorial-hero-heading"
     >
       <div className="editorial-hero-veil" aria-hidden="true" />
 
-      <div className="editorial-hero-copy">
+      <div className="editorial-hero-v2-layout">
+        <div className="editorial-hero-v2-content">
+          <div
+            className={`editorial-clock editorial-reveal-clock ${seconds >= 57 ? 'is-near' : ''}`}
+            role="img"
+            aria-label={`Time ${time}`}
+          >
+            {time.split('').map((character, index) => (
+              <SevenSegmentDigit key={`${index}-${character}`} value={character} />
+            ))}
+            <span className="editorial-clock-signal" aria-hidden="true" />
+          </div>
+
         <h1 id="editorial-hero-heading" className="editorial-hero-heading">
           <span className="editorial-reveal editorial-reveal-one">
             Security does not fail when an incident happens.
@@ -80,46 +93,53 @@ const EditorialHeroSection = () => {
           </strong>
         </h1>
 
+          <span className="editorial-hero-rule editorial-reveal editorial-reveal-three" aria-hidden="true" />
+
         <p className="editorial-hero-subtitle editorial-reveal editorial-reveal-three">
           Aegis Link connects guards, supervisors and operations
           <span> in one real-time Security Operations Platform.</span>
         </p>
 
+          <div className="editorial-pillars editorial-reveal editorial-reveal-four" aria-label="Aegis Link principles">
+            <span>Visibility</span>
+            <i aria-hidden="true">·</i>
+            <span>Control</span>
+            <i aria-hidden="true">·</i>
+            <span>Response</span>
+            <i aria-hidden="true">·</i>
+            <span>Accountability</span>
+          </div>
+
         <div className="editorial-hero-actions editorial-reveal editorial-reveal-four">
           <a className="editorial-action editorial-action-primary" href="#operations-view">
-            ( Enter the Operations View )
+              <span>Enter the Operations View</span>
+              <i aria-hidden="true">→</i>
           </a>
           <a className="editorial-action" href="#preview-access">
-            ( Request Preview Access )
+              Request Preview Access
           </a>
+        </div>
+        </div>
+
+        <div className="editorial-timeline editorial-reveal editorial-reveal-five" aria-label="Incident timeline">
+          <div className="editorial-timeline-line" aria-hidden="true" />
+          {['23:00', '01:30', '03:59', '04:00', '07:00'].map((label, index) => (
+            <div
+              key={label}
+              className={`editorial-timeline-stop ${index === 2 ? 'is-active' : ''} ${index === 3 ? 'is-alert' : ''}`}
+            >
+              <span aria-hidden="true" />
+              <time>{label}</time>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div
-        className={`editorial-clock editorial-reveal-clock ${seconds >= 57 ? 'is-near' : ''}`}
-        role="img"
-        aria-label={`Time ${time}`}
-      >
-        {time.split('').map((character, index) => (
-          <SevenSegmentDigit key={`${index}-${character}`} value={character} />
-        ))}
-        <span className="editorial-clock-signal" aria-hidden="true" />
+      <div className="editorial-scene-index" aria-hidden="true">
+        <span>01</span>
+        <i />
+        <strong>The moment before</strong>
       </div>
-
-      <div className="editorial-pillars editorial-reveal editorial-reveal-five" aria-label="Aegis Link principles">
-        <span>Visibility</span>
-        <i aria-hidden="true">·</i>
-        <span>Control</span>
-        <i aria-hidden="true">·</i>
-        <span>Response</span>
-        <i aria-hidden="true">·</i>
-        <span>Accountability</span>
-      </div>
-
-      <a className="editorial-scroll-cue" href="#operations-view" aria-label="Scroll to rewind the night">
-        <span>Scroll to rewind the night</span>
-        <i aria-hidden="true" />
-      </a>
     </section>
   );
 };

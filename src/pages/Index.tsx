@@ -9,8 +9,8 @@ import UniquenessSection from '@/components/UniquenessSection';
 import ExtensionsSection from '@/components/ExtensionsSection';
 import FAQSection from '@/components/FAQSection';
 import FinalCTASection from '@/components/FinalCTASection';
-import Footer from '@/components/Footer';
 import MobileBottomCTA from '@/components/MobileBottomCTA';
+import SectionProgressRail from '@/components/SectionProgressRail';
 
 const Index = () => {
   useEffect(() => {
@@ -54,6 +54,7 @@ const Index = () => {
       
       {/* Navigation */}
       <Navbar />
+      <SectionProgressRail />
       
       {/* Main content */}
       <main>
@@ -68,9 +69,6 @@ const Index = () => {
         <FAQSection />
         <FinalCTASection />
       </main>
-      
-      {/* Footer */}
-      <Footer />
       
       {/* Mobile bottom CTA bar */}
       <MobileBottomCTA />
