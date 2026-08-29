@@ -2655,6 +2655,7 @@
 .questions-story {
   --questions-amber: 37 82% 63%;
   --questions-blue: 198 68% 73%;
+  --curtain-progress: 1;
   position: relative;
   min-height: max(760px, 100svh);
   overflow: hidden;
@@ -2679,8 +2680,9 @@
   background-image: url('./assets/aegis-scene-07-dawn-architecture-bg.webp');
   background-position: center center;
   background-size: cover;
-  transform: scale(1.025);
-  animation: questions-dawn-drift 28s ease-in-out infinite alternate;
+  filter: brightness(calc(0.68 + var(--curtain-progress) * 0.32)) saturate(calc(0.8 + var(--curtain-progress) * 0.2));
+  transform: scale(calc(1.085 - var(--curtain-progress) * 0.06));
+  transform-origin: 58% center;
 }
 
 .questions-story-veil {
@@ -2690,6 +2692,49 @@
   background:
     linear-gradient(90deg, hsl(210 56% 8% / 0.88) 0%, hsl(209 49% 10% / 0.72) 34%, hsl(207 45% 16% / 0.3) 65%, hsl(204 38% 20% / 0.12) 100%),
     linear-gradient(180deg, hsl(210 54% 8% / 0.44) 0%, transparent 35%, hsl(210 50% 8% / 0.5) 100%);
+}
+
+.questions-curtain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.questions-curtain span {
+  position: absolute;
+  inset-block: 0;
+  width: 50.15%;
+  background:
+    linear-gradient(90deg, transparent 0%, hsl(207 58% 16% / 0.18) 22%, transparent 44%, hsl(204 48% 22% / 0.12) 67%, transparent 100%),
+    linear-gradient(180deg, hsl(212 62% 5% / 0.98), hsl(210 57% 7% / 0.97) 52%, hsl(211 63% 4% / 0.99));
+  box-shadow: 0 0 4rem hsl(211 72% 3% / 0.68);
+  will-change: transform;
+}
+
+.questions-curtain-left {
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 97.5% 100%, 0 100%);
+  transform: translate3d(calc(var(--curtain-progress) * -100%), 0, 0);
+}
+
+.questions-curtain-right {
+  right: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 2.5% 100%);
+  transform: translate3d(calc(var(--curtain-progress) * 100%), 0, 0);
+}
+
+.questions-curtain i {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, hsl(var(--questions-amber) / 0.7) 28%, hsl(var(--questions-amber) / 0.34) 72%, transparent);
+  box-shadow: 0 0 1.25rem hsl(var(--questions-amber) / 0.46);
+  opacity: clamp(0, calc(1 - var(--curtain-progress) * 2.2), 1);
+  transform: translateX(-50%);
 }
 
 .questions-story-shell {
@@ -2702,6 +2747,9 @@
   gap: 3rem clamp(4rem, 7vw, 9rem);
   min-height: max(760px, 100svh);
   padding: 8.5rem clamp(5rem, 7vw, 9rem) 5.8rem clamp(4rem, 5.5vw, 7rem);
+  opacity: clamp(0, calc((var(--curtain-progress) - 0.28) * 1.55), 1);
+  transform: translate3d(0, calc((1 - var(--curtain-progress)) * 2.4rem), 0);
+  will-change: opacity, transform;
 }
 
 .questions-story-copy {
@@ -2931,11 +2979,6 @@
 .questions-next:hover,
 .questions-next:focus-visible {
   color: hsl(210 25% 98%);
-}
-
-@keyframes questions-dawn-drift {
-  from { transform: scale(1.025) translate3d(-0.15%, 0, 0); }
-  to { transform: scale(1.055) translate3d(0.25%, -0.35%, 0); }
 }
 
 @keyframes questions-dawn-pulse {
@@ -4459,6 +4502,15 @@
 
   .questions-story-image {
     transform: scale(1.025);
+  }
+
+  .questions-curtain {
+    display: none;
+  }
+
+  .questions-story-shell {
+    opacity: 1;
+    transform: none;
   }
 
   .questions-item {

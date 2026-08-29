@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { ArrowDown, Crosshair, MapPin, RadioTower, Route, ScanSearch } from 'lucide-react';
 import {
   Accordion,
@@ -31,10 +31,59 @@ const operationalQuestions = [
 ];
 
 const FAQSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let animationFrame = 0;
+
+    const updateReveal = () => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(() => {
+        if (reducedMotion.matches) {
+          section.style.setProperty('--curtain-progress', '1');
+          return;
+        }
+
+        const sectionTop = section.getBoundingClientRect().top;
+        const revealStart = window.innerHeight * 0.96;
+        const revealEnd = window.innerHeight * 0.2;
+        const progress = Math.min(1, Math.max(0, (revealStart - sectionTop) / (revealStart - revealEnd)));
+
+        section.style.setProperty('--curtain-progress', progress.toFixed(4));
+      });
+    };
+
+    updateReveal();
+    window.addEventListener('scroll', updateReveal, { passive: true });
+    window.addEventListener('resize', updateReveal);
+    reducedMotion.addEventListener('change', updateReveal);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('scroll', updateReveal);
+      window.removeEventListener('resize', updateReveal);
+      reducedMotion.removeEventListener('change', updateReveal);
+    };
+  }, []);
+
   return (
-    <section id="faq" className="questions-story" aria-labelledby="questions-story-heading">
+    <section
+      ref={sectionRef}
+      id="faq"
+      className="questions-story"
+      aria-labelledby="questions-story-heading"
+    >
       <div className="questions-story-image" aria-hidden="true" />
       <div className="questions-story-veil" aria-hidden="true" />
+      <div className="questions-curtain" aria-hidden="true">
+        <span className="questions-curtain-left" />
+        <span className="questions-curtain-right" />
+        <i />
+      </div>
 
       <div className="questions-story-shell">
         <div className="questions-story-copy">
