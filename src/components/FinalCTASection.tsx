@@ -3,9 +3,6 @@ import { ArrowRight, Link2, MonitorCog, ShieldCheck, Smartphone } from 'lucide-r
 const FinalCTASection = () => {
   return (
     <section id="preview-access" className="access-story" aria-labelledby="access-story-heading">
-      <div className="access-story-image" aria-hidden="true" />
-      <div className="access-story-veil" aria-hidden="true" />
-
       <div className="access-story-shell">
         <div className="access-scene-marker" aria-hidden="true">
           <span>08</span>

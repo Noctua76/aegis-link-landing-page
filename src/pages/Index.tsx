@@ -68,16 +68,18 @@ const Index = () => {
         <UniquenessSection />
         <ExtensionsSection />
         <FAQSection />
-        <FinalCTASection />
       </main>
+
+      <div className="access-story-continuation">
+        <FinalCTASection />
+        <Footer />
+
+        {/* Extra padding for mobile bottom bar */}
+        <div className="h-20 md:hidden" aria-hidden="true" />
+      </div>
       
       {/* Mobile bottom CTA bar */}
       <MobileBottomCTA />
-
-      <Footer />
-      
-      {/* Extra padding for mobile bottom bar */}
-      <div className="h-20 md:hidden" aria-hidden="true" />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import logoMark from '@/assets/aegis-link-logo-mark.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,7 +30,8 @@ const Navbar = () => {
       <div className="aegis-nav-inner">
         {/* Logo */}
         <a href="#" className="aegis-nav-brand" aria-label="Aegis Link home">
-          Aegis Link
+          <img src={logoMark} alt="" aria-hidden="true" />
+          <span>Aegis Link</span>
         </a>
 
         {/* Desktop Navigation */}

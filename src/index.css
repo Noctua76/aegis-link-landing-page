@@ -280,12 +280,22 @@
 }
 
 .aegis-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
   justify-self: start;
   color: hsl(210 30% 96%);
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.34em;
   text-transform: uppercase;
+}
+
+.aegis-nav-brand img {
+  width: 2.85rem;
+  height: 2.85rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 0.75rem hsl(198 62% 65% / 0.12));
 }
 
 .aegis-nav-links {
@@ -2992,6 +3002,47 @@
 }
 
 /* Scene 08 — connected preview access */
+.access-story-continuation {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  background: hsl(207 47% 49%);
+}
+
+.access-story-continuation::before,
+.access-story-continuation::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.access-story-continuation::before {
+  z-index: -2;
+  background-image: url('./assets/aegis-scene-07-dawn-architecture-bg.webp');
+  background-position: center center;
+  background-size: cover;
+  filter: brightness(1.02) saturate(0.96);
+  transform: scale(1.025);
+  transform-origin: 58% center;
+}
+
+.access-story-continuation::after {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, hsl(210 56% 8% / 0.88) 0%, hsl(209 49% 10% / 0.72) 34%, hsl(207 45% 16% / 0.28) 66%, hsl(204 38% 20% / 0.12) 100%),
+    linear-gradient(180deg, hsl(210 54% 8% / 0.34) 0%, transparent 34%, hsl(210 54% 7% / 0.82) 100%);
+}
+
+.access-story-continuation .site-footer-desktop {
+  position: relative;
+  z-index: 2;
+  margin-top: -1px;
+  border-top: 1px solid hsl(200 48% 82% / 0.16);
+  background: transparent;
+}
+
 .access-story {
   --access-amber: 37 82% 63%;
   --access-blue: 198 68% 73%;
@@ -3000,7 +3051,7 @@
   overflow: hidden;
   isolation: isolate;
   color: hsl(210 22% 96%);
-  background: hsl(207 47% 49%);
+  background: transparent;
 }
 
 .access-story::before {
@@ -3011,27 +3062,6 @@
   height: 9rem;
   background: linear-gradient(180deg, hsl(210 52% 8% / 0.42), transparent);
   pointer-events: none;
-}
-
-.access-story-image {
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-  background-image: url('./assets/aegis-scene-07-dawn-architecture-bg.webp');
-  background-position: center center;
-  background-size: cover;
-  filter: brightness(1.02) saturate(0.96);
-  transform: scale(1.025);
-  transform-origin: 58% center;
-}
-
-.access-story-veil {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(90deg, hsl(210 56% 8% / 0.88) 0%, hsl(209 49% 10% / 0.72) 34%, hsl(207 45% 16% / 0.28) 66%, hsl(204 38% 20% / 0.12) 100%),
-    linear-gradient(180deg, hsl(210 54% 8% / 0.34) 0%, transparent 36%, hsl(210 54% 7% / 0.7) 100%);
 }
 
 .access-story-shell {
@@ -3500,6 +3530,12 @@
 
   .aegis-nav-brand {
     font-size: 0.8rem;
+    letter-spacing: 0.25em;
+  }
+
+  .aegis-nav-brand img {
+    width: 2.55rem;
+    height: 2.55rem;
   }
 
   .aegis-nav-links,
@@ -4809,11 +4845,11 @@
     min-height: auto;
   }
 
-  .access-story-image {
+  .access-story-continuation::before {
     background-position: 64% center;
   }
 
-  .access-story-veil {
+  .access-story-continuation::after {
     background:
       linear-gradient(180deg, hsl(210 56% 8% / 0.74) 0%, hsl(208 49% 10% / 0.56) 40%, hsl(207 42% 16% / 0.4) 67%, hsl(210 54% 7% / 0.82) 100%),
       linear-gradient(90deg, hsl(210 56% 8% / 0.56), transparent 100%);
