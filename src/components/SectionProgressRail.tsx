@@ -5,6 +5,7 @@ const stops = [
   { id: 'operations-view', label: 'The incident' },
   { id: 'capabilities', label: 'One action' },
   { id: 'visuals', label: 'Operations view' },
+  { id: 'accountability', label: 'Accountability' },
   { id: 'extensions', label: 'Scale' },
   { id: 'preview-access', label: 'Access' },
 ];

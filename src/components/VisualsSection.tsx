@@ -111,7 +111,7 @@ const VisualsSection = () => {
           <span>OPERATIONS</span>
         </div>
 
-        <a className="operations-next" href="#extensions">
+        <a className="operations-next" href="#accountability">
           <span>What happens next must be accountable</span>
           <i aria-hidden="true">↓</i>
         </a>
