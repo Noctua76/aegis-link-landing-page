@@ -3725,7 +3725,9 @@
   }
 
   .site-footer-desktop {
-    display: none;
+    display: block;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .response-story {

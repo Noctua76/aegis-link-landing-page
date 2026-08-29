@@ -9,7 +9,6 @@ import UniquenessSection from '@/components/UniquenessSection';
 import ExtensionsSection from '@/components/ExtensionsSection';
 import FAQSection from '@/components/FAQSection';
 import FinalCTASection from '@/components/FinalCTASection';
-import MobileBottomCTA from '@/components/MobileBottomCTA';
 import SectionProgressRail from '@/components/SectionProgressRail';
 import Footer from '@/components/Footer';
 
@@ -73,13 +72,7 @@ const Index = () => {
       <div className="access-story-continuation">
         <FinalCTASection />
         <Footer />
-
-        {/* Extra padding for mobile bottom bar */}
-        <div className="h-20 md:hidden" aria-hidden="true" />
       </div>
-      
-      {/* Mobile bottom CTA bar */}
-      <MobileBottomCTA />
     </div>
   );
 };
