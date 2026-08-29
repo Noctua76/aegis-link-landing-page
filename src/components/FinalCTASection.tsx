@@ -1,57 +1,78 @@
-import { ArrowRight, Mail } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { ArrowRight, Link2, MonitorCog, ShieldCheck, Smartphone } from 'lucide-react';
 
 const FinalCTASection = () => {
-  const { ref, isVisible } = useScrollReveal();
-
   return (
-    <section 
-      id="preview-access"
-      className="py-24 relative overflow-hidden"
-      aria-labelledby="final-cta-heading"
-    >
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-neon-purple/20 rounded-full blur-[150px]" />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-neon-cyan/15 rounded-full blur-[120px]" />
-      </div>
+    <section id="preview-access" className="access-story" aria-labelledby="access-story-heading">
+      <div className="access-story-image" aria-hidden="true" />
+      <div className="access-story-veil" aria-hidden="true" />
 
-      <div className="container mx-auto px-4 relative z-10" ref={ref}>
-        <div className="max-w-3xl mx-auto text-center">
-          <div className={`glass-card glow-border p-10 md:p-16 reveal ${isVisible ? 'visible' : ''}`}>
-            <h2 
-              id="final-cta-heading"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
-            >
-              Ένα link. Μια διαδικασία.
-              <br />
-              <span className="text-gradient">Πλήρης έλεγχος.</span>
-            </h2>
-            
-            <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
-              Δες πώς το Aegis Link μπορεί να μεταμορφώσει τη διαχείριση περιστατικών στην ομάδα σου.
-            </p>
+      <div className="access-story-shell">
+        <div className="access-scene-marker" aria-hidden="true">
+          <span>08</span>
+          <i />
+          <strong>PREVIEW ACCESS</strong>
+        </div>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="https://YOUR-SCHEDULING-LINK"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center justify-center gap-2 text-lg px-8 py-4"
-              >
-                Κλείσε demo
-                <ArrowRight size={20} />
-              </a>
-              <a
-                href="mailto:YOUR@EMAIL.COM"
-                className="btn-secondary inline-flex items-center justify-center gap-2 text-lg px-8 py-4"
-              >
-                <Mail size={20} />
-                Μίλα μαζί μας
-              </a>
-            </div>
+        <div className="access-story-copy">
+          <p className="access-kicker">THE PLATFORM, FROM BOTH SIDES</p>
+          <h2 id="access-story-heading">
+            One operation.
+            <strong>Seen from both sides.</strong>
+          </h2>
+          <p>
+            Open the Operations Dashboard and Guard Web App side by side.
+            Follow the same patrol, incident and response through one connected platform.
+          </p>
+        </div>
+
+        <div className="access-bridge" aria-label="Connected Aegis Link preview experience">
+          <div className="access-surface access-surface-operations">
+            <span>01 / OPERATIONS</span>
+            <MonitorCog size={30} strokeWidth={1.15} aria-hidden="true" />
+            <strong>Operations Dashboard</strong>
+            <small>Control · Visibility · Audit</small>
+          </div>
+
+          <div className="access-connection" aria-hidden="true">
+            <i />
+            <span><Link2 size={18} strokeWidth={1.25} /></span>
+            <i />
+            <strong>ONE LIVE OPERATION</strong>
+          </div>
+
+          <div className="access-surface access-surface-field">
+            <span>02 / FIELD</span>
+            <Smartphone size={30} strokeWidth={1.15} aria-hidden="true" />
+            <strong>Guard Web App</strong>
+            <small>Patrols · Incidents · Response</small>
           </div>
         </div>
+
+        <div className="access-action-row">
+          <div className="access-assurance">
+            <ShieldCheck size={17} strokeWidth={1.25} aria-hidden="true" />
+            <span>Temporary access</span>
+            <i />
+            <span>Read-only environment</span>
+            <i />
+            <span>Controlled duration</span>
+          </div>
+
+          <a
+            className="access-primary-action"
+            href="https://YOUR-SCHEDULING-LINK"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Request Preview Access</span>
+            <ArrowRight size={18} strokeWidth={1.35} aria-hidden="true" />
+          </a>
+        </div>
+
+        <p className="access-closing-line">
+          No slideshow. No simulation.
+          <strong>The real operational flow.</strong>
+        </p>
       </div>
     </section>
   );

@@ -2991,6 +2991,300 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
+/* Scene 08 — connected preview access */
+.access-story {
+  --access-amber: 37 82% 63%;
+  --access-blue: 198 68% 73%;
+  position: relative;
+  min-height: max(760px, 100svh);
+  overflow: hidden;
+  isolation: isolate;
+  color: hsl(210 22% 96%);
+  background: hsl(207 47% 49%);
+}
+
+.access-story::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  height: 9rem;
+  background: linear-gradient(180deg, hsl(210 52% 8% / 0.42), transparent);
+  pointer-events: none;
+}
+
+.access-story-image {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: url('./assets/aegis-scene-07-dawn-architecture-bg.webp');
+  background-position: center center;
+  background-size: cover;
+  filter: brightness(1.02) saturate(0.96);
+  transform: scale(1.025);
+  transform-origin: 58% center;
+}
+
+.access-story-veil {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, hsl(210 56% 8% / 0.88) 0%, hsl(209 49% 10% / 0.72) 34%, hsl(207 45% 16% / 0.28) 66%, hsl(204 38% 20% / 0.12) 100%),
+    linear-gradient(180deg, hsl(210 54% 8% / 0.34) 0%, transparent 36%, hsl(210 54% 7% / 0.7) 100%);
+}
+
+.access-story-shell {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(560px, 1.18fr);
+  grid-template-rows: auto 1fr auto auto;
+  align-items: center;
+  gap: 2.5rem clamp(4rem, 7vw, 9rem);
+  min-height: max(760px, 100svh);
+  padding: 8rem clamp(5rem, 7vw, 9rem) 4.8rem clamp(4rem, 5.5vw, 7rem);
+}
+
+.access-scene-marker {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: auto 4rem auto;
+  align-items: center;
+  gap: 0.9rem;
+  width: fit-content;
+  color: hsl(204 27% 90% / 0.7);
+  font-size: 0.54rem;
+  letter-spacing: 0.2em;
+}
+
+.access-scene-marker span {
+  color: hsl(var(--access-amber) / 0.96);
+  font-size: 0.65rem;
+}
+
+.access-scene-marker i {
+  height: 1px;
+  background: linear-gradient(90deg, hsl(var(--access-amber) / 0.88), hsl(var(--access-blue) / 0.38));
+}
+
+.access-scene-marker strong {
+  font-weight: 500;
+}
+
+.access-story-copy {
+  max-width: 620px;
+}
+
+.access-kicker {
+  margin: 0 0 1.35rem;
+  color: hsl(var(--access-amber) / 0.9);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+}
+
+.access-story-copy h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 4.2vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 0.99;
+  text-wrap: balance;
+  text-shadow: 0 0.4rem 2.5rem hsl(210 62% 7% / 0.32);
+}
+
+.access-story-copy h2 strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: hsl(210 25% 98%);
+  font-weight: 700;
+}
+
+.access-story-copy > p:last-child {
+  max-width: 570px;
+  margin: 2.2rem 0 0;
+  padding-left: 1.3rem;
+  color: hsl(202 31% 91% / 0.8);
+  border-left: 1px solid hsl(var(--access-amber) / 0.72);
+  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+  line-height: 1.75;
+}
+
+.access-bridge {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.5fr) minmax(0, 1fr);
+  align-items: stretch;
+  width: min(100%, 850px);
+  justify-self: end;
+  border: 1px solid hsl(200 51% 83% / 0.28);
+  background: linear-gradient(145deg, hsl(211 53% 10% / 0.7), hsl(205 38% 20% / 0.42));
+  box-shadow: 0 2rem 7rem hsl(210 70% 5% / 0.36), inset 0 1px hsl(198 53% 94% / 0.1);
+  backdrop-filter: blur(18px) saturate(112%);
+}
+
+.access-surface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.access-surface > span {
+  margin-bottom: 2.2rem;
+  color: hsl(202 31% 91% / 0.5);
+  font-size: 0.46rem;
+  letter-spacing: 0.16em;
+}
+
+.access-surface svg {
+  margin-bottom: 1.1rem;
+  color: hsl(var(--access-blue) / 0.82);
+  filter: drop-shadow(0 0 0.75rem hsl(var(--access-blue) / 0.2));
+}
+
+.access-surface strong {
+  color: hsl(210 25% 97% / 0.94);
+  font-size: clamp(0.92rem, 1vw, 1.08rem);
+  font-weight: 500;
+}
+
+.access-surface small {
+  margin-top: 0.65rem;
+  color: hsl(202 28% 91% / 0.52);
+  font-size: 0.47rem;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.access-connection {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+  color: hsl(var(--access-amber));
+}
+
+.access-connection > i {
+  height: 1px;
+  background: linear-gradient(90deg, hsl(var(--access-blue) / 0.18), hsl(var(--access-amber) / 0.72));
+}
+
+.access-connection > i:nth-of-type(2) {
+  background: linear-gradient(90deg, hsl(var(--access-amber) / 0.72), hsl(var(--access-blue) / 0.18));
+}
+
+.access-connection > span {
+  display: grid;
+  grid-column: 2;
+  grid-row: 2;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid hsl(var(--access-amber) / 0.68);
+  border-radius: 50%;
+  background: hsl(210 54% 9% / 0.76);
+  box-shadow: 0 0 1.8rem hsl(var(--access-amber) / 0.22);
+}
+
+.access-connection > i:first-of-type {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.access-connection > i:nth-of-type(2) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.access-connection > strong {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  align-self: start;
+  margin-top: 1rem;
+  color: hsl(var(--access-amber) / 0.74);
+  font-size: 0.4rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+.access-action-row {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid hsl(200 48% 82% / 0.19);
+}
+
+.access-assurance {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: hsl(202 31% 94% / 0.62);
+  font-size: 0.48rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.access-assurance svg {
+  color: hsl(var(--access-blue) / 0.78);
+}
+
+.access-assurance i {
+  width: 0.2rem;
+  height: 0.2rem;
+  border-radius: 50%;
+  background: hsl(var(--access-amber) / 0.7);
+}
+
+.access-primary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+  min-height: 58px;
+  padding: 0 1.8rem;
+  color: hsl(211 48% 8%);
+  border: 1px solid hsl(var(--access-amber));
+  background: linear-gradient(100deg, hsl(38 66% 54%), hsl(40 78% 70%));
+  box-shadow: 0 0.8rem 2.4rem hsl(38 76% 42% / 0.2);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 220ms ease, background 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.access-primary-action:hover,
+.access-primary-action:focus-visible {
+  color: hsl(210 24% 98%);
+  background: hsl(210 48% 9% / 0.82);
+  box-shadow: 0 0 2rem hsl(var(--access-amber) / 0.24);
+  transform: translateY(-2px);
+}
+
+.access-closing-line {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: hsl(202 31% 94% / 0.5);
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.access-closing-line strong {
+  margin-left: 0.5rem;
+  color: hsl(var(--access-amber) / 0.88);
+  font-weight: 500;
+}
+
 /* Persistent section rail */
 .section-progress-rail {
   position: fixed;
@@ -4398,6 +4692,25 @@
     margin-right: 2.4rem;
     margin-left: 5.25rem;
   }
+
+  .access-story-shell {
+    grid-template-columns: minmax(300px, 0.8fr) minmax(500px, 1.2fr);
+    gap: 2.5rem 3rem;
+    padding-inline: 2.5rem 4.5rem;
+  }
+
+  .access-story-copy h2 {
+    font-size: clamp(2.35rem, 4.8vw, 4rem);
+  }
+
+  .access-bridge {
+    grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr);
+  }
+
+  .access-assurance {
+    gap: 0.65rem;
+    font-size: 0.43rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -4491,6 +4804,114 @@
   .questions-next {
     font-size: 0.5rem;
   }
+
+  .access-story {
+    min-height: auto;
+  }
+
+  .access-story-image {
+    background-position: 64% center;
+  }
+
+  .access-story-veil {
+    background:
+      linear-gradient(180deg, hsl(210 56% 8% / 0.74) 0%, hsl(208 49% 10% / 0.56) 40%, hsl(207 42% 16% / 0.4) 67%, hsl(210 54% 7% / 0.82) 100%),
+      linear-gradient(90deg, hsl(210 56% 8% / 0.56), transparent 100%);
+  }
+
+  .access-story-shell {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.7rem;
+    min-height: auto;
+    padding: 7.5rem 1.25rem 5.5rem;
+  }
+
+  .access-scene-marker {
+    grid-template-columns: auto 2.8rem minmax(0, auto);
+    font-size: 0.46rem;
+  }
+
+  .access-story-copy,
+  .access-bridge {
+    width: 100%;
+    max-width: none;
+  }
+
+  .access-kicker {
+    font-size: 0.48rem;
+  }
+
+  .access-story-copy h2 {
+    font-size: clamp(2rem, 9.2vw, 3rem);
+  }
+
+  .access-story-copy > p:last-child {
+    margin-top: 1.7rem;
+    font-size: 0.9rem;
+  }
+
+  .access-bridge {
+    grid-template-columns: 1fr;
+    background: linear-gradient(145deg, hsl(211 53% 9% / 0.78), hsl(205 38% 20% / 0.54));
+    backdrop-filter: blur(13px) saturate(108%);
+  }
+
+  .access-surface {
+    min-height: 190px;
+  }
+
+  .access-surface > span {
+    margin-bottom: 1.45rem;
+  }
+
+  .access-connection {
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
+    min-height: 96px;
+    padding-inline: 1rem;
+    border-top: 1px solid hsl(200 48% 82% / 0.12);
+    border-bottom: 1px solid hsl(200 48% 82% / 0.12);
+  }
+
+  .access-connection > span,
+  .access-connection > i:first-of-type,
+  .access-connection > i:nth-of-type(2) {
+    grid-row: 1;
+  }
+
+  .access-connection > strong {
+    grid-row: 2;
+    align-self: center;
+    margin: 0 0 1rem;
+  }
+
+  .access-action-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .access-assurance {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 0.75rem;
+    text-align: center;
+  }
+
+  .access-primary-action {
+    width: 100%;
+  }
+
+  .access-closing-line {
+    line-height: 1.8;
+  }
+
+  .access-closing-line strong {
+    display: block;
+    margin-left: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4516,5 +4937,9 @@
   .questions-item {
     opacity: 1;
     transform: none;
+  }
+
+  .access-primary-action {
+    transition: none;
   }
 }

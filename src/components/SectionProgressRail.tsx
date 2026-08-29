@@ -37,7 +37,7 @@ const SectionProgressRail = () => {
     };
   }, []);
 
-  const isDaylight = stops[activeStop]?.id === 'faq';
+  const isDaylight = ['faq', 'preview-access'].includes(stops[activeStop]?.id);
 
   return (
     <aside className={`section-progress-rail ${isDaylight ? 'is-daylight' : ''}`} aria-label="Page sections">
