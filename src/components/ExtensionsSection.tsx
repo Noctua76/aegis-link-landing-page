@@ -1,98 +1,117 @@
-import { Timer, Users, Link, BarChart3, Camera, Palette } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import type { CSSProperties } from 'react';
+import { Building2, Clock3, MapPin, QrCode, RadioTower, Route, ShieldCheck, UsersRound } from 'lucide-react';
 
-const extensions = [
-  {
-    icon: Timer,
-    title: 'SLA & επίπεδα σοβαρότητας',
-    description: 'Επίπεδα προτεραιότητας και χρονικά όρια απόκρισης.',
-  },
-  {
-    icon: Users,
-    title: 'Πολλαπλές τοποθεσίες / Βάρδιες / Ρόλοι',
-    description: 'Διαχείριση πολλαπλών τοποθεσιών, βαρδιών και ρόλων.',
-  },
-  {
-    icon: Link,
-    title: 'Διασυνδέσεις',
-    description: 'CRM, ERP, ticketing, Teams, Slack, webhooks.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Αναφορές & αναλύσεις',
-    description: 'KPIs, response times, patterns — data-driven αποφάσεις.',
-  },
-  {
-    icon: Camera,
-    title: 'Καταγραφή τεκμηρίων',
-    description: 'Φωτογραφίες, checklists, σημειώσεις — τεκμηρίωση.',
-  },
-  {
-    icon: Palette,
-    title: 'White-label λύση',
-    description: 'Branding, domain/subdomain — δική σας ταυτότητα.',
-  },
+const siteRows = [
+  { site: 'SITE 01', guard: 'ON SITE', shift: 'HANDOVER', patrol: 'VERIFIED', status: 'CONTROLLED' },
+  { site: 'SITE 02', guard: 'ON SHIFT', shift: 'NIGHT → DAY', patrol: 'DUE SOON', status: 'ACTIVE' },
+  { site: 'SITE 03', guard: 'SESSION LIVE', shift: 'MORNING', patrol: 'SCHEDULED', status: 'ACTIVE' },
+];
+
+const operationLayers = [
+  { label: 'LIVE GPS', icon: MapPin },
+  { label: 'GUARD SESSIONS', icon: UsersRound },
+  { label: 'PATROLS', icon: Route },
+  { label: 'QR CHECKPOINTS', icon: QrCode },
+  { label: 'INCIDENTS', icon: RadioTower },
 ];
 
 const ExtensionsSection = () => {
-  const { ref, isVisible } = useScrollReveal();
-
   return (
-    <section 
-      id="extensions" 
-      className="py-24 relative"
-      aria-labelledby="extensions-heading"
-    >
-      {/* Background accent */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[150px] pointer-events-none" />
+    <section id="extensions" className="scale-story" aria-labelledby="scale-story-heading">
+      <div className="scale-story-veil" aria-hidden="true" />
 
-      <div className="container mx-auto px-4 relative z-10" ref={ref}>
-        <div className="text-center mb-16">
-          <h2 
-            id="extensions-heading"
-            className={`text-3xl md:text-4xl font-bold mb-4 reveal ${isVisible ? 'visible' : ''}`}
-          >
-            <span className="text-gradient">Επεκτάσεις</span>
+      <div className="scale-story-shell">
+        <div className="scale-story-copy">
+          <div className="scale-scene-marker" aria-hidden="true">
+            <span>06</span>
+            <i />
+            <strong>OPERATIONAL CONTROL</strong>
+          </div>
+
+          <div className="scale-time">
+            <time dateTime="07:00">07:00</time>
+            <span><i aria-hidden="true" /> SHIFT HANDOVER</span>
+          </div>
+
+          <h2 id="scale-story-heading">
+            The night ends.
+            <strong>The operation continues.</strong>
           </h2>
-          <p className={`text-muted-foreground max-w-2xl mx-auto reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
-            Modular δυνατότητες που προσθέτεις όταν τις χρειαστείς.
+
+          <p className="scale-story-lead">
+            Aegis Link extends the same visibility beyond incidents—to every
+            site, every guard, every shift and every patrol.
+          </p>
+
+          <p className="scale-story-statement">
+            One platform across the entire security operation.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {extensions.map((ext, index) => (
-            <ExtensionCard key={ext.title} {...ext} index={index} />
-          ))}
+        <div className="scale-board" aria-label="Aegis Link multi-site operations board">
+          <div className="scale-board-header">
+            <div>
+              <Building2 size={16} strokeWidth={1.4} aria-hidden="true" />
+              <span>MULTI-SITE OPERATIONS</span>
+            </div>
+            <div>
+              <Clock3 size={15} strokeWidth={1.4} aria-hidden="true" />
+              <span>07:00 / LIVE</span>
+            </div>
+          </div>
+
+          <div className="scale-board-columns" aria-hidden="true">
+            <span>SITE</span>
+            <span>GUARD</span>
+            <span>SHIFT</span>
+            <span>PATROL</span>
+            <span>STATUS</span>
+          </div>
+
+          <div className="scale-site-list">
+            {siteRows.map((row, index) => (
+              <div key={row.site} style={{ '--site-index': index } as CSSProperties}>
+                <strong><i aria-hidden="true" /> {row.site}</strong>
+                <span>{row.guard}</span>
+                <span>{row.shift}</span>
+                <span>{row.patrol}</span>
+                <small><i aria-hidden="true" /> {row.status}</small>
+              </div>
+            ))}
+          </div>
+
+          <div className="scale-operation-layers">
+            {operationLayers.map(({ label, icon: Icon }, index) => (
+              <div key={label} style={{ '--layer-index': index } as CSSProperties}>
+                <Icon size={16} strokeWidth={1.35} aria-hidden="true" />
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="scale-board-footer">
+            <ShieldCheck size={17} strokeWidth={1.4} aria-hidden="true" />
+            <span>ONE OPERATING LAYER / EVERY SITE CONNECTED</span>
+          </div>
         </div>
+
+        <div className="scale-continuity" aria-hidden="true">
+          <span>23:00</span>
+          <i />
+          <span>03:59</span>
+          <i />
+          <span>04:00</span>
+          <i />
+          <span>07:00</span>
+          <strong>CONTINUOUS CONTROL</strong>
+        </div>
+
+        <a className="scale-next" href="#faq">
+          <span>The platform is ready. The questions remain.</span>
+          <i aria-hidden="true">↓</i>
+        </a>
       </div>
     </section>
-  );
-};
-
-interface ExtensionCardProps {
-  icon: typeof Timer;
-  title: string;
-  description: string;
-  index: number;
-}
-
-const ExtensionCard = ({ icon: Icon, title, description, index }: ExtensionCardProps) => {
-  const { ref, isVisible } = useScrollReveal(0.1);
-
-  return (
-    <div
-      ref={ref}
-      className={`glass-card p-5 flex items-start gap-4 group transition-all duration-300 hover:border-neon-cyan/40 reveal ${isVisible ? 'visible' : ''}`}
-      style={{ transitionDelay: `${index * 0.08}s` }}
-    >
-      <div className="w-10 h-10 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-neon-cyan/20">
-        <Icon size={20} className="text-neon-cyan" />
-      </div>
-      <div>
-        <h3 className="font-semibold text-foreground mb-1">{title}</h3>
-        <p className="text-muted-foreground text-sm">{description}</p>
-      </div>
-    </div>
   );
 };
 
