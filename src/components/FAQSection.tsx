@@ -1,4 +1,5 @@
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import type { CSSProperties } from 'react';
+import { ArrowDown, Crosshair, MapPin, RadioTower, Route, ScanSearch } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -6,65 +7,101 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-const faqs = [
+const operationalQuestions = [
   {
-    question: 'Θα φαίνεται σωστά σε κινητά;',
-    answer: 'Ναι. Mobile-first layout, μεγάλα tap targets, responsive εικόνες και performance-friendly animations.',
+    question: 'Where is every guard—right now?',
+    answer: 'Live site presence, GPS position and active guard sessions replace assumptions with a shared operational picture.',
+    icon: MapPin,
   },
   {
-    question: 'Είναι chatbot;',
-    answer: 'Όχι. Η AI χρησιμοποιείται για δομημένη καταγραφή συμβάντων και βελτιστοποίηση της διαδικασίας απόκρισης — όχι για «συζήτηση».',
+    question: 'Was every patrol actually completed?',
+    answer: 'Time-stamped patrols and QR checkpoint verification turn a verbal confirmation into evidence.',
+    icon: Route,
   },
   {
-    question: 'Μπορεί να δείχνει αληθινό status κλήσεων/SMS;',
-    answer: 'Ναι. Μέσω callbacks του provider (π.χ. Vonage) εμφανίζεται στο dashboard: sent / delivered / answered / no-answer.',
+    question: 'Who was informed—and when?',
+    answer: 'Calls, messages, acknowledgements and escalation events remain connected to one incident record.',
+    icon: RadioTower,
   },
   {
-    question: 'White-label;',
-    answer: 'Ναι. Branding, domain/subdomain, UI, ρόλοι, flows και modules προσαρμόζονται ανά εταιρεία.',
+    question: 'Can one team see every site?',
+    answer: 'A single operations layer connects guards, shifts, patrols and incidents across the entire security operation.',
+    icon: ScanSearch,
   },
 ];
 
 const FAQSection = () => {
-  const { ref, isVisible } = useScrollReveal();
-
   return (
-    <section 
-      id="faq" 
-      className="py-24 relative"
-      aria-labelledby="faq-heading"
-    >
-      <div className="container mx-auto px-4" ref={ref}>
-        <div className="text-center mb-16">
-          <h2 
-            id="faq-heading"
-            className={`text-3xl md:text-4xl font-bold mb-4 reveal ${isVisible ? 'visible' : ''}`}
-          >
-            <span className="text-gradient">Συχνές ερωτήσεις</span>
+    <section id="faq" className="questions-story" aria-labelledby="questions-story-heading">
+      <div className="questions-story-image" aria-hidden="true" />
+      <div className="questions-story-veil" aria-hidden="true" />
+
+      <div className="questions-story-shell">
+        <div className="questions-story-copy">
+          <div className="questions-scene-marker" aria-hidden="true">
+            <span>07</span>
+            <i />
+            <strong>THE QUESTIONS THAT MATTER</strong>
+          </div>
+
+          <div className="questions-dawn-marker">
+            <span><i aria-hidden="true" /> 07:01</span>
+            <strong>DAYLIGHT TEST</strong>
+          </div>
+
+          <h2 id="questions-story-heading">
+            The night is over.
+            <strong>Can your operation answer?</strong>
           </h2>
-          <p className={`text-muted-foreground max-w-2xl mx-auto reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
-            Συχνές ερωτήσεις — σύντομες απαντήσεις.
+
+          <p className="questions-story-lead">
+            A security operation is only as strong as the answers available
+            before someone needs to make a call.
+          </p>
+
+          <p className="questions-story-statement">
+            Technology is not the question.
+            <strong>Operational certainty is.</strong>
           </p>
         </div>
 
-        <div className={`max-w-3xl mx-auto reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="glass-card border border-border/50 rounded-xl px-6 data-[state=open]:border-neon-purple/40 transition-colors duration-300"
+        <div className="questions-panel">
+          <div className="questions-panel-header">
+            <Crosshair size={17} strokeWidth={1.35} aria-hidden="true" />
+            <span>THE OPERATIONAL TEST</span>
+            <strong>04 QUESTIONS</strong>
+          </div>
+
+          <Accordion type="single" collapsible defaultValue="question-0" className="questions-list">
+            {operationalQuestions.map(({ question, answer, icon: Icon }, index) => (
+              <AccordionItem
+                key={question}
+                value={`question-${index}`}
+                className="questions-item"
+                style={{ '--question-index': index } as CSSProperties}
               >
-                <AccordionTrigger className="text-left text-foreground hover:text-neon-purple transition-colors py-5">
-                  {faq.question}
+                <AccordionTrigger className="questions-trigger">
+                  <span className="questions-number">0{index + 1}</span>
+                  <Icon size={18} strokeWidth={1.25} aria-hidden="true" />
+                  <span>{question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
-                  {faq.answer}
+                <AccordionContent className="questions-answer">
+                  <p>{answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
+
+          <p className="questions-panel-footer">
+            If the answer depends on a phone call, a memory or a spreadsheet,
+            <strong> control is already delayed.</strong>
+          </p>
         </div>
+
+        <a className="questions-next" href="#preview-access">
+          <span>See how Aegis Link answers them</span>
+          <ArrowDown size={16} strokeWidth={1.25} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

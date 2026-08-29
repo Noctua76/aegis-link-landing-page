@@ -7,6 +7,7 @@ const stops = [
   { id: 'visuals', label: 'Operations view' },
   { id: 'accountability', label: 'Accountability' },
   { id: 'extensions', label: 'Every operation' },
+  { id: 'faq', label: 'The questions' },
   { id: 'preview-access', label: 'Access' },
 ];
 
@@ -36,8 +37,10 @@ const SectionProgressRail = () => {
     };
   }, []);
 
+  const isDaylight = stops[activeStop]?.id === 'faq';
+
   return (
-    <aside className="section-progress-rail" aria-label="Page sections">
+    <aside className={`section-progress-rail ${isDaylight ? 'is-daylight' : ''}`} aria-label="Page sections">
       <div className="section-progress-dots">
         {stops.map((stop, index) => (
           <a
