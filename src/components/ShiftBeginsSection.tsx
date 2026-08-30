@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { Building2, Clock3, LogIn, MapPin, ShieldCheck, UserRoundCheck } from 'lucide-react';
 import NightTimeline from '@/components/NightTimeline';
 
@@ -10,8 +10,38 @@ const shiftSignals = [
 ];
 
 const ShiftBeginsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.24, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="operations-view" className="shift-story" aria-labelledby="shift-story-heading">
+    <section
+      ref={sectionRef}
+      id="operations-view"
+      className="shift-story"
+      aria-labelledby="shift-story-heading"
+    >
       <div className="shift-story-veil" aria-hidden="true" />
 
       <div className="shift-story-shell">
@@ -25,7 +55,7 @@ const ShiftBeginsSection = () => {
           <time className="shift-time" dateTime="23:00">23:00</time>
 
           <h2 id="shift-story-heading">
-            The shift has started.
+            <span>The shift has started.</span>
             <strong>But do you know who is actually on duty?</strong>
           </h2>
 
