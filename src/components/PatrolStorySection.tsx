@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { Check, Clock3, MapPin, QrCode, Route, ShieldCheck } from 'lucide-react';
 import NightTimeline from '@/components/NightTimeline';
 
@@ -12,8 +12,38 @@ const checkpoints = [
 const patrolStates = ['DUE SOON', 'OVERDUE', 'MISSED', 'COMPLETED LATE'];
 
 const PatrolStorySection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.22, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="patrol-story" className="patrol-story" aria-labelledby="patrol-story-heading">
+    <section
+      ref={sectionRef}
+      id="patrol-story"
+      className="patrol-story"
+      aria-labelledby="patrol-story-heading"
+    >
       <div className="patrol-story-veil" aria-hidden="true" />
 
       <div className="patrol-story-shell">
@@ -76,7 +106,7 @@ const PatrolStorySection = () => {
           <time className="patrol-time" dateTime="01:30">01:30</time>
 
           <h2 id="patrol-story-heading">
-            The patrol was scheduled.
+            <span>The patrol was scheduled.</span>
             <strong>Was it actually completed?</strong>
           </h2>
 
