@@ -771,16 +771,22 @@
   align-self: center;
   justify-self: end;
   width: min(100%, 690px);
-  padding: 1.4rem 0 1.2rem clamp(1.3rem, 2.5vw, 2.6rem);
-  border-left: 1px solid hsl(214 28% 73% / 0.18);
+  padding: 1.4rem clamp(1.3rem, 2.5vw, 2.6rem) 1.2rem;
+  border: 1px solid hsl(205 42% 74% / 0.34);
+  background: linear-gradient(145deg, hsl(216 50% 7% / 0.95), hsl(210 43% 11% / 0.84));
+  box-shadow:
+    0 1.8rem 5rem hsl(220 60% 1% / 0.5),
+    0 0 3rem hsl(205 70% 58% / 0.06),
+    inset 0 1px 0 hsl(205 45% 84% / 0.06);
+  backdrop-filter: blur(11px) saturate(112%);
 }
 
 .incident-sequence-heading {
   display: flex;
   justify-content: space-between;
   padding: 0 0 1rem;
-  color: hsl(215 18% 68% / 0.5);
-  border-bottom: 1px solid hsl(214 28% 73% / 0.14);
+  color: hsl(213 20% 76% / 0.74);
+  border-bottom: 1px solid hsl(207 38% 74% / 0.22);
   font-size: 0.55rem;
   letter-spacing: 0.18em;
 }
@@ -802,15 +808,14 @@
   grid-template-columns: 2.7rem 3.1rem 1fr auto;
   align-items: center;
   min-height: 86px;
-  color: hsl(215 18% 72% / 0.66);
-  border-bottom: 1px solid hsl(214 28% 73% / 0.11);
+  color: hsl(213 20% 76% / 0.76);
+  border-bottom: 1px solid hsl(207 38% 74% / 0.2);
   opacity: 0;
-  animation: incident-sequence-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--sequence-delay);
+  animation: none;
 }
 
 .incident-sequence-number {
-  color: hsl(215 18% 65% / 0.44);
+  color: hsl(213 18% 72% / 0.66);
   font-size: 0.58rem;
   letter-spacing: 0.12em;
 }
@@ -820,10 +825,11 @@
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
-  color: hsl(var(--incident-gold) / 0.76);
-  border: 1px solid hsl(var(--incident-gold) / 0.3);
+  color: hsl(var(--incident-gold) / 0.96);
+  border: 1px solid hsl(var(--incident-gold) / 0.5);
   border-radius: 50%;
-  background: hsl(220 48% 4% / 0.42);
+  background: hsl(var(--incident-gold) / 0.08);
+  box-shadow: 0 0 1.25rem hsl(var(--incident-gold) / 0.08);
 }
 
 .incident-sequence-text {
@@ -834,14 +840,14 @@
 }
 
 .incident-sequence-text strong {
-  color: hsl(210 25% 91% / 0.9);
+  color: hsl(210 28% 97% / 0.96);
   font-size: clamp(0.84rem, 1vw, 0.96rem);
   font-weight: 450;
   letter-spacing: 0.025em;
 }
 
 .incident-sequence-text span {
-  color: hsl(215 18% 68% / 0.54);
+  color: hsl(213 18% 72% / 0.68);
   font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -885,7 +891,7 @@
 
 .incident-sequence-conclusion p {
   max-width: 430px;
-  color: hsl(215 18% 75% / 0.68);
+  color: hsl(213 20% 78% / 0.76);
   font-size: 0.78rem;
   line-height: 1.65;
 }
@@ -913,10 +919,57 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.65rem;
+  padding-top: 2rem;
   color: hsl(215 15% 64% / 0.44);
   font-size: clamp(0.62rem, 0.78vw, 0.75rem);
   letter-spacing: 0.04em;
+}
+
+.incident-story:not(.is-revealed) .incident-time,
+.incident-story:not(.is-revealed) .incident-story-copy h2,
+.incident-story:not(.is-revealed) .incident-story-lead,
+.incident-story:not(.is-revealed) .incident-story-question,
+.incident-story:not(.is-revealed) .incident-sequence {
+  opacity: 0;
+}
+
+.incident-story:not(.is-revealed) .incident-time,
+.incident-story:not(.is-revealed) .incident-story-copy h2,
+.incident-story:not(.is-revealed) .incident-story-lead,
+.incident-story:not(.is-revealed) .incident-story-question {
+  transform: translateY(20px);
+}
+
+.incident-story:not(.is-revealed) .incident-sequence {
+  transform: translateX(28px) translateY(10px) scale(0.985);
+}
+
+.incident-story.is-revealed .incident-time,
+.incident-story.is-revealed .incident-story-copy h2,
+.incident-story.is-revealed .incident-story-lead,
+.incident-story.is-revealed .incident-story-question {
+  animation: shift-copy-reveal 920ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.incident-story.is-revealed .incident-story-copy h2 {
+  animation-delay: 180ms;
+}
+
+.incident-story.is-revealed .incident-story-lead {
+  animation-delay: 350ms;
+}
+
+.incident-story.is-revealed .incident-story-question {
+  animation-delay: 510ms;
+}
+
+.incident-story.is-revealed .incident-sequence {
+  animation: shift-panel-reveal 1080ms 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.incident-story.is-revealed .incident-sequence-list li {
+  animation: incident-sequence-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(420ms + var(--sequence-delay));
 }
 
 .incident-timeline-stop::before {
@@ -3689,6 +3742,14 @@
     padding-left: 1rem;
   }
 
+  .incident-story:not(.is-revealed) .incident-sequence {
+    transform: translateY(22px) scale(0.985);
+  }
+
+  .incident-story.is-revealed .incident-sequence {
+    animation-name: mobile-panel-reveal;
+  }
+
   .incident-sequence-list li {
     grid-template-columns: 2rem 2.8rem 1fr auto;
     min-height: 78px;
@@ -3715,7 +3776,7 @@
   }
 
   .incident-timeline-stop {
-    gap: 1.4rem;
+    padding-top: 1.85rem;
     font-size: 0.56rem;
   }
 
@@ -6316,6 +6377,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .incident-story:not(.is-revealed) .incident-time,
+  .incident-story:not(.is-revealed) .incident-story-copy h2,
+  .incident-story:not(.is-revealed) .incident-story-lead,
+  .incident-story:not(.is-revealed) .incident-story-question,
+  .incident-story:not(.is-revealed) .incident-sequence,
+  .incident-story.is-revealed .incident-time,
+  .incident-story.is-revealed .incident-story-copy h2,
+  .incident-story.is-revealed .incident-story-lead,
+  .incident-story.is-revealed .incident-story-question,
+  .incident-story.is-revealed .incident-sequence {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
   .shift-board-header > strong i,
   .patrol-verified-heading small i,
   .silence-clock-wrap > span i {

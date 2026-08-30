@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { Phone, RotateCcw, Search, ShieldAlert } from 'lucide-react';
 
 const notificationSteps = [
@@ -11,8 +11,38 @@ const notificationSteps = [
 const timelineStops = ['23:00', '01:30', '03:59', '04:00', '07:00'];
 
 const HeroSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.22, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="incident-story" className="incident-story" aria-labelledby="incident-story-heading">
+    <section
+      ref={sectionRef}
+      id="incident-story"
+      className="incident-story"
+      aria-labelledby="incident-story-heading"
+    >
       <div className="incident-story-veil" aria-hidden="true" />
 
       <div className="incident-story-shell">
