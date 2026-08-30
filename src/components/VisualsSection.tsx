@@ -22,13 +22,13 @@ const VisualsSection = () => {
       <div className="operations-story-shell">
         <div className="operations-story-copy">
           <div className="operations-scene-marker" aria-hidden="true">
-            <span>04</span>
+            <span>07</span>
             <i />
             <strong>SHARED VISIBILITY</strong>
           </div>
 
           <div className="operations-time">
-            <time dateTime="04:00">04:00</time>
+            <time dateTime="04:01">04:01</time>
             <span><i aria-hidden="true" /> LIVE</span>
           </div>
 

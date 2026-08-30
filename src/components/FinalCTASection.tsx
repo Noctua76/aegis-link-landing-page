@@ -5,7 +5,7 @@ const FinalCTASection = () => {
     <section id="preview-access" className="access-story" aria-labelledby="access-story-heading">
       <div className="access-story-shell">
         <div className="access-scene-marker" aria-hidden="true">
-          <span>08</span>
+          <span>11</span>
           <i />
           <strong>PREVIEW ACCESS</strong>
         </div>

@@ -1,6 +1,9 @@
 import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
 import EditorialHeroSection from '@/components/EditorialHeroSection';
+import ShiftBeginsSection from '@/components/ShiftBeginsSection';
+import PatrolStorySection from '@/components/PatrolStorySection';
+import SilenceStorySection from '@/components/SilenceStorySection';
 import HeroSection from '@/components/HeroSection';
 import CapabilitiesSection from '@/components/CapabilitiesSection';
 import VisualsSection from '@/components/VisualsSection';
@@ -24,9 +27,10 @@ const Index = () => {
       {/* Main content */}
       <main>
         <EditorialHeroSection />
-        <div id="operations-view">
-          <HeroSection />
-        </div>
+        <ShiftBeginsSection />
+        <PatrolStorySection />
+        <SilenceStorySection />
+        <HeroSection />
         <CapabilitiesSection />
         <VisualsSection />
         <UniquenessSection />

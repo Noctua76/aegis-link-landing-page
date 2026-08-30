@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 
 const stops = [
-  { id: 'editorial-opening', label: 'Opening' },
-  { id: 'operations-view', label: 'The incident' },
-  { id: 'capabilities', label: 'One action' },
-  { id: 'visuals', label: 'Operations view' },
-  { id: 'accountability', label: 'Accountability' },
-  { id: 'extensions', label: 'Every operation' },
-  { id: 'faq', label: 'The questions' },
-  { id: 'preview-access', label: 'Access' },
+  { id: 'editorial-opening', label: 'The moment before', time: '03:59' },
+  { id: 'operations-view', label: 'The shift begins', time: '23:00' },
+  { id: 'patrol-story', label: 'The patrol', time: '01:30' },
+  { id: 'silence-story', label: 'Operational silence', time: '03:58' },
+  { id: 'incident-story', label: 'The incident', time: '04:00' },
+  { id: 'capabilities', label: 'One action', time: '04:00' },
+  { id: 'visuals', label: 'Shared visibility', time: '04:01' },
+  { id: 'accountability', label: 'Accountability', time: 'LIVE' },
+  { id: 'extensions', label: 'Operational control', time: '07:00' },
+  { id: 'faq', label: 'The questions', time: '07:01' },
+  { id: 'preview-access', label: 'Preview access', time: 'ACCESS' },
 ];
 
 const SectionProgressRail = () => {
@@ -50,6 +53,7 @@ const SectionProgressRail = () => {
             aria-label={`Go to ${stop.label}`}
             aria-current={index === activeStop ? 'step' : undefined}
           >
+            <em>{stop.time}</em>
             <span />
           </a>
         ))}

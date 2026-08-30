@@ -14,6 +14,7 @@ const DIGIT_SEGMENTS: Record<string, string[]> = {
 };
 
 const SEGMENTS = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+const storyTimeline = ['23:00', '01:30', '03:58', '03:59', '04:00', '04:01', '07:00'];
 
 const SevenSegmentDigit = ({ value }: { value: string }) => {
   if (value === ':') {
@@ -43,7 +44,7 @@ const SevenSegmentDigit = ({ value }: { value: string }) => {
 
 const EditorialHeroSection = () => {
   const [seconds, setSeconds] = useState(47);
-  const [activeTimelineStop, setActiveTimelineStop] = useState(2);
+  const [activeTimelineStop, setActiveTimelineStop] = useState(3);
 
   useEffect(() => {
     const startedAt = Date.now();
@@ -62,16 +63,22 @@ const EditorialHeroSection = () => {
   useEffect(() => {
     const updateTimeline = () => {
       const focusLine = window.scrollY + window.innerHeight * 0.42;
-      const operations = document.getElementById('operations-view');
-      const evidence = document.getElementById('visuals');
+      const timedSections = [
+        { id: 'operations-view', timelineIndex: 0 },
+        { id: 'patrol-story', timelineIndex: 1 },
+        { id: 'silence-story', timelineIndex: 2 },
+        { id: 'incident-story', timelineIndex: 4 },
+        { id: 'visuals', timelineIndex: 5 },
+        { id: 'extensions', timelineIndex: 6 },
+      ];
+      let nextIndex = 3;
 
-      if (evidence && evidence.offsetTop <= focusLine) {
-        setActiveTimelineStop(4);
-      } else if (operations && operations.offsetTop <= focusLine) {
-        setActiveTimelineStop(3);
-      } else {
-        setActiveTimelineStop(2);
-      }
+      timedSections.forEach(({ id, timelineIndex }) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= focusLine) nextIndex = timelineIndex;
+      });
+
+      setActiveTimelineStop(nextIndex);
     };
 
     updateTimeline();
@@ -149,10 +156,10 @@ const EditorialHeroSection = () => {
 
         <div className="editorial-timeline editorial-reveal editorial-reveal-five" aria-label="Incident timeline">
           <div className="editorial-timeline-line" aria-hidden="true" />
-          {['23:00', '01:30', '03:59', '04:00', '07:00'].map((label, index) => (
+          {storyTimeline.map((label, index) => (
             <div
               key={label}
-              className={`editorial-timeline-stop ${index === activeTimelineStop ? 'is-active' : ''} ${index < activeTimelineStop ? 'is-past' : ''} ${index === 3 ? 'is-alert' : ''}`}
+              className={`editorial-timeline-stop ${index === activeTimelineStop ? 'is-active' : ''} ${index < activeTimelineStop ? 'is-past' : ''} ${index === 4 ? 'is-alert' : ''}`}
             >
               <span aria-hidden="true" />
               <time>{label}</time>

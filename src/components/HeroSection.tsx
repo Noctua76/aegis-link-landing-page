@@ -12,13 +12,13 @@ const timelineStops = ['23:00', '01:30', '03:59', '04:00', '07:00'];
 
 const HeroSection = () => {
   return (
-    <section className="incident-story" aria-labelledby="incident-story-heading">
+    <section id="incident-story" className="incident-story" aria-labelledby="incident-story-heading">
       <div className="incident-story-veil" aria-hidden="true" />
 
       <div className="incident-story-shell">
         <div className="incident-story-copy">
           <div className="incident-scene-marker" aria-hidden="true">
-            <span>02</span>
+            <span>05</span>
             <i />
             <strong>THE INCIDENT</strong>
           </div>

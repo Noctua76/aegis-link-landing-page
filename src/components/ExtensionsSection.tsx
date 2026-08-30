@@ -23,7 +23,7 @@ const ExtensionsSection = () => {
       <div className="scale-story-shell">
         <div className="scale-story-copy">
           <div className="scale-scene-marker" aria-hidden="true">
-            <span>06</span>
+            <span>09</span>
             <i />
             <strong>OPERATIONAL CONTROL</strong>
           </div>
@@ -98,9 +98,11 @@ const ExtensionsSection = () => {
         <div className="scale-continuity" aria-hidden="true">
           <span>23:00</span>
           <i />
-          <span>03:59</span>
+          <span>01:30</span>
           <i />
           <span>04:00</span>
+          <i />
+          <span>04:01</span>
           <i />
           <span>07:00</span>
           <strong>CONTINUOUS CONTROL</strong>

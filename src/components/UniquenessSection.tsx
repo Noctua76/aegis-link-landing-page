@@ -61,7 +61,7 @@ const UniquenessSection = () => {
 
         <div className="accountability-story-copy">
           <div className="accountability-scene-marker" aria-hidden="true">
-            <span>05</span>
+            <span>08</span>
             <i />
             <strong>ACCOUNTABILITY</strong>
           </div>
