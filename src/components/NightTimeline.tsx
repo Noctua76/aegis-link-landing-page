@@ -14,7 +14,7 @@ const NightTimeline = ({ active, label }: NightTimelineProps) => {
       {nightStops.map((stop, index) => (
         <div
           key={stop}
-          className={`night-timeline-stop ${index < activeIndex ? 'is-past' : ''} ${index === activeIndex ? 'is-active' : ''}`}
+          className={`night-timeline-stop ${index < activeIndex ? 'is-past' : ''} ${index === activeIndex ? 'is-active' : ''} ${stop === '04:00' ? 'is-alert' : ''}`}
         >
           <span aria-hidden="true" />
           <time>{stop}</time>

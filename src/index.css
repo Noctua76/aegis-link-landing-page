@@ -5216,6 +5216,14 @@
 
 .shift-status-board {
   justify-self: end;
+  border-color: hsl(205 42% 74% / 0.34);
+  background:
+    linear-gradient(145deg, hsl(216 50% 7% / 0.95), hsl(210 43% 11% / 0.84));
+  box-shadow:
+    0 1.8rem 5rem hsl(220 60% 1% / 0.5),
+    0 0 3rem hsl(var(--night-blue) / 0.07),
+    inset 0 1px 0 hsl(205 45% 84% / 0.06);
+  backdrop-filter: blur(11px) saturate(112%);
 }
 
 .patrol-verification {
@@ -5251,7 +5259,7 @@
 }
 
 .shift-board-header > strong {
-  color: hsl(var(--night-gold) / 0.78);
+  color: hsl(var(--night-gold) / 0.94);
   font-size: 0.5rem;
   font-weight: 500;
 }
@@ -5273,7 +5281,8 @@
   gap: 1rem;
   min-height: 112px;
   padding: 1.2rem 1.35rem;
-  border-bottom: 1px solid hsl(207 36% 70% / 0.12);
+  border-bottom: 1px solid hsl(207 38% 74% / 0.22);
+  background: linear-gradient(90deg, hsl(var(--night-blue) / 0.035), transparent 72%);
 }
 
 .shift-guard-mark {
@@ -5281,10 +5290,11 @@
   place-items: center;
   width: 3.8rem;
   height: 3.8rem;
-  color: hsl(var(--night-blue) / 0.9);
-  border: 1px solid hsl(var(--night-blue) / 0.34);
+  color: hsl(var(--night-blue));
+  border: 1px solid hsl(var(--night-blue) / 0.56);
   border-radius: 50%;
-  background: hsl(var(--night-blue) / 0.06);
+  background: hsl(var(--night-blue) / 0.1);
+  box-shadow: 0 0 1.8rem hsl(var(--night-blue) / 0.1);
 }
 
 .shift-board-identity > div:nth-child(2) {
@@ -5294,15 +5304,15 @@
 }
 
 .shift-board-identity span {
-  color: hsl(215 16% 67% / 0.56);
+  color: hsl(213 20% 76% / 0.72);
   font-size: 0.51rem;
   letter-spacing: 0.15em;
 }
 
 .shift-board-identity strong {
-  color: hsl(210 27% 94% / 0.92);
-  font-size: clamp(0.95rem, 1.25vw, 1.12rem);
-  font-weight: 500;
+  color: hsl(210 30% 98%);
+  font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+  font-weight: 600;
   letter-spacing: 0.05em;
 }
 
@@ -5310,7 +5320,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: hsl(var(--night-gold) / 0.72);
+  color: hsl(var(--night-gold) / 0.92);
   font-size: 0.56rem;
   letter-spacing: 0.11em;
 }
@@ -5326,7 +5336,7 @@
   justify-content: center;
   min-height: 138px;
   padding: 1rem 1.05rem;
-  border-right: 1px solid hsl(207 36% 70% / 0.11);
+  border-right: 1px solid hsl(207 38% 74% / 0.2);
 }
 
 .shift-signal-grid > div:last-child {
@@ -5335,18 +5345,18 @@
 
 .shift-signal-grid svg {
   margin-bottom: 0.85rem;
-  color: hsl(var(--night-blue) / 0.78);
+  color: hsl(var(--night-blue) / 0.96);
 }
 
 .shift-signal-grid span {
-  color: hsl(215 16% 65% / 0.48);
+  color: hsl(213 19% 73% / 0.66);
   font-size: 0.48rem;
   letter-spacing: 0.14em;
 }
 
 .shift-signal-grid strong {
   margin-top: 0.42rem;
-  color: hsl(210 24% 92% / 0.9);
+  color: hsl(210 28% 97% / 0.98);
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -5354,7 +5364,7 @@
 
 .shift-signal-grid small {
   margin-top: 0.42rem;
-  color: hsl(215 15% 67% / 0.46);
+  color: hsl(213 18% 72% / 0.62);
   font-size: 0.45rem;
   line-height: 1.5;
 }
@@ -5370,6 +5380,22 @@
   border-top: 1px solid hsl(207 36% 70% / 0.12);
   font-size: 0.46rem;
   letter-spacing: 0.14em;
+}
+
+.shift-status-board .shift-board-header {
+  color: hsl(213 20% 76% / 0.74);
+  border-bottom-color: hsl(207 38% 74% / 0.22);
+  background: hsl(211 42% 9% / 0.48);
+}
+
+.shift-status-board .shift-board-footer {
+  color: hsl(213 18% 72% / 0.64);
+  border-top-color: hsl(207 38% 74% / 0.2);
+  background: hsl(214 45% 7% / 0.38);
+}
+
+.shift-status-board .shift-board-footer strong {
+  color: hsl(var(--night-gold) / 0.9);
 }
 
 .shift-board-footer strong,
@@ -5640,6 +5666,22 @@
   border-color: hsl(var(--night-gold) / 0.88);
   background: hsl(var(--night-gold));
   box-shadow: 0 0 0.4rem hsl(var(--night-gold) / 0.74), 0 0 1.35rem hsl(var(--night-gold) / 0.42);
+}
+
+.night-timeline-stop.is-alert {
+  color: hsl(0 76% 72% / 0.92);
+}
+
+.night-timeline-stop.is-alert::before {
+  background: linear-gradient(180deg, transparent, hsl(0 78% 64% / 0.74), transparent);
+}
+
+.night-timeline-stop.is-alert > span {
+  width: 0.46rem;
+  height: 0.46rem;
+  border-color: hsl(0 90% 76% / 0.94);
+  background: hsl(0 82% 62%);
+  box-shadow: 0 0 0.35rem hsl(0 90% 67% / 0.76), 0 0 1.15rem hsl(0 86% 55% / 0.4);
 }
 
 .shift-next,
