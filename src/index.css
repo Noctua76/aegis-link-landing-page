@@ -5732,6 +5732,55 @@
   animation: patrol-panel-reveal 1080ms 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.silence-story:not(.is-revealed) .silence-clock-wrap,
+.silence-story:not(.is-revealed) h2 > span,
+.silence-story:not(.is-revealed) h2 > strong,
+.silence-story:not(.is-revealed) .silence-story-lead,
+.silence-story:not(.is-revealed) .silence-signal-line,
+.silence-story:not(.is-revealed) blockquote {
+  opacity: 0;
+}
+
+.silence-story:not(.is-revealed) .silence-clock-wrap,
+.silence-story:not(.is-revealed) h2 > span,
+.silence-story:not(.is-revealed) h2 > strong,
+.silence-story:not(.is-revealed) .silence-story-lead,
+.silence-story:not(.is-revealed) blockquote {
+  transform: translateY(20px);
+}
+
+.silence-story:not(.is-revealed) .silence-signal-line {
+  transform: translateY(24px) scale(0.985);
+}
+
+.silence-story.is-revealed .silence-clock-wrap,
+.silence-story.is-revealed h2 > span,
+.silence-story.is-revealed h2 > strong,
+.silence-story.is-revealed .silence-story-lead,
+.silence-story.is-revealed blockquote {
+  animation: shift-copy-reveal 920ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.silence-story.is-revealed h2 > span {
+  animation-delay: 180ms;
+}
+
+.silence-story.is-revealed h2 > strong {
+  animation-delay: 320ms;
+}
+
+.silence-story.is-revealed .silence-story-lead {
+  animation-delay: 470ms;
+}
+
+.silence-story.is-revealed .silence-signal-line {
+  animation: silence-panel-reveal 1080ms 540ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.silence-story.is-revealed blockquote {
+  animation-delay: 690ms;
+}
+
 .night-timeline-stop.is-active {
   color: hsl(var(--night-gold) / 0.92);
 }
@@ -5995,6 +6044,11 @@
 @keyframes patrol-panel-reveal {
   from { opacity: 0; transform: translateX(-28px) translateY(10px) scale(0.985); }
   to { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+}
+
+@keyframes silence-panel-reveal {
+  from { opacity: 0; transform: translateY(24px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes silence-breathe {
@@ -6297,6 +6351,23 @@
   .patrol-story.is-revealed .patrol-story-lead,
   .patrol-story.is-revealed .patrol-story-copy blockquote,
   .patrol-story.is-revealed .patrol-verification {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .silence-story:not(.is-revealed) .silence-clock-wrap,
+  .silence-story:not(.is-revealed) h2 > span,
+  .silence-story:not(.is-revealed) h2 > strong,
+  .silence-story:not(.is-revealed) .silence-story-lead,
+  .silence-story:not(.is-revealed) .silence-signal-line,
+  .silence-story:not(.is-revealed) blockquote,
+  .silence-story.is-revealed .silence-clock-wrap,
+  .silence-story.is-revealed h2 > span,
+  .silence-story.is-revealed h2 > strong,
+  .silence-story.is-revealed .silence-story-lead,
+  .silence-story.is-revealed .silence-signal-line,
+  .silence-story.is-revealed blockquote {
     opacity: 1;
     transform: none;
     animation: none;

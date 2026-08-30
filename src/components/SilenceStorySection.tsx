@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Activity, Clock3, MapPin, Radio, Route } from 'lucide-react';
 import NightTimeline from '@/components/NightTimeline';
 
@@ -9,8 +10,38 @@ const quietSignals = [
 ];
 
 const SilenceStorySection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.24, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="silence-story" className="silence-story" aria-labelledby="silence-story-heading">
+    <section
+      ref={sectionRef}
+      id="silence-story"
+      className="silence-story"
+      aria-labelledby="silence-story-heading"
+    >
       <div className="silence-story-veil" aria-hidden="true" />
 
       <div className="silence-story-shell">
@@ -27,7 +58,7 @@ const SilenceStorySection = () => {
         </div>
 
         <h2 id="silence-story-heading">
-          Nothing has been reported.
+          <span>Nothing has been reported.</span>
           <strong>But does that mean everything is under control?</strong>
         </h2>
 
