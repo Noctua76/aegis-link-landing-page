@@ -5229,6 +5229,14 @@
 .patrol-verification {
   grid-column: 1;
   grid-row: 1;
+  border-color: hsl(205 42% 74% / 0.34);
+  background:
+    linear-gradient(145deg, hsl(216 50% 7% / 0.95), hsl(210 43% 11% / 0.84));
+  box-shadow:
+    0 1.8rem 5rem hsl(220 60% 1% / 0.5),
+    0 0 3rem hsl(var(--night-blue) / 0.07),
+    inset 0 1px 0 hsl(205 45% 84% / 0.06);
+  backdrop-filter: blur(11px) saturate(112%);
 }
 
 .shift-board-header,
@@ -5408,7 +5416,8 @@
   display: grid;
   grid-template-columns: 1fr auto 1.15fr;
   min-height: 112px;
-  border-bottom: 1px solid hsl(207 36% 70% / 0.13);
+  border-bottom: 1px solid hsl(207 38% 74% / 0.22);
+  background: linear-gradient(90deg, hsl(214 44% 7% / 0.48), hsl(var(--night-blue) / 0.035));
 }
 
 .patrol-reported,
@@ -5421,19 +5430,19 @@
 }
 
 .patrol-reported {
-  opacity: 0.46;
+  opacity: 0.66;
 }
 
 .patrol-reported span,
 .patrol-verified-heading span {
-  color: hsl(215 16% 67% / 0.62);
+  color: hsl(213 20% 76% / 0.72);
   font-size: 0.48rem;
   letter-spacing: 0.17em;
 }
 
 .patrol-reported strong,
 .patrol-verified-heading strong {
-  color: hsl(210 24% 91% / 0.88);
+  color: hsl(210 28% 97% / 0.96);
   font-size: 0.82rem;
   font-weight: 450;
 }
@@ -5443,22 +5452,22 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: hsl(215 16% 65% / 0.5);
+  color: hsl(213 18% 72% / 0.64);
   font-size: 0.43rem;
   letter-spacing: 0.14em;
 }
 
 .patrol-verified-heading span,
 .patrol-verified-heading small {
-  color: hsl(var(--night-blue) / 0.76);
+  color: hsl(var(--night-blue) / 0.94);
 }
 
 .patrol-versus {
   display: grid;
   place-items: center;
   width: 44px;
-  color: hsl(var(--night-gold) / 0.68);
-  border-inline: 1px solid hsl(207 36% 70% / 0.11);
+  color: hsl(var(--night-gold) / 0.88);
+  border-inline: 1px solid hsl(207 38% 74% / 0.2);
   font-size: 0.48rem;
   letter-spacing: 0.12em;
 }
@@ -5474,12 +5483,12 @@
   grid-template-columns: 2rem 1.7rem 2.7rem minmax(150px, 1fr) auto auto;
   align-items: center;
   min-height: 72px;
-  color: hsl(215 18% 70% / 0.64);
-  border-bottom: 1px solid hsl(207 36% 70% / 0.1);
+  color: hsl(213 20% 76% / 0.76);
+  border-bottom: 1px solid hsl(207 38% 74% / 0.18);
 }
 
 .patrol-checkpoint-number {
-  color: hsl(215 16% 64% / 0.44);
+  color: hsl(213 18% 72% / 0.66);
   font-size: 0.5rem;
   letter-spacing: 0.12em;
 }
@@ -5487,7 +5496,7 @@
 .patrol-checkpoint-line {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, hsl(var(--night-blue) / 0.08), hsl(var(--night-blue) / 0.5));
+  background: linear-gradient(90deg, hsl(var(--night-blue) / 0.16), hsl(var(--night-blue) / 0.7));
 }
 
 .patrol-checkpoint-node {
@@ -5495,9 +5504,11 @@
   place-items: center;
   width: 2rem;
   height: 2rem;
-  color: hsl(var(--night-blue) / 0.82);
-  border: 1px solid hsl(var(--night-blue) / 0.28);
+  color: hsl(var(--night-blue));
+  border: 1px solid hsl(var(--night-blue) / 0.52);
   border-radius: 50%;
+  background: hsl(var(--night-blue) / 0.08);
+  box-shadow: 0 0 1.25rem hsl(var(--night-blue) / 0.08);
 }
 
 .patrol-checkpoints li > div {
@@ -5507,7 +5518,7 @@
 }
 
 .patrol-checkpoints li > div strong {
-  color: hsl(210 24% 91% / 0.86);
+  color: hsl(210 28% 97% / 0.96);
   font-size: 0.65rem;
   font-weight: 450;
   letter-spacing: 0.06em;
@@ -5517,14 +5528,14 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: hsl(215 16% 65% / 0.48);
+  color: hsl(213 18% 72% / 0.66);
   font-size: 0.42rem;
   letter-spacing: 0.12em;
 }
 
 .patrol-checkpoints li > time {
   margin-inline: 1rem;
-  color: hsl(var(--night-blue) / 0.78);
+  color: hsl(var(--night-blue) / 0.96);
   font-size: 0.58rem;
 }
 
@@ -5532,7 +5543,7 @@
   display: flex;
   align-items: center;
   gap: 0.38rem;
-  color: hsl(var(--night-gold) / 0.74);
+  color: hsl(var(--night-gold) / 0.92);
   font-size: 0.44rem;
   letter-spacing: 0.11em;
 }
@@ -5540,15 +5551,16 @@
 .patrol-state-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid hsl(207 36% 70% / 0.08);
+  border-top: 1px solid hsl(207 38% 74% / 0.18);
+  background: hsl(214 45% 7% / 0.34);
 }
 
 .patrol-state-strip span {
   display: grid;
   place-items: center;
   min-height: 48px;
-  color: hsl(215 16% 66% / 0.48);
-  border-right: 1px solid hsl(207 36% 70% / 0.09);
+  color: hsl(213 18% 72% / 0.68);
+  border-right: 1px solid hsl(207 38% 74% / 0.17);
   font-size: 0.42rem;
   letter-spacing: 0.1em;
 }
@@ -5558,11 +5570,23 @@
 }
 
 .patrol-record-footer {
-  color: hsl(var(--night-blue) / 0.6);
+  color: hsl(var(--night-blue) / 0.82);
+  border-top-color: hsl(207 38% 74% / 0.2);
+  background: hsl(214 45% 7% / 0.42);
 }
 
 .patrol-record-footer svg {
-  color: hsl(var(--night-blue) / 0.82);
+  color: hsl(var(--night-blue));
+}
+
+.patrol-record-footer strong {
+  color: hsl(var(--night-gold) / 0.92);
+}
+
+.patrol-verification .patrol-route-header {
+  color: hsl(213 20% 76% / 0.76);
+  border-bottom-color: hsl(207 38% 74% / 0.22);
+  background: hsl(211 42% 9% / 0.48);
 }
 
 .night-timeline {
