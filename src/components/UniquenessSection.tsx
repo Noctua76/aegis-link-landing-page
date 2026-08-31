@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { BellRing, FileCheck2, RadioTower, ShieldCheck, UserRoundCheck } from 'lucide-react';
 
 const auditEvents = [
@@ -9,8 +9,38 @@ const auditEvents = [
 ];
 
 const UniquenessSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="accountability" className="accountability-story" aria-labelledby="accountability-story-heading">
+    <section
+      ref={sectionRef}
+      id="accountability"
+      className="accountability-story"
+      aria-labelledby="accountability-story-heading"
+    >
       <div className="accountability-story-veil" aria-hidden="true" />
 
       <div className="accountability-story-shell">

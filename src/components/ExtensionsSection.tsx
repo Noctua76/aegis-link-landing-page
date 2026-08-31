@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { Building2, Clock3, MapPin, QrCode, RadioTower, Route, ShieldCheck, UsersRound } from 'lucide-react';
 
 const siteRows = [
@@ -16,8 +16,38 @@ const operationLayers = [
 ];
 
 const ExtensionsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="extensions" className="scale-story" aria-labelledby="scale-story-heading">
+    <section
+      ref={sectionRef}
+      id="extensions"
+      className="scale-story"
+      aria-labelledby="scale-story-heading"
+    >
       <div className="scale-story-veil" aria-hidden="true" />
 
       <div className="scale-story-shell">
