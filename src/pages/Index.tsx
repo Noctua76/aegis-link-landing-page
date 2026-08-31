@@ -1,4 +1,3 @@
-import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
 import EditorialHeroSection from '@/components/EditorialHeroSection';
 import ShiftBeginsSection from '@/components/ShiftBeginsSection';
@@ -17,9 +16,6 @@ import Footer from '@/components/Footer';
 const Index = () => {
   return (
     <div className="relative min-h-screen bg-background">
-      {/* Animated particle background */}
-      <ParticleBackground />
-      
       {/* Navigation */}
       <Navbar />
       <SectionProgressRail />
