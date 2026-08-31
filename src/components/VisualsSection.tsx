@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { Activity, FileClock, MapPin, RadioTower, ShieldAlert, UserRoundCheck } from 'lucide-react';
 
 const operationSignals = [
@@ -15,8 +15,38 @@ const eventTrace = [
 ];
 
 const VisualsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="visuals" className="operations-story" aria-labelledby="operations-story-heading">
+    <section
+      ref={sectionRef}
+      id="visuals"
+      className="operations-story"
+      aria-labelledby="operations-story-heading"
+    >
       <div className="operations-story-veil" aria-hidden="true" />
 
       <div className="operations-story-shell">
