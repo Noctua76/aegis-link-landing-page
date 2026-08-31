@@ -1,11 +1,41 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { MessageSquareText, PhoneCall, Radio, ShieldCheck } from 'lucide-react';
 
 const recipients = ['RESPONSIBLE 01', 'RESPONSIBLE 02', 'RESPONSIBLE 03', 'RESPONSIBLE 04'];
 
 const CapabilitiesSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="capabilities" className="response-story" aria-labelledby="response-story-heading">
+    <section
+      ref={sectionRef}
+      id="capabilities"
+      className="response-story"
+      aria-labelledby="response-story-heading"
+    >
       <div className="response-story-veil" aria-hidden="true" />
 
       <div className="response-story-shell">

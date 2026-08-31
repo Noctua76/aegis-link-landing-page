@@ -1220,8 +1220,6 @@
   padding: 0 0.7rem;
   border-bottom: 1px solid hsl(207 38% 74% / 0.2);
   opacity: 0;
-  animation: response-recipient-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--recipient-delay);
 }
 
 .response-recipient-list li:first-child {
@@ -1480,6 +1478,65 @@
   border-color: hsl(42 88% 80%);
   background: hsl(var(--response-gold));
   box-shadow: 0 0 0.35rem hsl(var(--response-gold) / 0.84), 0 0 1.5rem hsl(var(--response-gold) / 0.46);
+}
+
+.response-story:not(.is-revealed) .response-scene-marker,
+.response-story:not(.is-revealed) .response-time,
+.response-story:not(.is-revealed) .response-story-copy h2,
+.response-story:not(.is-revealed) .response-story-lead,
+.response-story:not(.is-revealed) .response-outcomes,
+.response-story:not(.is-revealed) .response-timeline,
+.response-story:not(.is-revealed) .response-next {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.response-story:not(.is-revealed) .response-system {
+  opacity: 0;
+  transform: translateX(-28px) translateY(10px) scale(0.985);
+}
+
+.response-story.is-revealed .response-scene-marker,
+.response-story.is-revealed .response-time,
+.response-story.is-revealed .response-story-copy h2,
+.response-story.is-revealed .response-story-lead,
+.response-story.is-revealed .response-outcomes,
+.response-story.is-revealed .response-timeline,
+.response-story.is-revealed .response-next {
+  animation: shift-copy-reveal 920ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.response-story.is-revealed .response-time {
+  animation-delay: 130ms;
+}
+
+.response-story.is-revealed .response-story-copy h2 {
+  animation-delay: 280ms;
+}
+
+.response-story.is-revealed .response-story-lead {
+  animation-delay: 440ms;
+}
+
+.response-story.is-revealed .response-outcomes {
+  animation-delay: 590ms;
+}
+
+.response-story.is-revealed .response-system {
+  animation: patrol-panel-reveal 1080ms 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.response-story.is-revealed .response-recipient-list li {
+  animation: response-recipient-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(420ms + var(--recipient-delay));
+}
+
+.response-story.is-revealed .response-timeline {
+  animation-delay: 720ms;
+}
+
+.response-story.is-revealed .response-next {
+  animation-delay: 850ms;
 }
 
 .response-next {
@@ -3884,6 +3941,14 @@
   .response-system {
     order: 2;
     width: 100%;
+  }
+
+  .response-story:not(.is-revealed) .response-system {
+    transform: translateY(22px) scale(0.985);
+  }
+
+  .response-story.is-revealed .response-system {
+    animation-name: mobile-panel-reveal;
   }
 
   .response-timeline {
@@ -6457,6 +6522,29 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .response-story:not(.is-revealed) .response-scene-marker,
+  .response-story:not(.is-revealed) .response-time,
+  .response-story:not(.is-revealed) .response-story-copy h2,
+  .response-story:not(.is-revealed) .response-story-lead,
+  .response-story:not(.is-revealed) .response-outcomes,
+  .response-story:not(.is-revealed) .response-system,
+  .response-story:not(.is-revealed) .response-timeline,
+  .response-story:not(.is-revealed) .response-next,
+  .response-story.is-revealed .response-scene-marker,
+  .response-story.is-revealed .response-time,
+  .response-story.is-revealed .response-story-copy h2,
+  .response-story.is-revealed .response-story-lead,
+  .response-story.is-revealed .response-outcomes,
+  .response-story.is-revealed .response-system,
+  .response-story.is-revealed .response-timeline,
+  .response-story.is-revealed .response-next,
+  .response-story:not(.is-revealed) .response-recipient-list li,
+  .response-story.is-revealed .response-recipient-list li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
   .operations-story:not(.is-revealed) .operations-scene-marker,
   .operations-story:not(.is-revealed) .operations-time,
   .operations-story:not(.is-revealed) .operations-story-copy h2,
