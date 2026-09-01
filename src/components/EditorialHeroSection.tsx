@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { openPreviewAccessModal } from '@/lib/previewAccess';
 
 const DIGIT_SEGMENTS: Record<string, string[]> = {
   '0': ['a', 'b', 'c', 'd', 'e', 'f'],
@@ -206,9 +207,9 @@ const EditorialHeroSection = () => {
               <span>Enter the Operations View</span>
               <i aria-hidden="true">→</i>
           </a>
-          <a className="editorial-action" href="#preview-access">
+          <button className="editorial-action" type="button" onClick={openPreviewAccessModal}>
               Request Preview Access
-          </a>
+          </button>
         </div>
         </div>
 

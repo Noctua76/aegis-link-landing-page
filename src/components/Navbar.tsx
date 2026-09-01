@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import logoMark from '@/assets/aegis-link-logo-mark.png';
+import { openPreviewAccessModal } from '@/lib/previewAccess';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,12 +50,13 @@ const Navbar = () => {
 
         {/* CTA Buttons */}
         <div className="aegis-nav-cta-wrap">
-          <a
-            href="#preview-access"
+          <button
+            type="button"
             className="aegis-nav-cta"
+            onClick={openPreviewAccessModal}
           >
             Request Preview Access
-          </a>
+          </button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -83,9 +85,16 @@ const Navbar = () => {
               </a>
             ))}
             <div className="aegis-nav-mobile-cta-wrap">
-              <a href="#preview-access" className="aegis-nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
+              <button
+                type="button"
+                className="aegis-nav-cta"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openPreviewAccessModal();
+                }}
+              >
                 Request Preview Access
-              </a>
+              </button>
             </div>
           </div>
         </div>

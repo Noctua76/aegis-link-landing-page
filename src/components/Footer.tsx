@@ -1,4 +1,5 @@
 import logoMark from '@/assets/aegis-link-logo-mark.png';
+import { openPreviewAccessModal } from '@/lib/previewAccess';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,17 +25,16 @@ const Footer = () => {
             >
               noctuacore.ai
             </a>
-            <a href="mailto:YOUR@EMAIL.COM" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="mailto:info@eliaskalyvas.gr" className="text-muted-foreground hover:text-foreground transition-colors">
               Email
             </a>
-            <a
-              href="https://YOUR-SCHEDULING-LINK"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={openPreviewAccessModal}
               className="text-muted-foreground hover:text-neon-purple transition-colors"
             >
               Book Demo
-            </a>
+            </button>
           </div>
 
           <p className="text-sm text-muted-foreground">© {currentYear} Noctua Core</p>

@@ -1,4 +1,5 @@
 import { Image, Calendar } from 'lucide-react';
+import { openPreviewAccessModal } from '@/lib/previewAccess';
 
 const MobileBottomCTA = () => {
   return (
@@ -15,15 +16,14 @@ const MobileBottomCTA = () => {
           <Image size={18} />
           Εικόνες
         </a>
-        <a
-          href="https://YOUR-SCHEDULING-LINK"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={openPreviewAccessModal}
           className="flex-1 btn-primary py-3 flex items-center justify-center gap-2 text-sm"
         >
           <Calendar size={18} />
           Demo
-        </a>
+        </button>
       </div>
     </div>
   );

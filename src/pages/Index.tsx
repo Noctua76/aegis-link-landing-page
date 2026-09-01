@@ -12,6 +12,7 @@ import FAQSection from '@/components/FAQSection';
 import FinalCTASection from '@/components/FinalCTASection';
 import SectionProgressRail from '@/components/SectionProgressRail';
 import Footer from '@/components/Footer';
+import PreviewAccessModal from '@/components/PreviewAccessModal';
 
 const Index = () => {
   return (
@@ -38,6 +39,7 @@ const Index = () => {
         <FinalCTASection />
         <Footer />
       </div>
+      <PreviewAccessModal />
     </div>
   );
 };

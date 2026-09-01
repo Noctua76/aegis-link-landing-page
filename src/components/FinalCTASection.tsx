@@ -1,4 +1,5 @@
 import { ArrowRight, Link2, MonitorCog, ShieldCheck, Smartphone } from 'lucide-react';
+import { openPreviewAccessModal } from '@/lib/previewAccess';
 
 const FinalCTASection = () => {
   return (
@@ -55,15 +56,14 @@ const FinalCTASection = () => {
             <span>Controlled duration</span>
           </div>
 
-          <a
+          <button
+            type="button"
             className="access-primary-action"
-            href="https://YOUR-SCHEDULING-LINK"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={openPreviewAccessModal}
           >
             <span>Request Preview Access</span>
             <ArrowRight size={18} strokeWidth={1.35} aria-hidden="true" />
-          </a>
+          </button>
         </div>
 
         <p className="access-closing-line">
