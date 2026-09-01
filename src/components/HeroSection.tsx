@@ -49,7 +49,7 @@ const HeroSection = () => {
       <div className="incident-story-shell">
         <div className="incident-story-copy">
           <div className="incident-scene-marker" aria-hidden="true">
-            <span>05</span>
+            <span>04</span>
             <i />
             <strong>THE INCIDENT</strong>
           </div>

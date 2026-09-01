@@ -54,7 +54,7 @@ const ExtensionsSection = () => {
       <div className="scale-story-shell">
         <div className="scale-story-copy">
           <div className="scale-scene-marker" aria-hidden="true">
-            <span>09</span>
+            <span>08</span>
             <i />
             <strong>OPERATIONAL CONTROL</strong>
           </div>

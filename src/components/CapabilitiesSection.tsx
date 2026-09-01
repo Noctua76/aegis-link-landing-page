@@ -86,7 +86,7 @@ const CapabilitiesSection = () => {
 
         <div className="response-story-copy">
           <div className="response-scene-marker" aria-hidden="true">
-            <span>06</span>
+            <span>05</span>
             <i />
             <strong>ONE ACTION</strong>
           </div>

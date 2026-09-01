@@ -47,7 +47,7 @@ const ShiftBeginsSection = () => {
       <div className="shift-story-shell">
         <div className="shift-story-copy">
           <div className="shift-scene-marker" aria-hidden="true">
-            <span>02</span>
+            <span>01</span>
             <i />
             <strong>THE SHIFT BEGINS</strong>
           </div>

@@ -99,7 +99,7 @@ const PatrolStorySection = () => {
 
         <div className="patrol-story-copy">
           <div className="patrol-scene-marker" aria-hidden="true">
-            <span>03</span>
+            <span>02</span>
             <i />
             <strong>THE PATROL</strong>
           </div>

@@ -88,7 +88,7 @@ const FAQSection = () => {
       <div className="questions-story-shell">
         <div className="questions-story-copy">
           <div className="questions-scene-marker" aria-hidden="true">
-            <span>10</span>
+            <span>09</span>
             <i />
             <strong>THE QUESTIONS THAT MATTER</strong>
           </div>

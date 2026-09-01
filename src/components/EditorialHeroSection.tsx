@@ -176,6 +176,11 @@ const EditorialHeroSection = () => {
 
           <MobileSevenSegmentClock value={time} />
 
+          <div className="editorial-crucial-moment editorial-reveal-clock">
+            <i aria-hidden="true" />
+            <strong>THE CRUCIAL MOMENT</strong>
+          </div>
+
         <h1 id="editorial-hero-heading" className="editorial-hero-heading">
           <span className="editorial-reveal editorial-reveal-one">
             Security does not fail when an incident happens.
@@ -227,11 +232,6 @@ const EditorialHeroSection = () => {
         </div>
       </div>
 
-      <div className="editorial-scene-index" aria-hidden="true">
-        <span>01</span>
-        <i />
-        <strong>The moment before</strong>
-      </div>
     </section>
   );
 };

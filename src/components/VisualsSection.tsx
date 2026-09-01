@@ -53,7 +53,7 @@ const VisualsSection = () => {
       <div className="operations-story-shell">
         <div className="operations-story-copy">
           <div className="operations-scene-marker" aria-hidden="true">
-            <span>07</span>
+            <span>06</span>
             <i />
             <strong>SHARED VISIBILITY</strong>
           </div>

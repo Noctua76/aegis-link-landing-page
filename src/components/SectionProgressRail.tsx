@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const stops = [
-  { id: 'editorial-opening', label: 'The moment before', time: '03:59' },
+  { id: 'editorial-opening', label: 'The crucial moment', time: '03:59' },
   { id: 'operations-view', label: 'The shift begins', time: '23:00' },
   { id: 'patrol-story', label: 'The patrol', time: '01:30' },
   { id: 'silence-story', label: 'Operational silence', time: '03:58' },

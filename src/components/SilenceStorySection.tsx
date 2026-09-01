@@ -47,7 +47,7 @@ const SilenceStorySection = () => {
 
       <div className="silence-story-shell">
         <div className="silence-scene-marker" aria-hidden="true">
-          <span>04</span>
+          <span>03</span>
           <i />
           <strong>OPERATIONAL SILENCE</strong>
         </div>
