@@ -18,16 +18,27 @@ const SectionProgressRail = () => {
   const [activeStop, setActiveStop] = useState(0);
 
   useEffect(() => {
+    let frameId: number | null = null;
+
     const updateActiveStop = () => {
-      const focusLine = window.scrollY + window.innerHeight * 0.42;
-      let nextStop = 0;
+      if (frameId !== null) cancelAnimationFrame(frameId);
 
-      stops.forEach((stop, index) => {
-        const element = document.getElementById(stop.id);
-        if (element && element.offsetTop <= focusLine) nextStop = index;
+      frameId = requestAnimationFrame(() => {
+        const focusLine = window.innerHeight * 0.42;
+        let nextStop = 0;
+
+        stops.forEach((stop, index) => {
+          const element = document.getElementById(stop.id);
+          if (element && element.getBoundingClientRect().top <= focusLine) nextStop = index;
+        });
+
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
+          nextStop = stops.length - 1;
+        }
+
+        setActiveStop(nextStop);
+        frameId = null;
       });
-
-      setActiveStop(nextStop);
     };
 
     updateActiveStop();
@@ -35,6 +46,7 @@ const SectionProgressRail = () => {
     window.addEventListener('resize', updateActiveStop);
 
     return () => {
+      if (frameId !== null) cancelAnimationFrame(frameId);
       window.removeEventListener('scroll', updateActiveStop);
       window.removeEventListener('resize', updateActiveStop);
     };
