@@ -6922,15 +6922,15 @@
     inset: 0;
     color: #f7faff;
     text-shadow: 0 0 0.75rem rgb(226 239 255 / 0.48);
-    clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 100% 0 0);
     opacity: 0;
     pointer-events: none;
     will-change: clip-path, opacity;
   }
 
   .shift-story-copy blockquote .presence-line--gold .presence-word::after {
-    color: #ffd27c;
-    text-shadow: 0 0 0.8rem rgb(255 202 105 / 0.5);
+    color: #9be0ff;
+    text-shadow: 0 0 0.8rem rgb(111 204 255 / 0.52);
   }
 
   .shift-story.is-revealed .shift-story-copy blockquote .presence-word::after {
@@ -7000,7 +7000,7 @@
 
 @keyframes mobile-presence-word-sweep {
   0% {
-    clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 100% 0 0);
     opacity: 0;
   }
 
@@ -7025,7 +7025,7 @@
 
   9.3%,
   100% {
-    clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 100% 0 0);
     opacity: 0;
   }
 }
@@ -7449,7 +7449,7 @@
     inset: 0;
     color: #f7faff;
     text-shadow: 0 0 0.75rem rgb(226 239 255 / 0.48);
-    clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 100% 0 0);
     opacity: 0;
     pointer-events: none;
     transition: opacity 140ms ease-out;
@@ -7457,13 +7457,13 @@
   }
 
   .guided-caption-segment--gold .guided-caption-word::after {
-    color: #ffd27c;
-    text-shadow: 0 0 0.8rem rgb(255 202 105 / 0.5);
+    color: #9be0ff;
+    text-shadow: 0 0 0.8rem rgb(111 204 255 / 0.52);
   }
 
   .guided-caption-segment--blue .guided-caption-word::after {
-    color: #9be0ff;
-    text-shadow: 0 0 0.8rem rgb(111 204 255 / 0.48);
+    color: #ffd27c;
+    text-shadow: 0 0 0.8rem rgb(255 202 105 / 0.52);
   }
 
   .guided-caption-word.is-active::after {
@@ -7473,7 +7473,7 @@
 
 @keyframes mobile-guided-caption-sweep {
   0% {
-    clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 100% 0 0);
     opacity: 0;
   }
 
