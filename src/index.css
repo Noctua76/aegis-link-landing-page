@@ -6777,7 +6777,7 @@
     position: relative;
     z-index: 4;
     display: block;
-    width: 100%;
+    width: 82%;
     height: auto;
     margin: 0 0 2rem;
     overflow: visible;
@@ -6789,8 +6789,8 @@
   }
 
   .editorial-hero-v2 .mobile-clock-inactive {
-    fill: #241a02;
-    opacity: 1;
+    fill: transparent;
+    opacity: 0;
   }
 
   .editorial-hero-v2 .editorial-hero-subtitle {
