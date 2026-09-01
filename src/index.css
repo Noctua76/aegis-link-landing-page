@@ -7608,3 +7608,184 @@
     font-weight: 600;
   }
 }
+
+/* Mobile-only legibility for the daylight test and preview access sections. */
+@media (max-width: 767px) {
+  .questions-scene-marker,
+  .access-scene-marker {
+    gap: 0.72rem;
+    color: #e1e7ee;
+    font-size: clamp(0.59rem, 2.65vw, 0.68rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.16em;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.72);
+  }
+
+  .questions-scene-marker span,
+  .access-scene-marker span {
+    color: #f2bd5c;
+    font-size: clamp(0.68rem, 3vw, 0.76rem);
+    font-weight: 600;
+  }
+
+  .questions-scene-marker i,
+  .access-scene-marker i {
+    height: 2px;
+    background: linear-gradient(90deg, #e7ac42, rgb(102 199 242 / 0.72));
+    box-shadow: 0 0 0.45rem rgb(231 172 66 / 0.18);
+  }
+
+  .questions-dawn-marker {
+    gap: 0.9rem;
+    color: #dce5ed;
+    font-size: clamp(0.6rem, 2.7vw, 0.69rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.7);
+  }
+
+  .questions-dawn-marker span {
+    color: #f4bd55;
+  }
+
+  .questions-story-statement {
+    color: #8edbff;
+    font-size: clamp(0.62rem, 2.75vw, 0.7rem);
+    font-weight: 600;
+    line-height: 1.85;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.68);
+  }
+
+  .questions-story-statement strong {
+    color: #f3bd59;
+    font-weight: 600;
+  }
+
+  .questions-panel-header {
+    min-height: 64px;
+    color: #d8e1ea;
+    font-size: clamp(0.58rem, 2.55vw, 0.66rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.72);
+  }
+
+  .questions-panel-header svg {
+    color: #f2bd5c;
+    filter: drop-shadow(0 0 0.45rem rgb(242 189 92 / 0.28));
+  }
+
+  .questions-panel-header strong {
+    color: #f2bd5c;
+    font-weight: 600;
+  }
+
+  .questions-number {
+    color: #f2bd5c;
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  .questions-answer {
+    color: #d4dde6;
+  }
+
+  .questions-answer p {
+    font-size: 0.8rem;
+    font-weight: 450;
+  }
+
+  .questions-panel-footer {
+    color: #cbd5df;
+    font-size: 0.58rem;
+    font-weight: 600;
+  }
+
+  .questions-next {
+    color: #e0e7ee;
+    font-size: clamp(0.61rem, 2.7vw, 0.69rem);
+    font-weight: 600;
+    line-height: 1.5;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.7);
+  }
+
+  .questions-next svg {
+    color: #f2bd5c;
+    filter: drop-shadow(0 0 0.4rem rgb(242 189 92 / 0.25));
+  }
+
+  .access-kicker {
+    color: #f2bd5c;
+    font-size: clamp(0.62rem, 2.75vw, 0.7rem);
+    font-weight: 600;
+    line-height: 1.55;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.66);
+  }
+
+  .access-surface > span {
+    color: #cdd8e3;
+    font-size: clamp(0.59rem, 2.55vw, 0.66rem);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .access-surface svg {
+    color: #77d3fb;
+    filter: drop-shadow(0 0 0.65rem rgb(91 199 247 / 0.32));
+  }
+
+  .access-surface strong {
+    color: #f7f9fc;
+    font-size: clamp(1rem, 4.5vw, 1.14rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.5rem rgb(0 0 0 / 0.66);
+  }
+
+  .access-surface small {
+    color: #c9d4df;
+    font-size: clamp(0.58rem, 2.5vw, 0.65rem);
+    font-weight: 600;
+    line-height: 1.65;
+  }
+
+  .access-connection > strong {
+    color: #f2bd5c;
+    font-size: clamp(0.56rem, 2.45vw, 0.63rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-shadow: 0 0 0.45rem rgb(242 189 92 / 0.22);
+  }
+
+  .access-assurance {
+    color: #d4dde6;
+    font-size: clamp(0.57rem, 2.45vw, 0.64rem);
+    font-weight: 600;
+    line-height: 1.55;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.7);
+  }
+
+  .access-assurance svg {
+    color: #7fd7fd;
+    filter: drop-shadow(0 0 0.45rem rgb(91 199 247 / 0.25));
+  }
+
+  .access-assurance i {
+    width: 0.3rem;
+    height: 0.3rem;
+    background: #f2bd5c;
+  }
+
+  .access-closing-line {
+    color: #d8e0e9;
+    font-size: clamp(0.61rem, 2.65vw, 0.68rem);
+    font-weight: 600;
+    line-height: 1.9;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.7);
+  }
+
+  .access-closing-line strong {
+    color: #f2bd5c;
+    font-weight: 600;
+  }
+}
