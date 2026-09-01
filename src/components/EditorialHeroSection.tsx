@@ -61,8 +61,8 @@ const MobileSevenSegmentClock = ({ value }: { value: string }) => {
       cursor += 34;
       return (
         <g key={`${index}-${character}`} transform={`translate(${x} 0)`}>
-          <circle className="mobile-clock-active" cx="17" cy="67" r="6" />
-          <circle className="mobile-clock-active" cx="17" cy="113" r="6" />
+          <circle className="mobile-clock-active" cx="17" cy="67" r="6" fill="#ffc21c" />
+          <circle className="mobile-clock-active" cx="17" cy="113" r="6" fill="#ffc21c" />
         </g>
       );
     }
@@ -77,6 +77,7 @@ const MobileSevenSegmentClock = ({ value }: { value: string }) => {
             key={segment}
             className={activeSegments.includes(segment) ? 'mobile-clock-active' : 'mobile-clock-inactive'}
             points={MOBILE_SEGMENT_POINTS[segment]}
+            fill={activeSegments.includes(segment) ? '#ffc21c' : '#241a02'}
           />
         ))}
       </g>
