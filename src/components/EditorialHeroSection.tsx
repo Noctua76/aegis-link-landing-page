@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { openPreviewAccessModal } from '@/lib/previewAccess';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const DIGIT_SEGMENTS: Record<string, string[]> = {
   '0': ['a', 'b', 'c', 'd', 'e', 'f'],
@@ -53,7 +54,7 @@ const SevenSegmentDigit = ({ value }: { value: string }) => {
   );
 };
 
-const MobileSevenSegmentClock = ({ value }: { value: string }) => {
+const MobileSevenSegmentClock = ({ value, label }: { value: string; label: string }) => {
   let cursor = 0;
   const glyphs = value.split('').map((character, index) => {
     const x = cursor;
@@ -90,7 +91,7 @@ const MobileSevenSegmentClock = ({ value }: { value: string }) => {
       className="mobile-editorial-clock"
       viewBox={`0 0 ${cursor} 180`}
       role="img"
-      aria-label={`Time ${value}`}
+      aria-label={`${label} ${value}`}
       preserveAspectRatio="xMinYMid meet"
       shapeRendering="geometricPrecision"
     >
@@ -102,6 +103,7 @@ const MobileSevenSegmentClock = ({ value }: { value: string }) => {
 const EditorialHeroSection = () => {
   const [seconds, setSeconds] = useState(47);
   const [activeTimelineStop, setActiveTimelineStop] = useState(3);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const startedAt = Date.now();
@@ -166,7 +168,7 @@ const EditorialHeroSection = () => {
           <div
             className={`editorial-clock editorial-reveal-clock ${seconds >= 57 ? 'is-near' : ''}`}
             role="img"
-            aria-label={`Time ${time}`}
+            aria-label={`${copy.hero.timeLabel} ${time}`}
           >
             {time.split('').map((character, index) => (
               <SevenSegmentDigit key={`${index}-${character}`} value={character} />
@@ -174,51 +176,50 @@ const EditorialHeroSection = () => {
             <span className="editorial-clock-signal" aria-hidden="true" />
           </div>
 
-          <MobileSevenSegmentClock value={time} />
+          <MobileSevenSegmentClock value={time} label={copy.hero.timeLabel} />
 
           <div className="editorial-crucial-moment">
             <i aria-hidden="true" />
-            <strong>THE CRUCIAL MOMENT</strong>
+            <strong>{copy.hero.crucialMoment}</strong>
           </div>
 
         <h1 id="editorial-hero-heading" className="editorial-hero-heading">
           <span className="editorial-reveal editorial-reveal-one">
-            Security does not fail when an incident happens.
+            {copy.hero.title}
           </span>
           <strong className="editorial-reveal editorial-reveal-two">
-            It fails when no one sees it soon enough.
+            {copy.hero.titleStrong}
           </strong>
         </h1>
 
           <span className="editorial-hero-rule editorial-reveal editorial-reveal-three" aria-hidden="true" />
 
         <p className="editorial-hero-subtitle editorial-reveal editorial-reveal-three">
-          Aegis Link connects guards, supervisors and operations
-          <span> in one real-time Security Operations Platform.</span>
+          {copy.hero.subtitle}
+          <span>{copy.hero.subtitleStrong}</span>
         </p>
 
-          <div className="editorial-pillars editorial-reveal editorial-reveal-four" aria-label="Aegis Link principles">
-            <span>Visibility</span>
-            <i aria-hidden="true">·</i>
-            <span>Control</span>
-            <i aria-hidden="true">·</i>
-            <span>Response</span>
-            <i aria-hidden="true">·</i>
-            <span>Accountability</span>
+          <div className="editorial-pillars editorial-reveal editorial-reveal-four" aria-label={copy.hero.principlesLabel}>
+            {copy.hero.principles.map((principle, index) => (
+              <span key={principle} className="contents">
+                <span>{principle}</span>
+                {index < copy.hero.principles.length - 1 && <i aria-hidden="true">·</i>}
+              </span>
+            ))}
           </div>
 
         <div className="editorial-hero-actions editorial-reveal editorial-reveal-four">
           <a className="editorial-action editorial-action-primary" href="#operations-view">
-              <span>Enter the Operations View</span>
+              <span>{copy.hero.enterOperations}</span>
               <i aria-hidden="true">→</i>
           </a>
           <button className="editorial-action" type="button" onClick={openPreviewAccessModal}>
-              Request Preview Access
+              {copy.common.requestPreview}
           </button>
         </div>
         </div>
 
-        <div className="editorial-timeline editorial-reveal editorial-reveal-five" aria-label="Incident timeline">
+        <div className="editorial-timeline editorial-reveal editorial-reveal-five" aria-label={copy.hero.timelineLabel}>
           <div className="editorial-timeline-line" aria-hidden="true" />
           {storyTimeline.map((label, index) => (
             <div

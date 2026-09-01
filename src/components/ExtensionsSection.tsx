@@ -1,23 +1,13 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Building2, Clock3, MapPin, QrCode, RadioTower, Route, ShieldCheck, UsersRound } from 'lucide-react';
 import GuidedCaption from '@/components/GuidedCaption';
+import { useLanguage } from '@/i18n/LanguageContext';
 
-const siteRows = [
-  { site: 'SITE 01', guard: 'ON SITE', shift: 'HANDOVER', patrol: 'VERIFIED', status: 'CONTROLLED' },
-  { site: 'SITE 02', guard: 'ON SHIFT', shift: 'NIGHT → DAY', patrol: 'DUE SOON', status: 'ACTIVE' },
-  { site: 'SITE 03', guard: 'SESSION LIVE', shift: 'MORNING', patrol: 'SCHEDULED', status: 'ACTIVE' },
-];
-
-const operationLayers = [
-  { label: 'LIVE GPS', icon: MapPin },
-  { label: 'GUARD SESSIONS', icon: UsersRound },
-  { label: 'PATROLS', icon: Route },
-  { label: 'QR CHECKPOINTS', icon: QrCode },
-  { label: 'INCIDENTS', icon: RadioTower },
-];
+const operationLayerIcons = [MapPin, UsersRound, Route, QrCode, RadioTower];
 
 const ExtensionsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -56,51 +46,46 @@ const ExtensionsSection = () => {
           <div className="scale-scene-marker" aria-hidden="true">
             <span>08</span>
             <i />
-            <strong>OPERATIONAL CONTROL</strong>
+            <strong>{copy.scale.marker}</strong>
           </div>
 
           <div className="scale-time">
             <time dateTime="07:00">07:00</time>
-            <span><i aria-hidden="true" /> SHIFT HANDOVER</span>
+            <span><i aria-hidden="true" /> {copy.scale.handover}</span>
           </div>
 
           <h2 id="scale-story-heading">
-            The night ends.
-            <strong>The operation continues.</strong>
+            {copy.scale.heading}
+            <strong>{copy.scale.headingStrong}</strong>
           </h2>
 
           <p className="scale-story-lead">
-            Aegis Link extends the same visibility beyond incidents—to every
-            site, every guard, every shift and every patrol.
+            {copy.scale.lead}
           </p>
 
           <p className="scale-story-statement">
-            <GuidedCaption segments={[{ text: 'One platform across the entire security operation.', tone: 'blue' }]} />
+            <GuidedCaption segments={[{ text: copy.scale.statement, tone: 'blue' }]} />
           </p>
         </div>
 
-        <div className="scale-board" aria-label="Aegis Link multi-site operations board">
+        <div className="scale-board" aria-label={copy.scale.boardLabel}>
           <div className="scale-board-header">
             <div>
               <Building2 size={16} strokeWidth={1.4} aria-hidden="true" />
-              <span>MULTI-SITE OPERATIONS</span>
+              <span>{copy.scale.boardTitle}</span>
             </div>
             <div>
               <Clock3 size={15} strokeWidth={1.4} aria-hidden="true" />
-              <span>07:00 / LIVE</span>
+              <span>{copy.scale.live}</span>
             </div>
           </div>
 
           <div className="scale-board-columns" aria-hidden="true">
-            <span>SITE</span>
-            <span>GUARD</span>
-            <span>SHIFT</span>
-            <span>PATROL</span>
-            <span>STATUS</span>
+            {copy.scale.columns.map((column) => <span key={column}>{column}</span>)}
           </div>
 
           <div className="scale-site-list">
-            {siteRows.map((row, index) => (
+            {copy.scale.rows.map((row, index) => (
               <div key={row.site} style={{ '--site-index': index } as CSSProperties}>
                 <strong><i aria-hidden="true" /> {row.site}</strong>
                 <span>{row.guard}</span>
@@ -112,17 +97,20 @@ const ExtensionsSection = () => {
           </div>
 
           <div className="scale-operation-layers">
-            {operationLayers.map(({ label, icon: Icon }, index) => (
+            {copy.scale.layers.map((label, index) => {
+              const Icon = operationLayerIcons[index];
+              return (
               <div key={label} style={{ '--layer-index': index } as CSSProperties}>
                 <Icon size={16} strokeWidth={1.35} aria-hidden="true" />
                 <span>{label}</span>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="scale-board-footer">
             <ShieldCheck size={17} strokeWidth={1.4} aria-hidden="true" />
-            <span>ONE OPERATING LAYER / EVERY SITE CONNECTED</span>
+            <span>{copy.scale.footer}</span>
           </div>
         </div>
 
@@ -136,11 +124,11 @@ const ExtensionsSection = () => {
           <span>04:01</span>
           <i />
           <span>07:00</span>
-          <strong>CONTINUOUS CONTROL</strong>
+          <strong>{copy.scale.continuous}</strong>
         </div>
 
         <a className="scale-next" href="#faq">
-          <span>The platform is ready. The questions remain.</span>
+          <span>{copy.scale.next}</span>
           <i aria-hidden="true">↓</i>
         </a>
       </div>

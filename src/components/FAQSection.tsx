@@ -6,32 +6,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { useLanguage } from '@/i18n/LanguageContext';
 
-const operationalQuestions = [
-  {
-    question: 'Where is every guard—right now?',
-    answer: 'Live site presence, GPS position and active guard sessions replace assumptions with a shared operational picture.',
-    icon: MapPin,
-  },
-  {
-    question: 'Was every patrol actually completed?',
-    answer: 'Time-stamped patrols and QR checkpoint verification turn a verbal confirmation into evidence.',
-    icon: Route,
-  },
-  {
-    question: 'Who was informed—and when?',
-    answer: 'Calls, messages, acknowledgements and escalation events remain connected to one incident record.',
-    icon: RadioTower,
-  },
-  {
-    question: 'Can one team see every site?',
-    answer: 'A single operations layer connects guards, shifts, patrols and incidents across the entire security operation.',
-    icon: ScanSearch,
-  },
-];
+const questionIcons = [MapPin, Route, RadioTower, ScanSearch];
 
 const FAQSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -90,39 +71,40 @@ const FAQSection = () => {
           <div className="questions-scene-marker" aria-hidden="true">
             <span>09</span>
             <i />
-            <strong>THE QUESTIONS THAT MATTER</strong>
+            <strong>{copy.questions.marker}</strong>
           </div>
 
           <div className="questions-dawn-marker">
             <span><i aria-hidden="true" /> 07:01</span>
-            <strong>DAYLIGHT TEST</strong>
+            <strong>{copy.questions.daylight}</strong>
           </div>
 
           <h2 id="questions-story-heading">
-            The night is over.
-            <strong>Can your operation answer?</strong>
+            {copy.questions.heading}
+            <strong>{copy.questions.headingStrong}</strong>
           </h2>
 
           <p className="questions-story-lead">
-            A security operation is only as strong as the answers available
-            before someone needs to make a call.
+            {copy.questions.lead}
           </p>
 
           <p className="questions-story-statement">
-            Technology is not the question.
-            <strong>Operational certainty is.</strong>
+            {copy.questions.statement}
+            <strong>{copy.questions.statementStrong}</strong>
           </p>
         </div>
 
         <div className="questions-panel">
           <div className="questions-panel-header">
             <Crosshair size={17} strokeWidth={1.35} aria-hidden="true" />
-            <span>THE OPERATIONAL TEST</span>
-            <strong>04 QUESTIONS</strong>
+            <span>{copy.questions.panelTitle}</span>
+            <strong>{copy.questions.panelCount}</strong>
           </div>
 
           <Accordion type="single" collapsible defaultValue="question-0" className="questions-list">
-            {operationalQuestions.map(({ question, answer, icon: Icon }, index) => (
+            {copy.questions.items.map(({ question, answer }, index) => {
+              const Icon = questionIcons[index];
+              return (
               <AccordionItem
                 key={question}
                 value={`question-${index}`}
@@ -138,17 +120,18 @@ const FAQSection = () => {
                   <p>{answer}</p>
                 </AccordionContent>
               </AccordionItem>
-            ))}
+              );
+            })}
           </Accordion>
 
           <p className="questions-panel-footer">
-            If the answer depends on a phone call, a memory or a spreadsheet,
-            <strong> control is already delayed.</strong>
+            {copy.questions.footer}
+            <strong>{copy.questions.footerStrong}</strong>
           </p>
         </div>
 
         <a className="questions-next" href="#preview-access">
-          <span>See how Aegis Link answers them</span>
+          <span>{copy.questions.next}</span>
           <ArrowDown size={16} strokeWidth={1.25} aria-hidden="true" />
         </a>
       </div>

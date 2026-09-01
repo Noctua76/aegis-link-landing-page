@@ -1,8 +1,10 @@
 import logoMark from '@/assets/aegis-link-logo-mark.png';
 import { openPreviewAccessModal } from '@/lib/previewAccess';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { copy } = useLanguage();
 
   return (
     <footer className="site-footer-desktop relative z-10 py-12" role="contentinfo">
@@ -12,7 +14,7 @@ const Footer = () => {
             <img src={logoMark} alt="Aegis Link" className="h-16 w-auto opacity-100" />
             <div className="leading-tight">
               <span className="font-semibold text-foreground">Aegis Link</span>
-              <p className="text-sm text-muted-foreground">by Noctua Core</p>
+              <p className="text-sm text-muted-foreground">{copy.footer.by}</p>
             </div>
           </div>
 
@@ -26,14 +28,14 @@ const Footer = () => {
               noctuacore.ai
             </a>
             <a href="mailto:info@eliaskalyvas.gr" className="text-muted-foreground hover:text-foreground transition-colors">
-              Email
+              {copy.footer.email}
             </a>
             <button
               type="button"
               onClick={openPreviewAccessModal}
               className="text-muted-foreground hover:text-neon-purple transition-colors"
             >
-              Book Demo
+              {copy.footer.demo}
             </button>
           </div>
 

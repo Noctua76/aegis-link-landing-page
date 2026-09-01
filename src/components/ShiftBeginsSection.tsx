@@ -1,16 +1,13 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Building2, Clock3, LogIn, MapPin, ShieldCheck, UserRoundCheck } from 'lucide-react';
 import NightTimeline from '@/components/NightTimeline';
+import { useLanguage } from '@/i18n/LanguageContext';
 
-const shiftSignals = [
-  { label: 'GUARD', value: 'ON DUTY', detail: 'Identity confirmed', icon: UserRoundCheck },
-  { label: 'SITE', value: 'ASSIGNED', detail: 'Correct installation', icon: Building2 },
-  { label: 'SESSION', value: 'ACTIVE', detail: 'Connected at 22:57', icon: LogIn },
-  { label: 'LOCATION', value: 'VERIFIED', detail: 'Inside site perimeter', icon: MapPin },
-];
+const signalIcons = [UserRoundCheck, Building2, LogIn, MapPin];
 
 const ShiftBeginsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -49,44 +46,41 @@ const ShiftBeginsSection = () => {
           <div className="shift-scene-marker" aria-hidden="true">
             <span>01</span>
             <i />
-            <strong>THE SHIFT BEGINS</strong>
+            <strong>{copy.shift.marker}</strong>
           </div>
 
           <time className="shift-time" dateTime="23:00">23:00</time>
 
           <h2 id="shift-story-heading">
-            <span>The shift has started.</span>
-            <strong>But do you know who is actually on duty?</strong>
+            <span>{copy.shift.heading}</span>
+            <strong>{copy.shift.headingStrong}</strong>
           </h2>
 
           <p className="shift-story-lead">
-            Presence cannot depend on an assumption, a phone call or a message sent after the shift has begun.
+            {copy.shift.lead}
           </p>
 
           <blockquote>
             <span className="presence-line">
-              <span className="presence-word" data-word="Presence" style={{ '--word-delay': '0s' } as CSSProperties}>Presence</span>{' '}
-              <span className="presence-word" data-word="should" style={{ '--word-delay': '0.82s' } as CSSProperties}>should</span>{' '}
-              <span className="presence-word" data-word="never" style={{ '--word-delay': '1.64s' } as CSSProperties}>never</span>{' '}
-              <span className="presence-word" data-word="be" style={{ '--word-delay': '2.46s' } as CSSProperties}>be</span>{' '}
-              <span className="presence-word" data-word="assumed." style={{ '--word-delay': '3.28s' } as CSSProperties}>assumed.</span>
+              {copy.shift.quote.map((word, index) => (
+                <span key={`${word}-${index}`}><span className="presence-word" data-word={word} style={{ '--word-delay': `${index * 0.82}s` } as CSSProperties}>{word}</span>{' '}</span>
+              ))}
             </span>
             <strong className="presence-line presence-line--gold">
-              <span className="presence-word" data-word="It" style={{ '--word-delay': '4.1s' } as CSSProperties}>It</span>{' '}
-              <span className="presence-word" data-word="should" style={{ '--word-delay': '4.92s' } as CSSProperties}>should</span>{' '}
-              <span className="presence-word" data-word="be" style={{ '--word-delay': '5.74s' } as CSSProperties}>be</span>{' '}
-              <span className="presence-word" data-word="visible." style={{ '--word-delay': '6.56s' } as CSSProperties}>visible.</span>
+              {copy.shift.quoteStrong.map((word, index) => (
+                <span key={`${word}-${index}`}><span className="presence-word" data-word={word} style={{ '--word-delay': `${(copy.shift.quote.length + index) * 0.82}s` } as CSSProperties}>{word}</span>{' '}</span>
+              ))}
             </strong>
           </blockquote>
         </div>
 
-        <div className="shift-status-board" aria-label="Live guard shift status">
+        <div className="shift-status-board" aria-label={copy.shift.boardLabel}>
           <div className="shift-board-header">
             <div>
               <ShieldCheck size={17} strokeWidth={1.35} aria-hidden="true" />
-              <span>LIVE SHIFT STATUS</span>
+              <span>{copy.shift.boardTitle}</span>
             </div>
-            <strong><i aria-hidden="true" /> COVERAGE CONFIRMED</strong>
+            <strong><i aria-hidden="true" /> {copy.shift.boardStatus}</strong>
           </div>
 
           <div className="shift-board-identity">
@@ -94,33 +88,36 @@ const ShiftBeginsSection = () => {
               <UserRoundCheck size={25} strokeWidth={1.25} />
             </div>
             <div>
-              <span>NIGHT SHIFT / SITE 02</span>
-              <strong>ACTIVE GUARD</strong>
+              <span>{copy.shift.identityLabel}</span>
+              <strong>{copy.shift.identityValue}</strong>
             </div>
             <time><Clock3 size={14} strokeWidth={1.35} aria-hidden="true" /> 23:00–07:00</time>
           </div>
 
           <div className="shift-signal-grid">
-            {shiftSignals.map(({ label, value, detail, icon: Icon }, index) => (
+            {copy.shift.signals.map(({ label, value, detail }, index) => {
+              const Icon = signalIcons[index];
+              return (
               <div key={label} style={{ '--shift-index': index } as CSSProperties}>
                 <Icon size={17} strokeWidth={1.3} aria-hidden="true" />
                 <span>{label}</span>
                 <strong>{value}</strong>
                 <small>{detail}</small>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="shift-board-footer">
-            <span>NO CHECK-IN CALL REQUIRED</span>
-            <strong>ONE LIVE OPERATIONAL PICTURE</strong>
+            <span>{copy.shift.footerLeft}</span>
+            <strong>{copy.shift.footerRight}</strong>
           </div>
         </div>
 
-        <NightTimeline active="23:00" label="Night shift timeline at 23:00" />
+        <NightTimeline active="23:00" label={copy.shift.timelineLabel} />
 
         <a className="shift-next" href="#patrol-story">
-          <span>Presence is visible. Verification comes next.</span>
+          <span>{copy.shift.next}</span>
           <i aria-hidden="true">↓</i>
         </a>
       </div>

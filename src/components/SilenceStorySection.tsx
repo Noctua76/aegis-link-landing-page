@@ -2,16 +2,13 @@ import { useEffect, useRef } from 'react';
 import { Activity, Clock3, MapPin, Radio, Route } from 'lucide-react';
 import GuidedCaption from '@/components/GuidedCaption';
 import NightTimeline from '@/components/NightTimeline';
+import { useLanguage } from '@/i18n/LanguageContext';
 
-const quietSignals = [
-  { label: 'GUARDS', value: 'ACTIVE', icon: Radio },
-  { label: 'PATROLS', value: 'MONITORED', icon: Route },
-  { label: 'ACTIVITY', value: 'LIVE', icon: Activity },
-  { label: 'SITES', value: 'VISIBLE', icon: MapPin },
-];
+const signalIcons = [Radio, Route, Activity, MapPin];
 
 const SilenceStorySection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -49,20 +46,20 @@ const SilenceStorySection = () => {
         <div className="silence-scene-marker" aria-hidden="true">
           <span>03</span>
           <i />
-          <strong>OPERATIONAL SILENCE</strong>
+          <strong>{copy.silence.marker}</strong>
         </div>
 
         <div className="silence-clock-wrap">
           <Clock3 size={16} strokeWidth={1.25} aria-hidden="true" />
           <time dateTime="03:58">03:58</time>
-          <span><i aria-hidden="true" /> NO INCIDENT REPORTED</span>
+          <span><i aria-hidden="true" /> {copy.silence.noIncident}</span>
         </div>
 
         <h2 id="silence-story-heading">
-          <span>Nothing has been reported.</span>
+          <span>{copy.silence.heading}</span>
           <strong>
             <GuidedCaption
-              segments={[{ text: 'But does that mean everything is under control?' }]}
+              segments={[{ text: copy.silence.headingStrong }]}
               startDelayMs={500}
               cycleMs={23540}
             />
@@ -71,30 +68,33 @@ const SilenceStorySection = () => {
 
         <p className="silence-story-lead">
           <GuidedCaption
-            segments={[{ text: 'No call. No alert. No visible disruption. Yet operations still needs to know what remains active—and what has quietly stopped.' }]}
+            segments={[{ text: copy.silence.lead }]}
             startDelayMs={500}
             cycleMs={23540}
           />
         </p>
 
-        <div className="silence-signal-line" aria-label="Operational signals still monitored">
-          {quietSignals.map(({ label, value, icon: Icon }) => (
+        <div className="silence-signal-line" aria-label={copy.silence.signalsLabel}>
+          {copy.silence.signals.map(({ label, value }, index) => {
+            const Icon = signalIcons[index];
+            return (
             <div key={label}>
               <Icon size={15} strokeWidth={1.25} aria-hidden="true" />
               <span>{label}</span>
               <strong>{value}</strong>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         <blockquote>
-          Operational silence is not operational visibility.
+          {copy.silence.quote}
         </blockquote>
 
-        <NightTimeline active="03:58" label="Night shift timeline at 03:58" />
+        <NightTimeline active="03:58" label={copy.silence.timelineLabel} />
 
         <a className="silence-next" href="#incident-story">
-          <span>One minute later, the night changes.</span>
+          <span>{copy.silence.next}</span>
           <i aria-hidden="true">↓</i>
         </a>
       </div>

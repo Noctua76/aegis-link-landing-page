@@ -253,6 +253,28 @@
   }
 }
 
+/* Greek copy needs slightly tighter tracking inside dense operational boards. */
+.lang-gr .shift-signal-grid > div,
+.lang-gr .operations-signal-grid > div,
+.lang-gr .scale-board-columns > span,
+.lang-gr .scale-site-list > div > *,
+.lang-gr .patrol-state-strip > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lang-gr .shift-signal-grid span,
+.lang-gr .shift-signal-grid strong,
+.lang-gr .operations-signal-grid span,
+.lang-gr .operations-signal-grid strong,
+.lang-gr .scale-board-columns,
+.lang-gr .scale-site-list strong,
+.lang-gr .scale-site-list span,
+.lang-gr .scale-site-list small,
+.lang-gr .patrol-state-strip span {
+  letter-spacing: 0.045em;
+}
+
 /* Aegis Link cinematic navigation */
 .aegis-nav {
   position: fixed;
@@ -319,7 +341,39 @@
 }
 
 .aegis-nav-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   justify-self: end;
+}
+
+.aegis-language-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem;
+  border: 1px solid hsl(210 28% 78% / 0.18);
+  background: hsl(220 48% 4% / 0.38);
+}
+
+.aegis-language-switch button {
+  min-width: 2.25rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.45rem;
+  color: hsl(215 16% 68% / 0.78);
+  font-size: 0.61rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.aegis-language-switch button:hover,
+.aegis-language-switch button:focus-visible {
+  color: hsl(41 78% 72%);
+}
+
+.aegis-language-switch button.is-active {
+  color: hsl(220 50% 4%);
+  background: hsl(41 72% 66%);
 }
 
 .aegis-nav-cta {
@@ -3893,6 +3947,15 @@
     margin-top: 0.65rem;
     padding-top: 0.9rem;
     border-top: 1px solid hsl(39 62% 55% / 0.18);
+  }
+
+  .aegis-language-switch.is-mobile {
+    align-self: center;
+    margin-top: 0.65rem;
+  }
+
+  .aegis-language-switch.is-mobile button {
+    min-width: 3.2rem;
   }
 
   .aegis-nav-mobile-cta-wrap .aegis-nav-cta {

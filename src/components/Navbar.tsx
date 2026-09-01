@@ -3,10 +3,12 @@ import { Menu, X } from 'lucide-react';
 import logoMark from '@/assets/aegis-link-logo-mark.png';
 import { openPreviewAccessModal } from '@/lib/previewAccess';
 import { openNavigationInfoModal, type NavigationInfoKey } from '@/lib/navigationInfo';
+import { useLanguage, type Language } from '@/i18n/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, copy } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,21 +19,40 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { key: 'platform', label: 'Platform' },
-    { key: 'solutions', label: 'Solutions' },
-    { key: 'product', label: 'Product' },
-    { key: 'resources', label: 'Resources' },
+    { key: 'platform', label: copy.navbar.links[0] },
+    { key: 'solutions', label: copy.navbar.links[1] },
+    { key: 'product', label: copy.navbar.links[2] },
+    { key: 'resources', label: copy.navbar.links[3] },
   ] satisfies Array<{ key: NavigationInfoKey; label: string }>;
+
+  const LanguageSwitch = ({ mobile = false }: { mobile?: boolean }) => (
+    <div className={`aegis-language-switch${mobile ? ' is-mobile' : ''}`} aria-label={copy.navbar.languageLabel}>
+      {(['en', 'gr'] as Language[]).map((option) => (
+        <button
+          key={option}
+          type="button"
+          className={language === option ? 'is-active' : ''}
+          aria-pressed={language === option}
+          onClick={() => {
+            setLanguage(option);
+            if (mobile) setIsMobileMenuOpen(false);
+          }}
+        >
+          {option.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <nav
       className={`aegis-nav ${isScrolled ? 'is-scrolled' : ''}`}
       role="navigation"
-      aria-label="Main navigation"
+      aria-label={copy.navbar.ariaLabel}
     >
       <div className="aegis-nav-inner">
         {/* Logo */}
-        <a href="#" className="aegis-nav-brand" aria-label="Aegis Link home">
+        <a href={`${import.meta.env.BASE_URL}${language}`} className="aegis-nav-brand" aria-label={copy.navbar.homeLabel}>
           <img src={logoMark} alt="" aria-hidden="true" />
           <span>Aegis Link</span>
         </a>
@@ -52,12 +73,13 @@ const Navbar = () => {
 
         {/* CTA Buttons */}
         <div className="aegis-nav-cta-wrap">
+          <LanguageSwitch />
           <button
             type="button"
             className="aegis-nav-cta"
             onClick={openPreviewAccessModal}
           >
-            Request Preview Access
+            {copy.common.requestPreview}
           </button>
         </div>
 
@@ -65,7 +87,7 @@ const Navbar = () => {
         <button
           className="aegis-nav-toggle"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-label={isMobileMenuOpen ? copy.navbar.closeMenu : copy.navbar.openMenu}
           aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -89,6 +111,7 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <LanguageSwitch mobile />
             <div className="aegis-nav-mobile-cta-wrap">
               <button
                 type="button"
@@ -98,7 +121,7 @@ const Navbar = () => {
                   openPreviewAccessModal();
                 }}
               >
-                Request Preview Access
+                {copy.common.requestPreview}
               </button>
             </div>
           </div>

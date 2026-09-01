@@ -1,11 +1,11 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { MessageSquareText, PhoneCall, Radio, ShieldCheck } from 'lucide-react';
 import GuidedCaption from '@/components/GuidedCaption';
-
-const recipients = ['RESPONSIBLE 01', 'RESPONSIBLE 02', 'RESPONSIBLE 03', 'RESPONSIBLE 04'];
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const CapabilitiesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -40,10 +40,10 @@ const CapabilitiesSection = () => {
       <div className="response-story-veil" aria-hidden="true" />
 
       <div className="response-story-shell">
-        <div className="response-system" aria-label="Aegis Link automated panic alert sequence">
+        <div className="response-system" aria-label={copy.response.systemLabel}>
           <div className="response-system-heading">
-            <span>AEGIS LINK / AUTOMATED RESPONSE</span>
-            <span>ALERT CHAIN READY</span>
+            <span>{copy.response.systemTitle}</span>
+            <span>{copy.response.chainReady}</span>
           </div>
 
           <div className="response-network">
@@ -51,13 +51,13 @@ const CapabilitiesSection = () => {
               <div className="response-panic-rings" aria-hidden="true" />
               <div className="response-panic-control">
                 <Radio size={21} strokeWidth={1.45} aria-hidden="true" />
-                <strong>PANIC</strong>
-                <span>ONE ACTION</span>
+                <strong>{copy.response.panic}</strong>
+                <span>{copy.response.oneAction}</span>
               </div>
             </div>
 
             <ol className="response-recipient-list">
-              {recipients.map((recipient, index) => (
+              {copy.response.recipients.map((recipient, index) => (
                 <li key={recipient} style={{ '--recipient-index': index } as CSSProperties}>
                   <i className="response-connector" aria-hidden="true" />
                   <div className="response-recipient-number">0{index + 1}</div>
@@ -66,12 +66,12 @@ const CapabilitiesSection = () => {
                     <span>
                       <PhoneCall size={13} strokeWidth={1.5} aria-hidden="true" />
                       <MessageSquareText size={13} strokeWidth={1.5} aria-hidden="true" />
-                      CALL + MESSAGE
+                      {copy.response.callMessage}
                     </span>
                   </div>
                   <div className="response-recipient-status">
                     <i aria-hidden="true" />
-                    DISPATCHED
+                    {copy.response.dispatched}
                   </div>
                 </li>
               ))}
@@ -80,7 +80,7 @@ const CapabilitiesSection = () => {
 
           <div className="response-system-outcome">
             <ShieldCheck size={18} strokeWidth={1.4} aria-hidden="true" />
-            <span>THE RESPONSE CHAIN IS ALREADY MOVING</span>
+            <span>{copy.response.outcome}</span>
           </div>
         </div>
 
@@ -88,37 +88,36 @@ const CapabilitiesSection = () => {
           <div className="response-scene-marker" aria-hidden="true">
             <span>05</span>
             <i />
-            <strong>ONE ACTION</strong>
+            <strong>{copy.response.marker}</strong>
           </div>
 
           <p className="response-time">04:00</p>
 
           <h2 id="response-story-heading">
-            One action.
-            <strong>Everyone who matters, reached.</strong>
+            {copy.response.heading}
+            <strong>{copy.response.headingStrong}</strong>
           </h2>
 
           <p className="response-story-lead">
-            With the panic button, the guard does not need to search, dial, wait
-            and repeat. Aegis Link activates the predefined call and message flow.
+            {copy.response.lead}
           </p>
 
           <div className="response-outcomes">
             <div>
-              <span>SYSTEM</span>
+              <span>{copy.response.system}</span>
               <p>
                 <GuidedCaption
-                  segments={[{ text: 'Calls and messages move through the response chain.' }]}
+                  segments={[{ text: copy.response.systemOutcome }]}
                   startDelayMs={500}
                   cycleMs={16160}
                 />
               </p>
             </div>
             <div>
-              <span>GUARD</span>
+              <span>{copy.response.guard}</span>
               <p>
                 <GuidedCaption
-                  segments={[{ text: 'Stays focused on the threat and can contact the authorities.' }]}
+                  segments={[{ text: copy.response.guardOutcome }]}
                   startDelayMs={7060}
                   cycleMs={16160}
                 />
@@ -127,27 +126,27 @@ const CapabilitiesSection = () => {
           </div>
         </div>
 
-        <div className="response-timeline" aria-label="Incident response timeline">
+        <div className="response-timeline" aria-label={copy.response.timelineLabel}>
           <div className="response-timeline-track" aria-hidden="true" />
           <div className="response-timeline-event is-past">
             <span aria-hidden="true" />
             <time>03:59</time>
-            <small>WATCH</small>
+            <small>{copy.response.watch}</small>
           </div>
           <div className="response-timeline-event is-incident">
             <span aria-hidden="true" />
             <time>04:00</time>
-            <small>INCIDENT</small>
+            <small>{copy.response.incident}</small>
           </div>
           <div className="response-timeline-event is-active">
             <span aria-hidden="true" />
-            <time>NOW</time>
-            <small>RESPONSE</small>
+            <time>{copy.response.now}</time>
+            <small>{copy.response.response}</small>
           </div>
         </div>
 
         <a className="response-next" href="#visuals">
-          <span>The alert is only the beginning</span>
+          <span>{copy.response.next}</span>
           <i aria-hidden="true">↓</i>
         </a>
       </div>

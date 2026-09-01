@@ -1,18 +1,15 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Phone, RotateCcw, Search, ShieldAlert } from 'lucide-react';
 import GuidedCaption from '@/components/GuidedCaption';
+import { useLanguage } from '@/i18n/LanguageContext';
 
-const notificationSteps = [
-  { number: '01', label: 'Find the number', icon: Search, state: 'Searching' },
-  { number: '02', label: 'Place the call', icon: Phone, state: 'Ringing' },
-  { number: '03', label: 'Wait for an answer', icon: ShieldAlert, state: 'No answer' },
-  { number: '04', label: 'Try again', icon: RotateCcw, state: 'Repeat' },
-];
+const notificationStepIcons = [Search, Phone, ShieldAlert, RotateCcw];
 
 const timelineStops = ['23:00', '01:30', '03:59', '04:00', '07:00'];
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { copy } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -51,40 +48,42 @@ const HeroSection = () => {
           <div className="incident-scene-marker" aria-hidden="true">
             <span>04</span>
             <i />
-            <strong>THE INCIDENT</strong>
+            <strong>{copy.incident.marker}</strong>
           </div>
 
           <time className="incident-time" dateTime="04:00">04:00</time>
 
           <h2 id="incident-story-heading">
-            The incident has happened.
-            <strong>Now the delay begins.</strong>
+            {copy.incident.heading}
+            <strong>{copy.incident.headingStrong}</strong>
           </h2>
 
           <p className="incident-story-lead">
-            At 04:00, a tired guard must manage the danger while finding numbers,
-            placing calls, waiting for answers—and trying again.
+            {copy.incident.lead}
           </p>
 
           <p className="incident-story-question">
             <GuidedCaption
               stacked
               segments={[
-                { text: 'Four people must be informed.' },
-                { text: 'Who answers the first call?', emphasis: true, tone: 'gold' },
+                { text: copy.incident.question },
+                { text: copy.incident.questionStrong, emphasis: true, tone: 'gold' },
               ]}
             />
           </p>
         </div>
 
-        <div className="incident-sequence" aria-label="Manual incident notification sequence">
+        <div className="incident-sequence" aria-label={copy.incident.sequenceLabel}>
           <div className="incident-sequence-heading">
-            <span>MANUAL NOTIFICATION</span>
-            <span>NO AUTOMATION</span>
+            <span>{copy.incident.manualNotification}</span>
+            <span>{copy.incident.noAutomation}</span>
           </div>
 
           <ol className="incident-sequence-list">
-            {notificationSteps.map(({ number, label, icon: Icon, state }, index) => (
+            {copy.incident.steps.map(({ label, state }, index) => {
+              const Icon = notificationStepIcons[index];
+              const number = `0${index + 1}`;
+              return (
               <li key={number} style={{ '--sequence-index': index } as CSSProperties}>
                 <div className="incident-sequence-number">{number}</div>
                 <div className="incident-sequence-icon" aria-hidden="true">
@@ -96,16 +95,17 @@ const HeroSection = () => {
                 </div>
                 <i className="incident-sequence-pulse" aria-hidden="true" />
               </li>
-            ))}
+              );
+            })}
           </ol>
 
           <div className="incident-sequence-conclusion">
-            <span>Meanwhile</span>
-            <p>The guard's attention is divided between the phone and the threat.</p>
+            <span>{copy.incident.meanwhile}</span>
+            <p>{copy.incident.conclusion}</p>
           </div>
         </div>
 
-        <div className="incident-timeline" aria-label="Incident timeline at 04:00">
+        <div className="incident-timeline" aria-label={copy.incident.timelineLabel}>
           <div className="incident-timeline-line" aria-hidden="true" />
           {timelineStops.map((label, index) => (
             <div
@@ -119,7 +119,7 @@ const HeroSection = () => {
         </div>
 
         <a className="incident-next" href="#capabilities">
-          <span>One action should reach everyone</span>
+          <span>{copy.incident.next}</span>
           <i aria-hidden="true">↓</i>
         </a>
       </div>
