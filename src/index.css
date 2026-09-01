@@ -7014,3 +7014,381 @@
     color: #f3c66f;
   }
 }
+
+/* Mobile-only legibility shared by every operational board. */
+@media (max-width: 767px) {
+  /* Patrol verification board */
+  .patrol-reported {
+    opacity: 0.9;
+  }
+
+  .patrol-reported span,
+  .patrol-verified-heading span {
+    color: #cbd3dd;
+    font-size: 0.65rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .patrol-reported strong,
+  .patrol-verified-heading strong {
+    font-size: 0.84rem;
+    line-height: 1.4;
+  }
+
+  .patrol-reported small,
+  .patrol-verified-heading small {
+    color: #b8c2cf;
+    font-size: 0.61rem;
+    line-height: 1.45;
+  }
+
+  .patrol-verified-heading span,
+  .patrol-verified-heading small {
+    color: #8ed8ff;
+  }
+
+  .patrol-verification .patrol-route-header {
+    min-height: 64px;
+    color: #d6dde6;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .patrol-checkpoints li {
+    min-height: 90px;
+  }
+
+  .patrol-checkpoint-number {
+    color: #c5ced9;
+    font-size: 0.6rem;
+  }
+
+  .patrol-checkpoints li > div strong {
+    font-size: 0.74rem;
+    line-height: 1.4;
+  }
+
+  .patrol-checkpoints li > div small {
+    color: #b8c2cf;
+    font-size: 0.58rem;
+    line-height: 1.45;
+  }
+
+  .patrol-checkpoints li > time {
+    font-size: 0.68rem;
+  }
+
+  .patrol-checkpoint-status {
+    font-size: 0.55rem;
+    line-height: 1.4;
+  }
+
+  .patrol-state-strip span {
+    min-height: 58px;
+    color: #c3ccd7;
+    font-size: 0.57rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .patrol-record-footer {
+    min-height: 72px;
+    color: #a9dfff;
+    font-size: 0.52rem;
+    line-height: 1.45;
+  }
+
+  .patrol-record-footer > span {
+    flex: 1;
+  }
+
+  .patrol-record-footer > strong {
+    text-align: right;
+  }
+
+  /* Operational silence board */
+  .silence-signal-line > div {
+    min-height: 100px;
+  }
+
+  .silence-signal-line span {
+    color: #cbd3dd;
+    font-size: 0.65rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .silence-signal-line strong {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  /* Manual incident sequence */
+  .incident-sequence-heading {
+    color: #d6dde6;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .incident-sequence-list li {
+    min-height: 90px;
+  }
+
+  .incident-sequence-number {
+    color: #c5ced9;
+    font-size: 0.62rem;
+  }
+
+  .incident-sequence-text strong {
+    font-size: 0.84rem;
+    line-height: 1.4;
+  }
+
+  .incident-sequence-text span {
+    color: #b8c2cf;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .incident-sequence-conclusion span {
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  .incident-sequence-conclusion p {
+    color: #bcc6d1;
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+  /* Automated response board */
+  .response-system-heading {
+    color: #d6dde6;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .response-panic-control span {
+    font-size: 0.56rem;
+  }
+
+  .response-recipient-list li {
+    min-height: 82px;
+  }
+
+  .response-recipient-number {
+    font-size: 0.62rem;
+  }
+
+  .response-recipient-copy strong {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .response-recipient-copy span {
+    color: #bdc7d3;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .response-recipient-status {
+    gap: 0.35rem;
+    font-size: 0.52rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .response-system-outcome {
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .response-outcomes span {
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  .response-outcomes p {
+    color: #bcc6d1;
+    font-size: 0.84rem;
+  }
+
+  /* Live operations board */
+  .operations-view-header {
+    color: #d6dde6;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .operations-incident-heading span {
+    color: #cbd3dd;
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  .operations-incident-heading strong {
+    font-size: 0.94rem;
+  }
+
+  .operations-incident-state {
+    font-size: 0.56rem;
+    font-weight: 600;
+  }
+
+  .operations-signal-grid > div {
+    min-height: 100px;
+  }
+
+  .operations-signal-grid span {
+    color: #cbd3dd;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .operations-signal-grid strong {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+
+  .operations-trace-heading {
+    color: #c7d0db;
+    font-size: 0.58rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .operations-trace li {
+    grid-template-columns: 1.4rem 0.65rem 1fr auto;
+    min-height: 55px;
+  }
+
+  .operations-trace li > span {
+    color: #bec8d4;
+    font-size: 0.55rem;
+  }
+
+  .operations-trace li > strong {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .operations-trace li > small {
+    display: block;
+    font-size: 0.5rem;
+    font-weight: 600;
+  }
+
+  .operations-view-footer {
+    color: #c0c9d4;
+    font-size: 0.54rem;
+    line-height: 1.5;
+  }
+
+  /* Accountability ledger */
+  .accountability-ledger-header {
+    color: #d6dde6;
+    font-size: 0.59rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .accountability-ledger-title {
+    color: #c4cdd8;
+    font-size: 0.55rem;
+    font-weight: 600;
+  }
+
+  .accountability-event-list li {
+    min-height: 90px;
+  }
+
+  .accountability-event-index {
+    color: #c3ccd7;
+    font-size: 0.58rem;
+  }
+
+  .accountability-event-list li > strong {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .accountability-event-list li > small {
+    font-size: 0.52rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .accountability-record-footer {
+    min-height: 88px;
+  }
+
+  .accountability-record-footer span {
+    color: #c0cad5;
+    font-size: 0.55rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .accountability-record-footer strong {
+    font-size: 0.62rem;
+    line-height: 1.4;
+  }
+
+  /* Multi-site operations board */
+  .scale-board-header {
+    color: #d6dde6;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .scale-site-list > div {
+    min-height: 120px;
+  }
+
+  .scale-site-list strong {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .scale-site-list span {
+    color: #c5ced9;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .scale-site-list small {
+    font-size: 0.57rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .scale-operation-layers > div {
+    min-height: 90px;
+    color: #c7d0db;
+  }
+
+  .scale-operation-layers span {
+    font-size: 0.56rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .scale-board-footer {
+    min-height: 60px;
+    font-size: 0.58rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+}
