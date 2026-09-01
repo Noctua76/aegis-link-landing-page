@@ -6891,3 +6891,126 @@
     font-size: 1.2rem;
   }
 }
+
+/* Mobile-only guided reading and shift-board legibility. */
+@media (max-width: 767px) {
+  .shift-story-copy blockquote {
+    gap: 0.7rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .shift-story-copy blockquote > span,
+  .shift-story-copy blockquote > strong {
+    display: block;
+  }
+
+  .shift-story.is-revealed .shift-story-copy blockquote > span {
+    animation: mobile-presence-first 2.2s 1.3s ease-in-out both;
+  }
+
+  .shift-story.is-revealed .shift-story-copy blockquote > strong {
+    animation: mobile-presence-second 1.25s 3.05s ease-out both;
+  }
+
+  .shift-status-board .shift-board-header {
+    color: #d6dde6;
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  .shift-board-identity span {
+    color: #cbd3dd;
+    font-size: 0.67rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .shift-board-identity strong {
+    font-size: 1.16rem;
+  }
+
+  .shift-board-identity time {
+    font-size: 0.7rem;
+  }
+
+  .shift-signal-grid > div {
+    min-height: 128px;
+  }
+
+  .shift-signal-grid span {
+    color: #cbd3dd;
+    font-size: 0.65rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .shift-signal-grid strong {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .shift-signal-grid small {
+    color: #b8c2cf;
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .shift-status-board .shift-board-footer {
+    align-items: flex-start;
+    color: #c0c9d4;
+    font-size: 0.56rem;
+    line-height: 1.5;
+  }
+
+  .shift-board-footer > span,
+  .shift-board-footer > strong {
+    max-width: 48%;
+  }
+
+  .shift-board-footer > strong {
+    text-align: right;
+  }
+}
+
+@keyframes mobile-presence-first {
+  0% {
+    color: hsl(215 16% 69% / 0.58);
+    text-shadow: none;
+  }
+  22%,
+  62% {
+    color: #f5f8fc;
+    text-shadow: 0 0 0.75rem rgb(225 236 248 / 0.28);
+  }
+  100% {
+    color: #dbe1e9;
+    text-shadow: none;
+  }
+}
+
+@keyframes mobile-presence-second {
+  0% {
+    color: rgb(178 137 67 / 0.62);
+    text-shadow: none;
+  }
+  100% {
+    color: #f3c66f;
+    text-shadow: 0 0 0.75rem rgb(243 198 111 / 0.25);
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .shift-story.is-revealed .shift-story-copy blockquote > span,
+  .shift-story.is-revealed .shift-story-copy blockquote > strong {
+    animation: none;
+  }
+
+  .shift-story-copy blockquote > span {
+    color: #dbe1e9;
+  }
+
+  .shift-story-copy blockquote > strong {
+    color: #f3c66f;
+  }
+}
