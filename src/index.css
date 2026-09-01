@@ -6798,4 +6798,96 @@
     font-weight: 500;
     text-shadow: 0 1px 0.8rem hsl(220 58% 2% / 0.86);
   }
+
+  .editorial-scene-index,
+  .shift-scene-marker,
+  .patrol-scene-marker,
+  .silence-scene-marker,
+  .incident-scene-marker,
+  .response-scene-marker,
+  .operations-scene-marker,
+  .accountability-scene-marker,
+  .scale-scene-marker {
+    z-index: 6;
+    gap: 0.7rem;
+    color: #f2f5f9;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.14em;
+    text-shadow: 0 1px 0.55rem rgb(0 0 0 / 0.9);
+  }
+
+  .editorial-scene-index > span,
+  .shift-scene-marker > span,
+  .patrol-scene-marker > span,
+  .silence-scene-marker > span,
+  .incident-scene-marker > span,
+  .response-scene-marker > span,
+  .operations-scene-marker > span,
+  .accountability-scene-marker > span,
+  .scale-scene-marker > span {
+    color: #ffc96b;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .editorial-scene-index > i,
+  .shift-scene-marker > i,
+  .patrol-scene-marker > i,
+  .silence-scene-marker > i,
+  .incident-scene-marker > i,
+  .response-scene-marker > i,
+  .operations-scene-marker > i,
+  .accountability-scene-marker > i,
+  .scale-scene-marker > i {
+    width: 2.2rem;
+    height: 2px;
+    background: #d99b35;
+  }
+
+  .editorial-scene-index > strong,
+  .shift-scene-marker > strong,
+  .patrol-scene-marker > strong,
+  .silence-scene-marker > strong,
+  .incident-scene-marker > strong,
+  .response-scene-marker > strong,
+  .operations-scene-marker > strong,
+  .accountability-scene-marker > strong,
+  .scale-scene-marker > strong {
+    color: #f7f9fc;
+    font-weight: 650;
+  }
+
+  .shift-next,
+  .patrol-next,
+  .silence-next,
+  .incident-next,
+  .response-next,
+  .operations-next,
+  .accountability-next,
+  .scale-next {
+    z-index: 6;
+    gap: 0.8rem;
+    max-width: calc(100% - 2.5rem);
+    color: #f3c66f;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 0.55rem rgb(0 0 0 / 0.92);
+  }
+
+  .shift-next > i,
+  .patrol-next > i,
+  .silence-next > i,
+  .incident-next > i,
+  .response-next > i,
+  .operations-next > i,
+  .accountability-next > i,
+  .scale-next > i {
+    flex: 0 0 auto;
+    color: #ffd486;
+    font-size: 1.2rem;
+  }
 }
