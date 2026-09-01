@@ -6900,17 +6900,42 @@
     line-height: 1.55;
   }
 
-  .shift-story-copy blockquote > span,
-  .shift-story-copy blockquote > strong {
-    display: block;
+  .shift-story-copy blockquote .presence-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.12rem 0.38em;
   }
 
-  .shift-story.is-revealed .shift-story-copy blockquote > span {
-    animation: mobile-presence-first 2.2s 1.3s ease-in-out both;
+  .shift-story-copy blockquote .presence-word {
+    position: relative;
+    display: inline-block;
+    color: #9ba5b2;
   }
 
-  .shift-story.is-revealed .shift-story-copy blockquote > strong {
-    animation: mobile-presence-second 1.25s 3.05s ease-out both;
+  .shift-story-copy blockquote .presence-line--gold .presence-word {
+    color: rgb(178 137 67 / 0.68);
+  }
+
+  .shift-story-copy blockquote .presence-word::after {
+    content: attr(data-word);
+    position: absolute;
+    inset: 0;
+    color: #f7faff;
+    text-shadow: 0 0 0.75rem rgb(226 239 255 / 0.48);
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+    pointer-events: none;
+    will-change: clip-path, opacity;
+  }
+
+  .shift-story-copy blockquote .presence-line--gold .presence-word::after {
+    color: #ffd27c;
+    text-shadow: 0 0 0.8rem rgb(255 202 105 / 0.5);
+  }
+
+  .shift-story.is-revealed .shift-story-copy blockquote .presence-word::after {
+    animation: mobile-presence-word-sweep 8.8s cubic-bezier(0.22, 1, 0.36, 1)
+      calc(1.15s + var(--word-delay)) infinite both;
   }
 
   .shift-status-board .shift-board-header {
@@ -6973,44 +6998,49 @@
   }
 }
 
-@keyframes mobile-presence-first {
+@keyframes mobile-presence-word-sweep {
   0% {
-    color: hsl(215 16% 69% / 0.58);
-    text-shadow: none;
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
   }
-  22%,
-  62% {
-    color: #f5f8fc;
-    text-shadow: 0 0 0.75rem rgb(225 236 248 / 0.28);
-  }
-  100% {
-    color: #dbe1e9;
-    text-shadow: none;
-  }
-}
 
-@keyframes mobile-presence-second {
-  0% {
-    color: rgb(178 137 67 / 0.62);
-    text-shadow: none;
+  0.6% {
+    opacity: 1;
   }
+
+  5.8% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+
+  7.8% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+
+  9.2% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+
+  9.3%,
   100% {
-    color: #f3c66f;
-    text-shadow: 0 0 0.75rem rgb(243 198 111 / 0.25);
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
   }
 }
 
 @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
-  .shift-story.is-revealed .shift-story-copy blockquote > span,
-  .shift-story.is-revealed .shift-story-copy blockquote > strong {
+  .shift-story.is-revealed .shift-story-copy blockquote .presence-word::after {
     animation: none;
+    display: none;
   }
 
-  .shift-story-copy blockquote > span {
+  .shift-story-copy blockquote .presence-word {
     color: #dbe1e9;
   }
 
-  .shift-story-copy blockquote > strong {
+  .shift-story-copy blockquote .presence-line--gold .presence-word {
     color: #f3c66f;
   }
 }
