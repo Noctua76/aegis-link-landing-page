@@ -6765,19 +6765,26 @@
       linear-gradient(180deg, hsl(210 54% 20% / 0.05), hsl(214 58% 14% / 0.035));
   }
 
-  .editorial-hero-v2 .editorial-clock {
+  .editorial-hero-v2 .editorial-clock.editorial-reveal-clock {
     --editorial-clock-opacity: 1;
-    filter: none;
+    z-index: 4;
+    opacity: 1 !important;
+    filter: none !important;
+    animation: none !important;
   }
 
   .editorial-hero-v2 .editorial-clock-segment {
-    background: hsl(42 90% 50% / 0.11);
+    background: rgb(255 190 0 / 0.1) !important;
+    opacity: 1 !important;
+    filter: none !important;
   }
 
   .editorial-hero-v2 .editorial-clock-segment.is-active,
   .editorial-hero-v2 .editorial-clock-colon span {
-    background: hsl(42 100% 55%);
-    box-shadow: none;
+    background: #ffc21c !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    filter: none !important;
   }
 
   .editorial-hero-v2 .editorial-hero-subtitle {
