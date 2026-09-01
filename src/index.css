@@ -419,6 +419,10 @@
   top: 0.01em;
 }
 
+.mobile-editorial-clock {
+  display: none;
+}
+
 .editorial-hero-v2 .editorial-hero-heading {
   align-items: flex-start;
   gap: 0.24em;
@@ -6765,26 +6769,28 @@
       linear-gradient(180deg, hsl(210 54% 20% / 0.05), hsl(214 58% 14% / 0.035));
   }
 
-  .editorial-hero-v2 .editorial-clock.editorial-reveal-clock {
-    --editorial-clock-opacity: 1;
+  .editorial-hero-v2 .editorial-clock {
+    display: none;
+  }
+
+  .editorial-hero-v2 .mobile-editorial-clock {
+    position: relative;
     z-index: 4;
-    opacity: 1 !important;
-    filter: none !important;
-    animation: none !important;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 2rem;
+    overflow: visible;
   }
 
-  .editorial-hero-v2 .editorial-clock-segment {
-    background: rgb(255 190 0 / 0.1) !important;
-    opacity: 1 !important;
-    filter: none !important;
+  .editorial-hero-v2 .mobile-clock-active {
+    fill: #ffc21c;
+    opacity: 1;
   }
 
-  .editorial-hero-v2 .editorial-clock-segment.is-active,
-  .editorial-hero-v2 .editorial-clock-colon span {
-    background: #ffc21c !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-    filter: none !important;
+  .editorial-hero-v2 .mobile-clock-inactive {
+    fill: #241a02;
+    opacity: 1;
   }
 
   .editorial-hero-v2 .editorial-hero-subtitle {
