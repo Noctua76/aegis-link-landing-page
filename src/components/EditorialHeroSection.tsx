@@ -176,7 +176,7 @@ const EditorialHeroSection = () => {
 
           <MobileSevenSegmentClock value={time} />
 
-          <div className="editorial-crucial-moment editorial-reveal-clock">
+          <div className="editorial-crucial-moment">
             <i aria-hidden="true" />
             <strong>THE CRUCIAL MOMENT</strong>
           </div>

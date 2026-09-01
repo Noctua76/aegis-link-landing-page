@@ -422,6 +422,8 @@
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 0 1rem hsl(41 82% 64% / 0.28);
+  opacity: 0;
+  animation: editorial-reveal 1.15s 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .editorial-crucial-moment i {
@@ -5020,7 +5022,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .editorial-reveal,
-  .editorial-reveal-clock {
+  .editorial-reveal-clock,
+  .editorial-crucial-moment {
     opacity: 1;
     animation: none;
   }
