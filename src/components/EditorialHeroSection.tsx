@@ -16,6 +16,16 @@ const DIGIT_SEGMENTS: Record<string, string[]> = {
 const SEGMENTS = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
 const storyTimeline = ['23:00', '01:30', '03:58', '03:59', '04:00', '04:01', '07:00'];
 
+const MOBILE_SEGMENT_POINTS: Record<string, string> = {
+  a: '16,0 84,0 96,10 84,20 16,20 4,10',
+  b: '80,16 90,4 100,16 100,76 90,88 80,76',
+  c: '80,104 90,92 100,104 100,164 90,176 80,164',
+  d: '16,160 84,160 96,170 84,180 16,180 4,170',
+  e: '0,104 10,92 20,104 20,164 10,176 0,164',
+  f: '0,16 10,4 20,16 20,76 10,88 0,76',
+  g: '16,80 84,80 96,90 84,100 16,100 4,90',
+};
+
 const SevenSegmentDigit = ({ value }: { value: string }) => {
   if (value === ':') {
     return (
@@ -39,6 +49,51 @@ const SevenSegmentDigit = ({ value }: { value: string }) => {
         />
       ))}
     </span>
+  );
+};
+
+const MobileSevenSegmentClock = ({ value }: { value: string }) => {
+  let cursor = 0;
+  const glyphs = value.split('').map((character, index) => {
+    const x = cursor;
+
+    if (character === ':') {
+      cursor += 34;
+      return (
+        <g key={`${index}-${character}`} transform={`translate(${x} 0)`}>
+          <circle className="mobile-clock-active" cx="17" cy="67" r="6" />
+          <circle className="mobile-clock-active" cx="17" cy="113" r="6" />
+        </g>
+      );
+    }
+
+    cursor += 108;
+    const activeSegments = DIGIT_SEGMENTS[character] ?? [];
+
+    return (
+      <g key={`${index}-${character}`} transform={`translate(${x} 0)`}>
+        {SEGMENTS.map((segment) => (
+          <polygon
+            key={segment}
+            className={activeSegments.includes(segment) ? 'mobile-clock-active' : 'mobile-clock-inactive'}
+            points={MOBILE_SEGMENT_POINTS[segment]}
+          />
+        ))}
+      </g>
+    );
+  });
+
+  return (
+    <svg
+      className="mobile-editorial-clock"
+      viewBox={`0 0 ${cursor} 180`}
+      role="img"
+      aria-label={`Time ${value}`}
+      preserveAspectRatio="xMinYMid meet"
+      shapeRendering="geometricPrecision"
+    >
+      {glyphs}
+    </svg>
   );
 };
 
@@ -116,6 +171,8 @@ const EditorialHeroSection = () => {
             ))}
             <span className="editorial-clock-signal" aria-hidden="true" />
           </div>
+
+          <MobileSevenSegmentClock value={time} />
 
         <h1 id="editorial-hero-heading" className="editorial-hero-heading">
           <span className="editorial-reveal editorial-reveal-one">
