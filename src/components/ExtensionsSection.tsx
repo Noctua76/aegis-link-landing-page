@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Building2, Clock3, MapPin, QrCode, RadioTower, Route, ShieldCheck, UsersRound } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 
 const siteRows = [
   { site: 'SITE 01', guard: 'ON SITE', shift: 'HANDOVER', patrol: 'VERIFIED', status: 'CONTROLLED' },
@@ -74,7 +75,7 @@ const ExtensionsSection = () => {
           </p>
 
           <p className="scale-story-statement">
-            One platform across the entire security operation.
+            <GuidedCaption segments={[{ text: 'One platform across the entire security operation.', tone: 'blue' }]} />
           </p>
         </div>
 

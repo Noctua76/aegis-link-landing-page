@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Check, Clock3, MapPin, QrCode, Route, ShieldCheck } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 import NightTimeline from '@/components/NightTimeline';
 
 const checkpoints = [
@@ -115,8 +116,13 @@ const PatrolStorySection = () => {
           </p>
 
           <blockquote>
-            A patrol is not completed because someone said it was.
-            <strong>It is completed when the operation can verify it.</strong>
+            <GuidedCaption
+              stacked
+              segments={[
+                { text: 'A patrol is not completed because someone said it was.' },
+                { text: 'It is completed when the operation can verify it.', emphasis: true, tone: 'gold' },
+              ]}
+            />
           </blockquote>
         </div>
 

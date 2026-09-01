@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Activity, FileClock, MapPin, RadioTower, ShieldAlert, UserRoundCheck } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 
 const operationSignals = [
   { label: 'GUARD', value: 'ON SCENE', icon: UserRoundCheck },
@@ -73,7 +74,7 @@ const VisualsSection = () => {
           </p>
 
           <p className="operations-story-statement">
-            One incident. One shared operational picture.
+            <GuidedCaption segments={[{ text: 'One incident. One shared operational picture.', tone: 'gold' }]} />
           </p>
         </div>
 

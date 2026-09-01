@@ -1394,7 +1394,7 @@
   gap: 0.55rem;
 }
 
-.response-outcomes span {
+.response-outcomes > div > span {
   color: hsl(var(--response-gold) / 0.82);
   font-size: 0.54rem;
   letter-spacing: 0.17em;
@@ -7241,7 +7241,7 @@
     line-height: 1.5;
   }
 
-  .response-outcomes span {
+  .response-outcomes > div > span {
     font-size: 0.62rem;
     font-weight: 600;
   }
@@ -7420,5 +7420,78 @@
     font-size: 0.58rem;
     font-weight: 600;
     line-height: 1.5;
+  }
+}
+
+/* Reusable word-by-word captions. */
+.guided-caption--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.guided-caption-word {
+  display: inline-block;
+}
+
+.guided-caption-word + .guided-caption-word {
+  margin-inline-start: 0.34em;
+}
+
+@media (max-width: 767px) {
+  .guided-caption-word {
+    position: relative;
+  }
+
+  .guided-caption-word::after {
+    content: attr(data-word);
+    position: absolute;
+    inset: 0;
+    color: #f7faff;
+    text-shadow: 0 0 0.75rem rgb(226 239 255 / 0.48);
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease-out;
+    will-change: clip-path, opacity;
+  }
+
+  .guided-caption-segment--gold .guided-caption-word::after {
+    color: #ffd27c;
+    text-shadow: 0 0 0.8rem rgb(255 202 105 / 0.5);
+  }
+
+  .guided-caption-segment--blue .guided-caption-word::after {
+    color: #9be0ff;
+    text-shadow: 0 0 0.8rem rgb(111 204 255 / 0.48);
+  }
+
+  .guided-caption-word.is-active::after {
+    animation: mobile-guided-caption-sweep 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes mobile-guided-caption-sweep {
+  0% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  72%,
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .guided-caption-word::after,
+  .guided-caption-word.is-active::after {
+    display: none;
+    animation: none;
   }
 }

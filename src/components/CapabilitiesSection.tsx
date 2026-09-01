@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { MessageSquareText, PhoneCall, Radio, ShieldCheck } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 
 const recipients = ['RESPONSIBLE 01', 'RESPONSIBLE 02', 'RESPONSIBLE 03', 'RESPONSIBLE 04'];
 
@@ -105,11 +106,23 @@ const CapabilitiesSection = () => {
           <div className="response-outcomes">
             <div>
               <span>SYSTEM</span>
-              <p>Calls and messages move through the response chain.</p>
+              <p>
+                <GuidedCaption
+                  segments={[{ text: 'Calls and messages move through the response chain.' }]}
+                  startDelayMs={500}
+                  cycleMs={16160}
+                />
+              </p>
             </div>
             <div>
               <span>GUARD</span>
-              <p>Stays focused on the threat and can contact the authorities.</p>
+              <p>
+                <GuidedCaption
+                  segments={[{ text: 'Stays focused on the threat and can contact the authorities.' }]}
+                  startDelayMs={7060}
+                  cycleMs={16160}
+                />
+              </p>
             </div>
           </div>
         </div>

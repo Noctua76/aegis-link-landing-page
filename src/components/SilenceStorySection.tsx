@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Activity, Clock3, MapPin, Radio, Route } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 import NightTimeline from '@/components/NightTimeline';
 
 const quietSignals = [
@@ -59,11 +60,21 @@ const SilenceStorySection = () => {
 
         <h2 id="silence-story-heading">
           <span>Nothing has been reported.</span>
-          <strong>But does that mean everything is under control?</strong>
+          <strong>
+            <GuidedCaption
+              segments={[{ text: 'But does that mean everything is under control?' }]}
+              startDelayMs={500}
+              cycleMs={23540}
+            />
+          </strong>
         </h2>
 
         <p className="silence-story-lead">
-          No call. No alert. No visible disruption. Yet operations still needs to know what remains active—and what has quietly stopped.
+          <GuidedCaption
+            segments={[{ text: 'No call. No alert. No visible disruption. Yet operations still needs to know what remains active—and what has quietly stopped.' }]}
+            startDelayMs={6240}
+            cycleMs={23540}
+          />
         </p>
 
         <div className="silence-signal-line" aria-label="Operational signals still monitored">

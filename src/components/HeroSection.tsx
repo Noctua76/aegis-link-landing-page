@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { Phone, RotateCcw, Search, ShieldAlert } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 
 const notificationSteps = [
   { number: '01', label: 'Find the number', icon: Search, state: 'Searching' },
@@ -66,8 +67,13 @@ const HeroSection = () => {
           </p>
 
           <p className="incident-story-question">
-            Four people must be informed.
-            <strong>Who answers the first call?</strong>
+            <GuidedCaption
+              stacked
+              segments={[
+                { text: 'Four people must be informed.' },
+                { text: 'Who answers the first call?', emphasis: true, tone: 'gold' },
+              ]}
+            />
           </p>
         </div>
 

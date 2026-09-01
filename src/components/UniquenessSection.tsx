@@ -1,5 +1,6 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { BellRing, FileCheck2, RadioTower, ShieldCheck, UserRoundCheck } from 'lucide-react';
+import GuidedCaption from '@/components/GuidedCaption';
 
 const auditEvents = [
   { action: 'Panic alert triggered', actor: 'GUARD', icon: BellRing },
@@ -109,8 +110,13 @@ const UniquenessSection = () => {
           </p>
 
           <blockquote>
-            Accountability is not a report written later.
-            <strong>It is the record created while the operation unfolds.</strong>
+            <GuidedCaption
+              stacked
+              segments={[
+                { text: 'Accountability is not a report written later.' },
+                { text: 'It is the record created while the operation unfolds.', emphasis: true, tone: 'gold' },
+              ]}
+            />
           </blockquote>
         </div>
 
