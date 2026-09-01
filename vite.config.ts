@@ -6,6 +6,8 @@ import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import en from "./src/i18n/en";
 import gr from "./src/i18n/gr";
 
+const productionSiteUrl = "https://aegislink.noctuacore.ai";
+
 const languageRoutes = () => ({
   name: "aegis-language-routes",
   closeBundle() {
@@ -31,16 +33,16 @@ const languageRoutes = () => ({
         'Μία Security Operations Platform σε πραγματικό χρόνο για φύλακες, επόπτες και ομάδες επιχειρήσεων.',
       )
       .replace(
-        '<link rel="canonical" href="https://noctua76.github.io/aegis-link-landing-page/en" />',
-        '<link rel="canonical" href="https://noctua76.github.io/aegis-link-landing-page/gr" />',
+        `<link rel="canonical" href="${productionSiteUrl}/en" />`,
+        `<link rel="canonical" href="${productionSiteUrl}/gr" />`,
       )
       .replace(
-        '<meta property="og:url" content="https://noctua76.github.io/aegis-link-landing-page/en" />',
-        '<meta property="og:url" content="https://noctua76.github.io/aegis-link-landing-page/gr" />',
+        `<meta property="og:url" content="${productionSiteUrl}/en" />`,
+        `<meta property="og:url" content="${productionSiteUrl}/gr" />`,
       )
       .replace(
-        '"url": "https://noctua76.github.io/aegis-link-landing-page/en"',
-        '"url": "https://noctua76.github.io/aegis-link-landing-page/gr"',
+        `"url": "${productionSiteUrl}/en"`,
+        `"url": "${productionSiteUrl}/gr"`,
       );
     writeFileSync(greekEntry, greekHtml);
   },
@@ -48,7 +50,7 @@ const languageRoutes = () => ({
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/aegis-link-landing-page/",
+  base: process.env.VERCEL ? "/" : "/aegis-link-landing-page/",
   server: {
     host: "0.0.0.0",
     port: 8080,
