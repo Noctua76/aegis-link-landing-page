@@ -7495,3 +7495,116 @@
     animation: none;
   }
 }
+
+/* Mobile-only legibility for the supporting rails beneath each operations board. */
+@media (max-width: 767px) {
+  .operations-handoff,
+  .accountability-principles {
+    gap: 0.62rem;
+    color: #d0d8e2;
+    font-size: clamp(0.64rem, 2.8vw, 0.72rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 0.5rem rgb(0 0 0 / 0.82);
+  }
+
+  .operations-handoff i,
+  .accountability-principles i,
+  .scale-continuity i {
+    min-width: 0;
+    height: 2px;
+  }
+
+  .operations-handoff i {
+    background: linear-gradient(90deg, rgb(93 198 249 / 0.22), #68ccfa, rgb(93 198 249 / 0.22));
+    box-shadow: 0 0 0.5rem rgb(93 198 249 / 0.2);
+  }
+
+  .operations-handoff span:last-child {
+    color: #8edcff;
+  }
+
+  .accountability-principles i {
+    background: linear-gradient(90deg, rgb(94 213 170 / 0.2), #67d6ad, rgb(94 213 170 / 0.2));
+    box-shadow: 0 0 0.5rem rgb(94 213 170 / 0.18);
+  }
+
+  .accountability-principles span:last-child {
+    color: #f2c267;
+  }
+
+  .scale-continuity {
+    gap: 0.5rem;
+    color: #cbd4df;
+    font-size: clamp(0.59rem, 2.55vw, 0.66rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.07em;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.82);
+  }
+
+  .scale-continuity i {
+    background: linear-gradient(90deg, rgb(104 199 244 / 0.18), #68c9f4, rgb(104 199 244 / 0.18));
+    box-shadow: 0 0 0.45rem rgb(104 199 244 / 0.17);
+  }
+
+  .scale-continuity span:nth-of-type(3) {
+    color: #f1848e;
+  }
+
+  .scale-continuity span:nth-of-type(4) {
+    color: #f2c267;
+  }
+
+  .night-timeline-track,
+  .incident-timeline-line,
+  .response-timeline-track {
+    height: 2px;
+  }
+
+  .night-timeline-track {
+    background: linear-gradient(90deg, transparent, rgb(161 191 211 / 0.66) 7%, rgb(161 191 211 / 0.66) 93%, transparent);
+  }
+
+  .incident-timeline-line {
+    background: linear-gradient(90deg, transparent, rgb(166 190 210 / 0.58) 8%, rgb(166 190 210 / 0.58) 92%, transparent);
+  }
+
+  .response-timeline-track {
+    background: linear-gradient(90deg, transparent, rgb(166 190 210 / 0.58) 8%, rgb(221 172 77 / 0.72) 92%, transparent);
+  }
+
+  .night-timeline-stop,
+  .incident-timeline-stop {
+    color: #bdc8d4;
+    font-size: clamp(0.61rem, 2.6vw, 0.68rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.78);
+  }
+
+  .night-timeline-stop::before {
+    background: linear-gradient(180deg, transparent, rgb(166 196 216 / 0.5), transparent);
+  }
+
+  .night-timeline-stop > span {
+    border-color: rgb(211 229 241 / 0.78);
+    background: rgb(166 196 216 / 0.82);
+  }
+
+  .response-timeline-event {
+    color: #bdc8d4;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.78);
+  }
+
+  .response-timeline-event time {
+    font-size: clamp(0.67rem, 2.8vw, 0.74rem);
+    font-weight: 600;
+  }
+
+  .response-timeline-event small {
+    color: #aebac7;
+    font-size: 0.56rem;
+    font-weight: 600;
+  }
+}
