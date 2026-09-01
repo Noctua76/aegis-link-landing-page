@@ -6753,6 +6753,18 @@
 
 /* Mobile-only hero legibility refinements. */
 @media (max-width: 767px) {
+  .editorial-hero.editorial-hero-v2::before {
+    background:
+      linear-gradient(90deg, hsl(220 58% 2% / 0.2) 0%, transparent 48%, hsl(220 55% 3% / 0.04) 100%),
+      linear-gradient(180deg, hsl(220 55% 2% / 0.08) 0%, transparent 36%, hsl(220 55% 2% / 0.16) 100%);
+  }
+
+  .editorial-hero-v2 .editorial-hero-veil {
+    background:
+      radial-gradient(circle at 72% 48%, hsl(205 76% 48% / 0.13), transparent 44%),
+      linear-gradient(180deg, hsl(210 54% 20% / 0.05), hsl(214 58% 14% / 0.035));
+  }
+
   .editorial-hero-v2 .editorial-clock {
     --editorial-clock-opacity: 1;
     filter: none;
