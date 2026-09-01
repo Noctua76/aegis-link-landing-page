@@ -64,8 +64,19 @@ const ShiftBeginsSection = () => {
           </p>
 
           <blockquote>
-            <span>Presence should never be assumed.</span>
-            <strong>It should be visible.</strong>
+            <span className="presence-line">
+              <span className="presence-word" data-word="Presence" style={{ '--word-delay': '0s' } as CSSProperties}>Presence</span>{' '}
+              <span className="presence-word" data-word="should" style={{ '--word-delay': '0.82s' } as CSSProperties}>should</span>{' '}
+              <span className="presence-word" data-word="never" style={{ '--word-delay': '1.64s' } as CSSProperties}>never</span>{' '}
+              <span className="presence-word" data-word="be" style={{ '--word-delay': '2.46s' } as CSSProperties}>be</span>{' '}
+              <span className="presence-word" data-word="assumed." style={{ '--word-delay': '3.28s' } as CSSProperties}>assumed.</span>
+            </span>
+            <strong className="presence-line presence-line--gold">
+              <span className="presence-word" data-word="It" style={{ '--word-delay': '4.1s' } as CSSProperties}>It</span>{' '}
+              <span className="presence-word" data-word="should" style={{ '--word-delay': '4.92s' } as CSSProperties}>should</span>{' '}
+              <span className="presence-word" data-word="be" style={{ '--word-delay': '5.74s' } as CSSProperties}>be</span>{' '}
+              <span className="presence-word" data-word="visible." style={{ '--word-delay': '6.56s' } as CSSProperties}>visible.</span>
+            </strong>
           </blockquote>
         </div>
 
