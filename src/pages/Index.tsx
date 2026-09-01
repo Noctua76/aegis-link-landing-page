@@ -13,6 +13,7 @@ import FinalCTASection from '@/components/FinalCTASection';
 import SectionProgressRail from '@/components/SectionProgressRail';
 import Footer from '@/components/Footer';
 import PreviewAccessModal from '@/components/PreviewAccessModal';
+import NavigationInfoModal from '@/components/NavigationInfoModal';
 
 const Index = () => {
   return (
@@ -39,6 +40,7 @@ const Index = () => {
         <FinalCTASection />
         <Footer />
       </div>
+      <NavigationInfoModal />
       <PreviewAccessModal />
     </div>
   );

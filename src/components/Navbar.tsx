@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import logoMark from '@/assets/aegis-link-logo-mark.png';
 import { openPreviewAccessModal } from '@/lib/previewAccess';
+import { openNavigationInfoModal, type NavigationInfoKey } from '@/lib/navigationInfo';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,11 +17,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: '#operations-view', label: 'Platform' },
-    { href: '#capabilities', label: 'Solutions' },
-    { href: '#visuals', label: 'Product' },
-    { href: '#faq', label: 'Resources' },
-  ];
+    { key: 'platform', label: 'Platform' },
+    { key: 'solutions', label: 'Solutions' },
+    { key: 'product', label: 'Product' },
+    { key: 'resources', label: 'Resources' },
+  ] satisfies Array<{ key: NavigationInfoKey; label: string }>;
 
   return (
     <nav
@@ -38,13 +39,14 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="aegis-nav-links">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+            <button
+              key={link.key}
+              type="button"
+              onClick={() => openNavigationInfoModal(link.key)}
               className="aegis-nav-link"
             >
               {link.label}
-            </a>
+            </button>
           ))}
         </div>
 
@@ -75,14 +77,17 @@ const Navbar = () => {
         <div className="aegis-nav-mobile">
           <div className="aegis-nav-mobile-inner">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                key={link.key}
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openNavigationInfoModal(link.key);
+                }}
                 className="aegis-nav-mobile-link"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
             <div className="aegis-nav-mobile-cta-wrap">
               <button
