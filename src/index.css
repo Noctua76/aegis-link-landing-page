@@ -7789,3 +7789,719 @@
     font-weight: 600;
   }
 }
+
+/* Desktop parity for the mobile readability and guided-reading refinements. */
+@media (min-width: 768px) {
+  /* Hero: preserve the existing desktop clock design while improving its surroundings. */
+  .editorial-hero.editorial-hero-v2::before {
+    background:
+      linear-gradient(90deg, hsl(220 58% 2% / 0.23) 0%, transparent 46%, hsl(220 55% 3% / 0.055) 100%),
+      linear-gradient(180deg, hsl(220 55% 2% / 0.1) 0%, transparent 34%, hsl(220 55% 2% / 0.19) 100%);
+  }
+
+  .editorial-hero-v2 .editorial-hero-veil {
+    background: radial-gradient(circle at 71% 54%, hsl(205 76% 48% / 0.11), transparent 42%);
+  }
+
+  .editorial-hero-v2 .editorial-hero-subtitle {
+    color: hsl(212 24% 91% / 0.94);
+    font-weight: 500;
+    text-shadow: 0 1px 0.8rem hsl(220 58% 2% / 0.78);
+  }
+
+  /* Section markers and handoffs. */
+  .editorial-scene-index,
+  .shift-scene-marker,
+  .patrol-scene-marker,
+  .silence-scene-marker,
+  .incident-scene-marker,
+  .response-scene-marker,
+  .operations-scene-marker,
+  .accountability-scene-marker,
+  .scale-scene-marker {
+    z-index: 6;
+    color: #eef3f8;
+    font-size: clamp(0.62rem, 0.66vw, 0.71rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.16em;
+    text-shadow: 0 1px 0.5rem rgb(0 0 0 / 0.82);
+  }
+
+  .editorial-scene-index > span,
+  .shift-scene-marker > span,
+  .patrol-scene-marker > span,
+  .silence-scene-marker > span,
+  .incident-scene-marker > span,
+  .response-scene-marker > span,
+  .operations-scene-marker > span,
+  .accountability-scene-marker > span,
+  .scale-scene-marker > span {
+    color: #ffc96b;
+    font-size: clamp(0.72rem, 0.75vw, 0.8rem);
+    font-weight: 700;
+  }
+
+  .editorial-scene-index > i,
+  .shift-scene-marker > i,
+  .patrol-scene-marker > i,
+  .silence-scene-marker > i,
+  .incident-scene-marker > i,
+  .response-scene-marker > i,
+  .operations-scene-marker > i,
+  .accountability-scene-marker > i,
+  .scale-scene-marker > i {
+    height: 2px;
+    background: linear-gradient(90deg, #d99b35, rgb(102 199 242 / 0.58));
+  }
+
+  .editorial-scene-index > strong,
+  .shift-scene-marker > strong,
+  .patrol-scene-marker > strong,
+  .silence-scene-marker > strong,
+  .incident-scene-marker > strong,
+  .response-scene-marker > strong,
+  .operations-scene-marker > strong,
+  .accountability-scene-marker > strong,
+  .scale-scene-marker > strong {
+    color: #f7f9fc;
+    font-weight: 650;
+  }
+
+  .shift-next,
+  .patrol-next,
+  .silence-next,
+  .incident-next,
+  .response-next,
+  .operations-next,
+  .accountability-next,
+  .scale-next {
+    z-index: 6;
+    color: #f3c66f;
+    font-size: clamp(0.62rem, 0.66vw, 0.71rem);
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: 0.14em;
+    text-shadow: 0 1px 0.5rem rgb(0 0 0 / 0.84);
+  }
+
+  .shift-next > i,
+  .patrol-next > i,
+  .silence-next > i,
+  .incident-next > i,
+  .response-next > i,
+  .operations-next > i,
+  .accountability-next > i,
+  .scale-next > i {
+    color: #ffd486;
+    font-size: 1.2rem;
+  }
+
+  /* Guided captions on desktop. */
+  .shift-story-copy blockquote .presence-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.14rem 0.38em;
+  }
+
+  .shift-story-copy blockquote .presence-word,
+  .guided-caption-word {
+    position: relative;
+    display: inline-block;
+  }
+
+  .shift-story-copy blockquote .presence-word {
+    color: #9ba5b2;
+  }
+
+  .shift-story-copy blockquote .presence-line--gold .presence-word {
+    color: rgb(178 137 67 / 0.72);
+  }
+
+  .shift-story-copy blockquote .presence-word::after,
+  .guided-caption-word::after {
+    content: attr(data-word);
+    position: absolute;
+    inset: 0;
+    color: #f7faff;
+    text-shadow: 0 0 0.75rem rgb(226 239 255 / 0.48);
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    pointer-events: none;
+    will-change: clip-path, opacity;
+  }
+
+  .shift-story-copy blockquote .presence-line--gold .presence-word::after,
+  .guided-caption-segment--gold .guided-caption-word::after {
+    color: #9be0ff;
+    text-shadow: 0 0 0.8rem rgb(111 204 255 / 0.52);
+  }
+
+  .guided-caption-segment--blue .guided-caption-word::after {
+    color: #ffd27c;
+    text-shadow: 0 0 0.8rem rgb(255 202 105 / 0.52);
+  }
+
+  .shift-story.is-revealed .shift-story-copy blockquote .presence-word::after {
+    animation: mobile-presence-word-sweep 8.8s cubic-bezier(0.22, 1, 0.36, 1)
+      calc(1.15s + var(--word-delay)) infinite both;
+  }
+
+  .guided-caption-word.is-active::after {
+    animation: mobile-guided-caption-sweep 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Shared board headers and primary labels. */
+  .shift-board-header,
+  .patrol-route-header,
+  .incident-sequence-heading,
+  .response-system-heading,
+  .operations-view-header,
+  .accountability-ledger-header,
+  .scale-board-header {
+    color: #d8e0e9;
+    font-size: clamp(0.62rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  /* Shift board. */
+  .shift-board-identity span,
+  .shift-signal-grid span {
+    color: #cbd4de;
+    font-size: clamp(0.65rem, 0.68vw, 0.72rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .shift-board-identity strong {
+    font-size: clamp(1.08rem, 1.2vw, 1.28rem);
+  }
+
+  .shift-board-identity time {
+    font-size: clamp(0.7rem, 0.75vw, 0.79rem);
+  }
+
+  .shift-signal-grid strong {
+    font-size: clamp(0.82rem, 0.88vw, 0.94rem);
+    line-height: 1.4;
+  }
+
+  .shift-signal-grid small {
+    color: #bac5d1;
+    font-size: clamp(0.61rem, 0.65vw, 0.69rem);
+    line-height: 1.45;
+  }
+
+  .shift-status-board .shift-board-footer {
+    color: #c2ccd7;
+    font-size: clamp(0.55rem, 0.59vw, 0.63rem);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* Patrol board. */
+  .patrol-reported {
+    opacity: 0.94;
+  }
+
+  .patrol-reported span,
+  .patrol-verified-heading span {
+    color: #cbd4de;
+    font-size: clamp(0.64rem, 0.68vw, 0.72rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .patrol-reported strong,
+  .patrol-verified-heading strong {
+    font-size: clamp(0.84rem, 0.9vw, 0.96rem);
+    line-height: 1.4;
+  }
+
+  .patrol-reported small,
+  .patrol-verified-heading small {
+    color: #bac5d1;
+    font-size: clamp(0.6rem, 0.64vw, 0.68rem);
+    line-height: 1.45;
+  }
+
+  .patrol-verified-heading span,
+  .patrol-verified-heading small {
+    color: #8ed8ff;
+  }
+
+  .patrol-checkpoint-number {
+    color: #c5ced9;
+    font-size: 0.64rem;
+  }
+
+  .patrol-checkpoints li > div strong {
+    font-size: clamp(0.74rem, 0.8vw, 0.84rem);
+  }
+
+  .patrol-checkpoints li > div small {
+    color: #b9c4d0;
+    font-size: clamp(0.58rem, 0.62vw, 0.66rem);
+  }
+
+  .patrol-checkpoints li > time {
+    font-size: 0.72rem;
+  }
+
+  .patrol-checkpoint-status,
+  .patrol-state-strip span {
+    color: #c3ccd7;
+    font-size: clamp(0.57rem, 0.61vw, 0.65rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .patrol-record-footer {
+    color: #a9dfff;
+    font-size: clamp(0.53rem, 0.57vw, 0.61rem);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  /* Operational silence. */
+  .silence-signal-line span {
+    color: #cbd4de;
+    font-size: clamp(0.64rem, 0.68vw, 0.72rem);
+    font-weight: 600;
+  }
+
+  .silence-signal-line strong {
+    font-size: clamp(0.84rem, 0.9vw, 0.96rem);
+  }
+
+  /* Manual incident sequence. */
+  .incident-sequence-number {
+    color: #c5ced9;
+    font-size: 0.66rem;
+  }
+
+  .incident-sequence-text strong {
+    font-size: clamp(0.82rem, 0.88vw, 0.94rem);
+    line-height: 1.4;
+  }
+
+  .incident-sequence-text span {
+    color: #bbc6d2;
+    font-size: clamp(0.61rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+  }
+
+  .incident-sequence-conclusion span {
+    font-size: 0.64rem;
+    font-weight: 600;
+  }
+
+  .incident-sequence-conclusion p {
+    color: #bec8d3;
+    font-size: clamp(0.73rem, 0.78vw, 0.82rem);
+  }
+
+  /* Automated response. */
+  .response-panic-control span {
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+
+  .response-recipient-number {
+    font-size: 0.64rem;
+  }
+
+  .response-recipient-copy strong {
+    font-size: clamp(0.8rem, 0.86vw, 0.91rem);
+  }
+
+  .response-recipient-copy span {
+    color: #bec8d3;
+    font-size: clamp(0.59rem, 0.63vw, 0.67rem);
+    font-weight: 600;
+  }
+
+  .response-recipient-status {
+    font-size: clamp(0.53rem, 0.57vw, 0.61rem);
+    font-weight: 600;
+  }
+
+  .response-system-outcome,
+  .response-outcomes > div > span {
+    font-size: clamp(0.59rem, 0.63vw, 0.67rem);
+    font-weight: 600;
+  }
+
+  .response-outcomes p {
+    color: #bec8d3;
+    font-size: clamp(0.8rem, 0.86vw, 0.91rem);
+  }
+
+  /* Live operations board. */
+  .operations-incident-heading span,
+  .operations-signal-grid span {
+    color: #cbd4de;
+    font-size: clamp(0.62rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+  }
+
+  .operations-incident-heading strong {
+    font-size: clamp(0.94rem, 1vw, 1.06rem);
+  }
+
+  .operations-incident-state {
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+
+  .operations-signal-grid strong {
+    font-size: clamp(0.75rem, 0.8vw, 0.85rem);
+  }
+
+  .operations-trace-heading {
+    color: #c9d2dc;
+    font-size: 0.61rem;
+    font-weight: 600;
+  }
+
+  .operations-trace li > span {
+    color: #c0cad5;
+    font-size: 0.58rem;
+  }
+
+  .operations-trace li > strong {
+    font-size: clamp(0.69rem, 0.74vw, 0.79rem);
+  }
+
+  .operations-trace li > small {
+    font-size: 0.54rem;
+    font-weight: 600;
+  }
+
+  .operations-view-footer {
+    color: #c2ccd7;
+    font-size: 0.58rem;
+    font-weight: 600;
+  }
+
+  /* Accountability ledger. */
+  .accountability-ledger-title {
+    color: #c7d0da;
+    font-size: 0.61rem;
+    font-weight: 600;
+  }
+
+  .accountability-event-index {
+    color: #c3ccd7;
+    font-size: 0.62rem;
+  }
+
+  .accountability-event-list li > strong {
+    font-size: clamp(0.77rem, 0.82vw, 0.87rem);
+  }
+
+  .accountability-event-list li > small {
+    font-size: 0.57rem;
+    font-weight: 600;
+  }
+
+  .accountability-record-footer span {
+    color: #c2ccd7;
+    font-size: 0.59rem;
+    font-weight: 600;
+  }
+
+  .accountability-record-footer strong {
+    font-size: 0.66rem;
+  }
+
+  /* Multi-site operations board. */
+  .scale-site-list strong {
+    font-size: clamp(0.73rem, 0.78vw, 0.83rem);
+  }
+
+  .scale-site-list span {
+    color: #c7d0da;
+    font-size: clamp(0.62rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+  }
+
+  .scale-site-list small {
+    font-size: 0.61rem;
+    font-weight: 600;
+  }
+
+  .scale-operation-layers > div {
+    color: #cad3dd;
+  }
+
+  .scale-operation-layers span {
+    font-size: 0.59rem;
+    font-weight: 600;
+  }
+
+  .scale-board-footer {
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  /* Supporting rails and timelines. */
+  .operations-handoff,
+  .accountability-principles {
+    color: #d0d8e2;
+    font-size: clamp(0.62rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-shadow: 0 1px 0.45rem rgb(0 0 0 / 0.76);
+  }
+
+  .operations-handoff i,
+  .accountability-principles i,
+  .scale-continuity i,
+  .night-timeline-track,
+  .incident-timeline-line,
+  .response-timeline-track {
+    height: 2px;
+  }
+
+  .operations-handoff i {
+    background: linear-gradient(90deg, rgb(93 198 249 / 0.22), #68ccfa, rgb(93 198 249 / 0.22));
+  }
+
+  .operations-handoff span:last-child {
+    color: #8edcff;
+  }
+
+  .accountability-principles i {
+    background: linear-gradient(90deg, rgb(94 213 170 / 0.2), #67d6ad, rgb(94 213 170 / 0.2));
+  }
+
+  .accountability-principles span:last-child {
+    color: #f2c267;
+  }
+
+  .scale-continuity {
+    color: #cbd4df;
+    font-size: clamp(0.59rem, 0.63vw, 0.67rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.76);
+  }
+
+  .scale-continuity i {
+    background: linear-gradient(90deg, rgb(104 199 244 / 0.18), #68c9f4, rgb(104 199 244 / 0.18));
+  }
+
+  .scale-continuity span:nth-of-type(3) {
+    color: #f1848e;
+  }
+
+  .scale-continuity span:nth-of-type(4),
+  .scale-continuity strong {
+    color: #f2c267;
+  }
+
+  .night-timeline-track {
+    background: linear-gradient(90deg, transparent, rgb(161 191 211 / 0.66) 7%, rgb(161 191 211 / 0.66) 93%, transparent);
+  }
+
+  .incident-timeline-line {
+    background: linear-gradient(90deg, transparent, rgb(166 190 210 / 0.58) 8%, rgb(166 190 210 / 0.58) 92%, transparent);
+  }
+
+  .response-timeline-track {
+    background: linear-gradient(90deg, transparent, rgb(166 190 210 / 0.58) 8%, rgb(221 172 77 / 0.72) 92%, transparent);
+  }
+
+  .night-timeline-stop,
+  .incident-timeline-stop {
+    color: #bdc8d4;
+    font-size: clamp(0.67rem, 0.71vw, 0.75rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.35rem rgb(0 0 0 / 0.72);
+  }
+
+  .response-timeline-event {
+    color: #bdc8d4;
+    text-shadow: 0 1px 0.35rem rgb(0 0 0 / 0.72);
+  }
+
+  .response-timeline-event time {
+    font-size: clamp(0.69rem, 0.74vw, 0.78rem);
+    font-weight: 600;
+  }
+
+  .response-timeline-event small {
+    color: #aebac7;
+    font-size: 0.59rem;
+    font-weight: 600;
+  }
+
+  /* Daylight test and preview access. */
+  .questions-scene-marker,
+  .access-scene-marker {
+    color: #e1e7ee;
+    font-size: clamp(0.62rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.68);
+  }
+
+  .questions-scene-marker span,
+  .access-scene-marker span {
+    color: #f2bd5c;
+    font-size: clamp(0.72rem, 0.76vw, 0.81rem);
+    font-weight: 600;
+  }
+
+  .questions-scene-marker i,
+  .access-scene-marker i {
+    height: 2px;
+    background: linear-gradient(90deg, #e7ac42, rgb(102 199 242 / 0.72));
+  }
+
+  .questions-dawn-marker {
+    color: #dce5ed;
+    font-size: clamp(0.64rem, 0.68vw, 0.72rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.66);
+  }
+
+  .questions-story-statement {
+    color: #8edbff;
+    font-size: clamp(0.64rem, 0.68vw, 0.72rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.64);
+  }
+
+  .questions-story-statement strong {
+    color: #f3bd59;
+    font-weight: 600;
+  }
+
+  .questions-panel-header {
+    min-height: 64px;
+    color: #d8e1ea;
+    font-size: clamp(0.6rem, 0.64vw, 0.68rem);
+    font-weight: 600;
+  }
+
+  .questions-panel-header svg,
+  .questions-panel-header strong,
+  .questions-number {
+    color: #f2bd5c;
+  }
+
+  .questions-number {
+    font-size: 0.64rem;
+    font-weight: 600;
+  }
+
+  .questions-answer {
+    color: #d4dde6;
+  }
+
+  .questions-answer p {
+    font-size: clamp(0.82rem, 0.86vw, 0.9rem);
+  }
+
+  .questions-panel-footer {
+    color: #cbd5df;
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  .questions-next {
+    color: #e0e7ee;
+    font-size: clamp(0.63rem, 0.67vw, 0.71rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.66);
+  }
+
+  .questions-next svg {
+    color: #f2bd5c;
+  }
+
+  .access-kicker {
+    color: #f2bd5c;
+    font-size: clamp(0.64rem, 0.68vw, 0.72rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.62);
+  }
+
+  .access-surface > span {
+    color: #cdd8e3;
+    font-size: clamp(0.6rem, 0.64vw, 0.68rem);
+    font-weight: 600;
+  }
+
+  .access-surface svg {
+    color: #77d3fb;
+    filter: drop-shadow(0 0 0.65rem rgb(91 199 247 / 0.32));
+  }
+
+  .access-surface strong {
+    color: #f7f9fc;
+    font-size: clamp(1.02rem, 1.08vw, 1.16rem);
+    font-weight: 600;
+  }
+
+  .access-surface small {
+    color: #c9d4df;
+    font-size: clamp(0.59rem, 0.63vw, 0.67rem);
+    font-weight: 600;
+  }
+
+  .access-connection > strong {
+    color: #f2bd5c;
+    font-size: clamp(0.56rem, 0.6vw, 0.64rem);
+    font-weight: 600;
+  }
+
+  .access-assurance {
+    color: #d4dde6;
+    font-size: clamp(0.58rem, 0.62vw, 0.66rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.35rem rgb(0 0 0 / 0.64);
+  }
+
+  .access-assurance svg {
+    color: #7fd7fd;
+  }
+
+  .access-assurance i {
+    width: 0.3rem;
+    height: 0.3rem;
+    background: #f2bd5c;
+  }
+
+  .access-closing-line {
+    color: #d8e0e9;
+    font-size: clamp(0.62rem, 0.66vw, 0.7rem);
+    font-weight: 600;
+    text-shadow: 0 1px 0.4rem rgb(0 0 0 / 0.66);
+  }
+
+  .access-closing-line strong {
+    color: #f2bd5c;
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  .shift-story.is-revealed .shift-story-copy blockquote .presence-word::after,
+  .guided-caption-word::after,
+  .guided-caption-word.is-active::after {
+    display: none;
+    animation: none;
+  }
+
+  .shift-story-copy blockquote .presence-word {
+    color: #dbe1e9;
+  }
+
+  .shift-story-copy blockquote .presence-line--gold .presence-word {
+    color: #f3c66f;
+  }
+}

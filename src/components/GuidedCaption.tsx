@@ -36,9 +36,8 @@ const GuidedCaption = ({
     const caption = captionRef.current;
     if (!caption) return;
 
-    const mobile = window.matchMedia('(max-width: 767px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!mobile.matches || reducedMotion.matches) return;
+    if (reducedMotion.matches) return;
 
     let timer: ReturnType<typeof setTimeout> | undefined;
     let running = false;
