@@ -120,7 +120,7 @@ const PatrolStorySection = () => {
               stacked
               segments={[
                 { text: 'A patrol is not completed because someone said it was.' },
-                { text: 'It is completed when the operation can verify it.', emphasis: true, tone: 'gold' },
+                { text: 'It is completed when the operation can verify it.', emphasis: true, tone: 'blue' },
               ]}
             />
           </blockquote>

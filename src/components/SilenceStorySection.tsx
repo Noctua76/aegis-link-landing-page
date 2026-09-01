@@ -72,7 +72,7 @@ const SilenceStorySection = () => {
         <p className="silence-story-lead">
           <GuidedCaption
             segments={[{ text: 'No call. No alert. No visible disruption. Yet operations still needs to know what remains active—and what has quietly stopped.' }]}
-            startDelayMs={6240}
+            startDelayMs={500}
             cycleMs={23540}
           />
         </p>
