@@ -64,7 +64,7 @@ const ShiftBeginsSection = () => {
           </p>
 
           <blockquote>
-            Presence should never be assumed.
+            <span>Presence should never be assumed.</span>
             <strong>It should be visible.</strong>
           </blockquote>
         </div>
