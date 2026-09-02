@@ -128,14 +128,14 @@ const PreviewAccessModal = () => {
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="preview-modal-overlay" />
-        <Dialog.Content className="preview-modal" aria-describedby="preview-modal-description">
+        <Dialog.Content className="preview-modal">
           <aside className="preview-modal-context">
             <div className="preview-modal-mark" aria-hidden="true">
               <ShieldCheck size={25} strokeWidth={1.35} />
             </div>
             <p className="preview-modal-kicker">Aegis Link</p>
             <Dialog.Title>{copy.previewModal.title}</Dialog.Title>
-            <Dialog.Description id="preview-modal-description">
+            <Dialog.Description>
               {copy.previewModal.description}
             </Dialog.Description>
 
