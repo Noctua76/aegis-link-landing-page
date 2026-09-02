@@ -38,8 +38,13 @@ const ensureMeta = (selector: string, attributes: Record<string, string>) => {
   Object.entries(attributes).forEach(([key, value]) => element?.setAttribute(key, value));
 };
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, updateLanguage] = useState<Language>(() => languageFromPath() ?? 'en');
+type LanguageProviderProps = {
+  children: ReactNode;
+  initialLanguage?: Language;
+};
+
+export const LanguageProvider = ({ children, initialLanguage }: LanguageProviderProps) => {
+  const [language, updateLanguage] = useState<Language>(() => initialLanguage ?? languageFromPath() ?? 'en');
 
   useEffect(() => {
     if (!languageFromPath()) window.history.replaceState(null, '', languagePath('en'));

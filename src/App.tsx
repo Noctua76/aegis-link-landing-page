@@ -5,18 +5,23 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookieConsent from "./components/CookieConsent";
-import { LanguageProvider } from "./i18n/LanguageContext";
-import { pageFromPath } from "./lib/siteRoute";
+import { LanguageProvider, type Language } from "./i18n/LanguageContext";
+import { pageFromPath, type SitePage } from "./lib/siteRoute";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+type AppProps = {
+  initialLanguage?: Language;
+  initialPage?: SitePage;
+};
+
+const App = ({ initialLanguage, initialPage }: AppProps) => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <LanguageProvider>
+      <LanguageProvider initialLanguage={initialLanguage}>
         <Toaster />
         <Sonner />
-        {pageFromPath() === 'privacy' ? <PrivacyPolicy /> : <Index />}
+        {(initialPage ?? pageFromPath()) === 'privacy' ? <PrivacyPolicy /> : <Index />}
         <CookieConsent />
       </LanguageProvider>
     </TooltipProvider>

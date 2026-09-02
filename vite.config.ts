@@ -78,7 +78,7 @@ const languageRoutes = () => ({
 });
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
   base: process.env.VERCEL ? "/" : "/aegis-link-landing-page/",
   server: {
     host: "0.0.0.0",
@@ -88,10 +88,17 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), mode === "development" && componentTagger(), languageRoutes()].filter(Boolean),
+  plugins: [
+    react(),
+    mode === "development" && componentTagger(),
+    !isSsrBuild && languageRoutes(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    copyPublicDir: !isSsrBuild,
   },
 }));
