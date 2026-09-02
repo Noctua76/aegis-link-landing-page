@@ -4,7 +4,8 @@ import { useLanguage } from '@/i18n/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { copy } = useLanguage();
+  const { copy, language } = useLanguage();
+  const privacyHref = `${import.meta.env.BASE_URL}${language}/privacy/`;
 
   return (
     <footer className="site-footer-desktop relative z-10 py-12" role="contentinfo">
@@ -29,6 +30,9 @@ const Footer = () => {
             </a>
             <a href="mailto:info@eliaskalyvas.gr" className="text-muted-foreground hover:text-foreground transition-colors">
               {copy.footer.email}
+            </a>
+            <a href={privacyHref} className="text-muted-foreground hover:text-foreground transition-colors">
+              {copy.privacyPolicy.title}
             </a>
             <button
               type="button"
