@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://aegislink.noctuacore.ai/sitemap.xml
