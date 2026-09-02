@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import en from './en';
 import gr from './gr';
+import { pageFromPath } from '@/lib/siteRoute';
 
 export type Language = 'en' | 'gr';
 type Copy = typeof en | typeof gr;
@@ -24,7 +25,8 @@ const languageFromPath = (): Language | null => {
 
 const languagePath = (language: Language) => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  return `${base}/${language}${window.location.hash}`;
+  const pageSuffix = pageFromPath() === 'privacy' ? '/privacy/' : '';
+  return `${base}/${language}${pageSuffix}${window.location.hash}`;
 };
 
 const ensureMeta = (selector: string, attributes: Record<string, string>) => {
@@ -49,23 +51,26 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const current = copies[language];
+    const page = pageFromPath();
+    const meta = page === 'privacy' ? current.privacyPolicy.meta : current.meta;
     const baseUrl = `${window.location.origin}${import.meta.env.BASE_URL.replace(/\/$/, '')}`;
-    const canonicalUrl = `${baseUrl}/${language}`;
+    const pageSuffix = page === 'privacy' ? '/privacy/' : '';
+    const canonicalUrl = `${baseUrl}/${language}${pageSuffix}`;
 
     document.documentElement.lang = language === 'gr' ? 'el' : 'en';
     document.documentElement.classList.toggle('lang-gr', language === 'gr');
-    document.title = current.meta.title;
+    document.title = meta.title;
 
-    ensureMeta('meta[name="description"]', { name: 'description', content: current.meta.description });
-    ensureMeta('meta[property="og:title"]', { property: 'og:title', content: current.meta.title });
-    ensureMeta('meta[property="og:description"]', { property: 'og:description', content: current.meta.ogDescription });
+    ensureMeta('meta[name="description"]', { name: 'description', content: meta.description });
+    ensureMeta('meta[property="og:title"]', { property: 'og:title', content: meta.title });
+    ensureMeta('meta[property="og:description"]', { property: 'og:description', content: meta.ogDescription });
     ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl });
-    ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: current.meta.title });
-    ensureMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: current.meta.ogDescription });
+    ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: meta.title });
+    ensureMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: meta.ogDescription });
     ensureMeta('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl });
-    ensureMeta('link[rel="alternate"][hreflang="en"]', { rel: 'alternate', hreflang: 'en', href: `${baseUrl}/en` });
-    ensureMeta('link[rel="alternate"][hreflang="el"]', { rel: 'alternate', hreflang: 'el', href: `${baseUrl}/gr` });
-    ensureMeta('link[rel="alternate"][hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: `${baseUrl}/en` });
+    ensureMeta('link[rel="alternate"][hreflang="en"]', { rel: 'alternate', hreflang: 'en', href: `${baseUrl}/en${pageSuffix}` });
+    ensureMeta('link[rel="alternate"][hreflang="el"]', { rel: 'alternate', hreflang: 'el', href: `${baseUrl}/gr${pageSuffix}` });
+    ensureMeta('link[rel="alternate"][hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: `${baseUrl}/en${pageSuffix}` });
   }, [language]);
 
   const setLanguage = (nextLanguage: Language) => {

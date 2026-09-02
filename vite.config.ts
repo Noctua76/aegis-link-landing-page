@@ -8,6 +8,21 @@ import gr from "./src/i18n/gr";
 
 const productionSiteUrl = "https://aegislink.noctuacore.ai";
 
+const createPrivacyHtml = (
+  sourceHtml: string,
+  currentMeta: typeof en.meta | typeof gr.meta,
+  privacyMeta: typeof en.privacyPolicy.meta | typeof gr.privacyPolicy.meta,
+) => sourceHtml
+  .replaceAll(currentMeta.title, privacyMeta.title)
+  .replace(currentMeta.description, privacyMeta.description)
+  .replaceAll(currentMeta.ogDescription, privacyMeta.ogDescription)
+  .replaceAll(`${productionSiteUrl}/en`, `${productionSiteUrl}/en/privacy/`)
+  .replaceAll(`${productionSiteUrl}/gr`, `${productionSiteUrl}/gr/privacy/`)
+  .replace(
+    /\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+    "",
+  );
+
 const languageRoutes = () => ({
   name: "aegis-language-routes",
   closeBundle() {
@@ -45,6 +60,20 @@ const languageRoutes = () => ({
         `"url": "${productionSiteUrl}/gr"`,
       );
     writeFileSync(greekEntry, greekHtml);
+
+    const privacyRoutes = [
+      { language: "en" as const, html: readFileSync(path.join(outputDirectory, "en", "index.html"), "utf8"), currentMeta: en.meta, privacyMeta: en.privacyPolicy.meta },
+      { language: "gr" as const, html: greekHtml, currentMeta: gr.meta, privacyMeta: gr.privacyPolicy.meta },
+    ];
+
+    privacyRoutes.forEach(({ language, html, currentMeta, privacyMeta }) => {
+      const privacyDirectory = path.join(outputDirectory, language, "privacy");
+      mkdirSync(privacyDirectory, { recursive: true });
+      writeFileSync(
+        path.join(privacyDirectory, "index.html"),
+        createPrivacyHtml(html, currentMeta, privacyMeta),
+      );
+    });
   },
 });
 

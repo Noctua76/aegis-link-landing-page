@@ -6,6 +6,106 @@ const en = {
     ogDescription:
       'One connected operational picture—from field to command. Real-time visibility, response and accountability for security operations.',
   },
+  cookieConsent: {
+    ariaLabel: 'Cookie and privacy preferences',
+    eyebrow: 'Privacy control',
+    title: 'Your visit. Your choice.',
+    description:
+      'We use essential local storage to remember your preference and keep the experience consistent. We do not currently use advertising or analytics cookies.',
+    policyLink: 'Read our Privacy Policy',
+    acceptAll: 'Accept',
+    necessaryOnly: 'Necessary only',
+  },
+  privacyPolicy: {
+    meta: {
+      title: 'Privacy Policy — Aegis Link',
+      description:
+        'Learn how Aegis Link and Noctua Core handle preview requests, personal data and cookie preferences.',
+      ogDescription:
+        'Privacy, personal data and cookie information for the Aegis Link website.',
+    },
+    eyebrow: 'Noctua Core · Aegis Link',
+    title: 'Privacy Policy',
+    introduction:
+      'This policy explains, in clear terms, what information this website collects, why it is used and what choices and rights are available to you.',
+    lastUpdatedLabel: 'Last updated',
+    lastUpdated: '2 September 2026',
+    backToSite: 'Return to Aegis Link',
+    sections: [
+      {
+        title: '1. Who is responsible for your data',
+        paragraphs: [
+          'The Aegis Link website is operated under the Noctua Core brand by Elias Kalyvas Learning & Development. For privacy questions or requests, contact info@eliaskalyvas.gr.',
+        ],
+      },
+      {
+        title: '2. Information we collect',
+        paragraphs: [
+          'Browsing the public landing page does not require an account. Personal information is collected only when you choose to submit a Preview Access request.',
+        ],
+        bullets: [
+          'Name, business email, company and professional role.',
+          'Security operation size, selected operational priority and the message you submit.',
+          'Telephone number, only when you choose to provide it.',
+          'Your consent to be contacted regarding the request.',
+          'Basic technical information that may be processed automatically by the hosting or form-delivery providers, such as IP address, browser information and request time.',
+        ],
+      },
+      {
+        title: '3. Why we use this information',
+        paragraphs: [
+          'Information submitted through the Preview Access form is used exclusively to assess and respond to your request, arrange relevant communication and protect the form from misuse.',
+          'The legal basis is your consent and, where applicable, the steps you ask us to take before entering into a potential business relationship. You may withdraw consent at any time without affecting prior lawful processing.',
+        ],
+      },
+      {
+        title: '4. Service providers and recipients',
+        paragraphs: [
+          'The website is hosted through Vercel. Preview Access submissions are transmitted using FormSubmit and delivered to the designated Noctua Core email account. These providers process limited information only as needed to deliver their respective services and under their own security and privacy terms.',
+          'We do not sell personal data and do not share it for advertising purposes. Information may be disclosed only when required by law or necessary to establish, exercise or defend legal claims.',
+        ],
+      },
+      {
+        title: '5. Cookies and local storage',
+        paragraphs: [
+          'The website currently does not use advertising or analytics cookies. It stores your cookie-banner preference locally in your browser so that the banner does not appear on every visit. This preference is necessary for the requested experience and does not identify you across other websites.',
+          'If optional analytics or similar technologies are introduced in the future, this policy and the consent controls will be updated before those technologies are activated for you.',
+        ],
+      },
+      {
+        title: '6. How long we keep information',
+        paragraphs: [
+          'Preview request information is retained only for as long as needed to respond and manage the related business communication, normally no longer than 12 months after the last meaningful contact. Information may be retained for longer when required by law or necessary for the protection of legal rights.',
+          'Your cookie preference remains in your browser until you clear site data or the preference record expires or is replaced.',
+        ],
+      },
+      {
+        title: '7. Security',
+        paragraphs: [
+          'Reasonable technical and organisational safeguards are used to reduce the risk of unauthorised access, alteration, disclosure or loss. No internet transmission or storage method can be guaranteed to be completely secure.',
+        ],
+      },
+      {
+        title: '8. Your rights',
+        paragraphs: [
+          'Subject to the conditions of applicable data-protection law, you may request access, correction, deletion, restriction or portability of your personal data, object to certain processing and withdraw consent.',
+          'To exercise a right, email info@eliaskalyvas.gr. You may also lodge a complaint with the Hellenic Data Protection Authority or the competent authority in your country of residence.',
+        ],
+      },
+      {
+        title: '9. Children and automated decisions',
+        paragraphs: [
+          'This business website is not directed to children and does not knowingly request their information. Information submitted through the website is not used for automated decision-making or profiling that produces legal or similarly significant effects.',
+        ],
+      },
+      {
+        title: '10. Changes to this policy',
+        paragraphs: [
+          'This policy may be updated when the website, its services or applicable requirements change. The current version and its revision date will always be available on this page.',
+        ],
+      },
+    ],
+  },
   common: {
     requestPreview: 'Request Preview Access',
     requestPreviewArrow: 'Request Preview Access →',
