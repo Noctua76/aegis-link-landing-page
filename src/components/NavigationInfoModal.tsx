@@ -107,10 +107,7 @@ const NavigationInfoModal = () => {
     >
       <Dialog.Portal>
         <Dialog.Overlay className="nav-info-overlay" />
-        <Dialog.Content
-          className={`nav-info-modal nav-info-modal-${activeSection ?? 'platform'}`}
-          aria-describedby="nav-info-description"
-        >
+        <Dialog.Content className={`nav-info-modal nav-info-modal-${activeSection ?? 'platform'}`}>
           <header className="nav-info-header">
             <div className="nav-info-marker" aria-hidden="true">
               <span>{config.index}</span>
@@ -121,7 +118,7 @@ const NavigationInfoModal = () => {
               <X size={20} aria-hidden="true" />
             </Dialog.Close>
             <Dialog.Title>{content.title}</Dialog.Title>
-            <Dialog.Description id="nav-info-description">
+            <Dialog.Description>
               {content.introduction}
             </Dialog.Description>
           </header>
