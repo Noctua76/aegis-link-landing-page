@@ -113,7 +113,7 @@ const gr = {
   navbar: {
     ariaLabel: 'Κύρια πλοήγηση',
     homeLabel: 'Αρχική σελίδα Aegis Link',
-    links: ['Platform', 'Solutions', 'Product', 'Resources'],
+    links: ['Πλατφόρμα', 'Λύσεις', 'Προϊόν', 'Πόροι'],
     openMenu: 'Άνοιγμα μενού',
     closeMenu: 'Κλείσιμο μενού',
     languageLabel: 'Γλώσσα',
@@ -456,7 +456,7 @@ const gr = {
     operationsDetails: 'Έλεγχος · Ορατότητα · Audit',
     sections: {
       platform: {
-        label: 'Platform',
+        label: 'Πλατφόρμα',
         title: 'Δύο πλατφόρμες. Ένα επιχειρησιακό κέντρο ελέγχου.',
         introduction: 'Το Aegis Link συνδέει το πεδίο και το κέντρο ελέγχου σε ένα κοινό, live επιχειρησιακό περιβάλλον.',
         items: [
@@ -471,7 +471,7 @@ const gr = {
         exploreLabel: 'Δες την πλατφόρμα σε λειτουργία',
       },
       solutions: {
-        label: 'Solutions',
+        label: 'Λύσεις',
         title: 'Σχεδιασμένο για την εταιρεία σου. Έτοιμο για την επιχείρησή σου.',
         introduction: 'Το Aegis Link μπορεί να προσαρμοστεί στο εμπορικό μοντέλο, την ταυτότητα και την επιχειρησιακή δομή κάθε εταιρείας ασφάλειας.',
         items: [
@@ -488,7 +488,7 @@ const gr = {
         exploreLabel: 'Εξερεύνησε τις επιχειρησιακές λύσεις',
       },
       product: {
-        label: 'Product',
+        label: 'Προϊόν',
         title: 'Ένα ασφαλές και επεκτάσιμο Security Operations SaaS.',
         introduction: 'Το Aegis Link είναι ένα cloud-based προϊόν, σχεδιασμένο να εξελίσσεται μαζί με τη δομή, τις ευθύνες και την κλίμακα κάθε επιχείρησης ασφάλειας.',
         items: [
@@ -505,7 +505,7 @@ const gr = {
         exploreLabel: 'Δες το workflow του προϊόντος',
       },
       resources: {
-        label: 'Resources · Τεχνολογία & αρχιτεκτονική',
+        label: 'Πόροι · Τεχνολογία & αρχιτεκτονική',
         title: 'Η τεχνολογία πίσω από το Aegis Link.',
         introduction: 'Ένα σύγχρονο και modular technology stack υποστηρίζει live επιχειρήσεις, ελεγχόμενη πρόσβαση και συνεχή εξέλιξη του προϊόντος.',
         items: [
